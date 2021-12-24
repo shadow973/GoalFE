@@ -1,0 +1,5 @@
+<div *ngIf="matches" class="h2h-container">
+    <app-match-h2h-item [matches]="matches.localteam_matches" [team]="match.localTeam.data"></app-match-h2h-item>
+    <app-match-h2h-item [matches]="matches.visitorteam_matches" [team]="match.visitorTeam.data"></app-match-h2h-item>
+    <app-match-h2h-item [matches]="matches.h2h" [team]="null"></app-match-h2h-item>
+</div>

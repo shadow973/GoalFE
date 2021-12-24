@@ -1,0 +1,58 @@
+<div class="comment" *ngIf="comment">
+
+    <div class="comment-header d-flex align-items-center justify-content-between">
+        <div class="comment-user">
+            <img *ngIf="!comment.author?.avatar" class="comment-user-image" defaultImage="assets/img/no_img.png">
+            <img *ngIf="comment.author?.avatar" class="comment-user-image" defaultImage="assets/img/no_img.png"
+                [src]="checkFBImage(comment.author?.avatar)">
+            <div class="comment-user-name">
+                {{comment.author?.username}}
+            </div>
+        </div>
+
+        <div class="comment-info">
+            <div class="top-comment-mark" *ngIf="top">
+                <i class="fas fa-star star-icon"></i>
+                <span class="hide-mobile">
+                    ტოპ კომენტარი
+                </span>
+            </div>
+            <div class="comment-team" *ngIf="comment.author?.fav_team_id">
+                <img class="team-image" [defaultImage]="'assets/img/default.png'"
+                    [lazyLoad]="imageLinkGeneratorTeam(comment.author?.fav_team_id)">
+            </div>
+            <div class="comment-likes">
+                <i class="like-icon fas fa-heart mr-2 pointer" *ngIf="likedByUser" (click)="toggleLike(false)"></i>
+                <i class="like-icon far fa-heart mr-2 pointer" *ngIf="!likedByUser" (click)="toggleLike(true)"></i>
+                {{comment.likes}}
+            </div>
+            <div class="comment-date">
+                {{comment.created_at | toDate: 'DD MMM YYYY, HH:mm'}}
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-content">
+        {{comment.content}}
+    </div>
+
+    <div class="comment-footer">
+        <div class="comment-footer-option" (click)="reply(!replyComment)">პასუხი</div>
+        <ng-container *ngIf="hasControls">
+            <div class="comment-footer-option edit-comment" (click)="edit(!editComment)">რედაქტირება</div>
+            <div class="comment-footer-option delete-comment" (click)="delete()">წაშლა</div>
+        </ng-container>
+    </div>
+
+    <div class="mt-2" *ngIf="replyComment">
+        <app-comments-write [commentsService]="commentsService" [userLoggedIn]="userLoggedIn" [itemId]="itemId" [replyCommentId]="replyCommentId"
+            (posted)="closeInput(); update(true)"></app-comments-write>
+    </div>
+
+    <div class="mt-2" *ngIf="editComment">
+        <app-comments-write [commentsService]="commentsService" [comment]="comment" [userLoggedIn]="userLoggedIn" [itemId]="itemId"
+            [replyCommentId]="(comment.comment_id) ? replyCommentId: null" (posted)="closeInput(); update(true)">
+        </app-comments-write>
+    </div>
+
+</div>

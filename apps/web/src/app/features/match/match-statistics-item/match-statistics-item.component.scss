@@ -1,0 +1,68 @@
+.match-statistics-item {
+    margin-bottom: 20px;
+
+    .match-statistics-item-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: #373737;
+        font-size: 16px;
+        font-family: "HNeue55tdRoman";
+
+        .title {
+            font-size: 14px;
+        }
+    }
+
+    .match-statistics-item-content {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+
+        .bar {
+            position: relative;
+            height: 10px;
+            border-radius: 20px;
+            background: #f4f4f4;
+
+            .fill {
+                position: absolute;
+                top: 0;
+                height: 10px;
+                border-radius: 20px;
+            }
+        }
+
+        .right {
+            .bar {
+                .fill {
+                    left: 0;
+                }
+            }
+        }
+
+        .left {
+            .bar {
+                .fill {
+                    right: 0;
+                }
+            }
+        }
+
+        .black {
+            .bar {
+                .fill {
+                    background: #2f3031;
+                }
+            }
+        }
+
+        .red {
+            .bar {
+                .fill {
+                    background: #e53c48;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+<ng-container *ngIf="match">
+    <a class="matches-item" [routerLink]="['/match', match.match_id]">
+        <div class="date">
+            <app-match-status [match]="match"></app-match-status>
+        </div>
+
+        <div class="content d-flex align-items-center justify-content-center">
+            <div class="team home">
+                <span class="team-name">
+                    {{match.localteam_name}}
+                </span>
+                <img class="team-image" alt="{{match.localteam_name}}" [defaultImage]="'assets/img/default.png'"
+                    [lazyLoad]="imageLinkGenerator(match.localteam_id)" />
+            </div>
+
+            <div class="time" *ngIf="match.time_status == 'NS'">
+                <span>{{match.starting_at | toDate: 'HH:mm'}}</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'LIVE'">
+                <div class="score">
+                    <span>{{match.localteam_score}}</span>
+                    <span> - </span>
+                    <span>{{match.visitorteam_score}}</span>
+                </div>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'HT'">
+                <div class="score">
+                    <span>{{match.localteam_score}}</span>
+                    <span> - </span>
+                    <span>{{match.visitorteam_score}}</span>
+                </div>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'FT'">
+                <div class="score">
+                    <span>{{match.localteam_score}}</span>
+                    <span> - </span>
+                    <span>{{match.visitorteam_score}}</span>
+                </div>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'ET'">
+                <div class="score">
+                    <span>{{match.localteam_score}}</span>
+                    <span> - </span>
+                    <span>{{match.visitorteam_score}}</span>
+                </div>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'PEN_LIVE'">
+                <span>პენ.'</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'AET'">
+                <div class="score">
+                    <span>{{match.localteam_score}}</span>
+                    <span> - </span>
+                    <span>{{match.visitorteam_score}}</span>
+                </div>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'FT_PEN'">
+                <div class="mr-1" style="font-size:9px">
+                    ( {{match.scores?.localteam_pen_score}}:{{match.scores?.visitorteam_pen_score}}
+                    პენ. )
+                </div>
+                <div class="score">
+                    <span>{{match.localteam_score}}</span>
+                    <span> - </span>
+                    <span>{{match.visitorteam_score}}</span>
+                </div>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'CANCL'">
+                <span>CANCL</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'POSTP'">
+                <span>POSTP</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'TBA'">
+                <span>{{match.starting_at | toDate: 'HH:mm'}}</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'INT'">
+                <span>INT</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'ABAN'">
+                <span>ABAN</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'SUSP'">
+                <span>SUSP</span>
+            </div>
+            <div class="time" *ngIf="match.time_status == 'AU'">
+                <span>AU</span>
+            </div>
+
+            <div class="team">
+                <img class="team-image" alt="{{match.visitorteam_name}}" [defaultImage]="'assets/img/default.png'"
+                    [lazyLoad]="imageLinkGenerator(match.visitorteam_id)" />
+                <span class="team-name">{{match.visitorteam_name}}</span>
+            </div>
+        </div>
+    </a>
+</ng-container>

@@ -1,0 +1,97 @@
+.today-matches-header {
+    width: 100%;
+    padding: 15px 0;
+
+    .today-matches-tabs {
+        width: calc(100% - 100px);
+        height: 40px;
+        background: #fff;
+        border-radius: 10px;
+        padding-right: 20px;
+        overflow: hidden;
+
+        .tabs-fixed {
+            width: 210px;
+            height: 100%;
+        }
+
+        .tabs-swiper {
+            position: relative;
+            width: calc(100% - 210px);
+            height: 100%;
+
+            .custom-shadow {
+                position: absolute;
+                width: 40px;
+                height: 100%;
+                top: 0;
+                z-index: 22;
+
+                &.shadow-left {
+                    left: 0;
+                    box-shadow: inset 35px 0px 10px -20px white;
+                }
+
+                &.shadow-right {
+                    right: 0;
+                    box-shadow: inset -35px 0px 10px -20px white;
+                }
+            }
+
+            .league-tab {
+                width: auto;
+                margin-left: 10px;
+            }
+        }
+
+        .league {
+            height: 100%;
+            padding: 0 11px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #919191;
+            font-family: "HNeue75tdBd";
+            font-feature-settings: "case"on;
+            border-bottom: 1px solid transparent;
+            line-height: 1.3;
+
+            &:hover,
+            &.active {
+                border-bottom: 3px solid #e53c48;
+            }
+
+            .icon {
+                height: 18px;
+                margin-right: 8px;
+
+                img {
+                    width: auto;
+                    height: 18px;
+                }
+            }
+        }
+    }
+
+    .today-matches-controls {
+        margin-right: -5px;
+
+        .today-matches-control {
+            width: 40px;
+            height: 40px;
+            margin: 0 5px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            color: #c1c3c6;
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+                background: #e63c47;
+                color: #fff;
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+<a matRipple class="club-player" [routerLink]="['/player/',  items.player_id,  items.slug, 1]">
+    <div class="club-player-left">
+        <div class="club-player-image">
+            <img [src]="items.image_path" />
+        </div>
+        <div class="club-player-info">
+            <div class="club-player-name">{{items.name}}
+                <img [src]="getCountryImage(items.country_id)" />
+            </div>
+            <div class="club-player-age" *ngIf="items.age">ასაკი:
+                <span>{{calc(items.age)}}</span>
+            </div>
+            <div class="club-player-number" *ngIf="items.player_number">#{{items.player_number}}</div>
+        </div>
+    </div>
+    <div class="club-player-right" *ngIf="type != 'Goalkeeper'">
+        <div class="club-player-right-list">
+            <label>{{items.matchs}}</label>
+            <span> მატჩი</span>
+        </div>
+        <div class="club-player-right-list">
+            <label>{{items.goals}}</label>
+            <span> გოლი</span>
+        </div>
+        <div class="club-player-right-list">
+            <label>{{items.assists}}</label>
+            <span> ასისტები</span>
+        </div>
+    </div>
+    <div class="club-player-right" *ngIf="type == 'Goalkeeper'">
+        <div class="club-player-right-list">
+            <label>{{items.saves}}</label>
+            <span> სეივები</span>
+        </div>
+    </div>
+</a>

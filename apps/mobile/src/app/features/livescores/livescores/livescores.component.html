@@ -1,0 +1,10 @@
+<div class="wrapper">
+    <div class="w-100 regular-container livescores">
+        <app-livescores-header></app-livescores-header>
+        <app-livescores-calendar *ngIf="!showFavEnabled"></app-livescores-calendar>
+
+        <div class="livescores-leagues">
+            <app-livescores-content [showFavorites]="showFavEnabled"></app-livescores-content>
+        </div>
+    </div>
+</div>

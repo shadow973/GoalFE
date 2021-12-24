@@ -1,0 +1,130 @@
+.app-modal {
+    position: relative;
+    width: 600px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+
+    .modal-head {
+        background: #f7f7f7;
+        padding: 30px 100px;
+        text-align: center;
+        color: #000;
+        font-size: 16px;
+        font-family: "HNeue55tdRoman";
+        border-radius: 15px;
+        position: relative;
+
+        .modal-header-control {
+            color: #e61f1f;
+            text-decoration: underline;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            font-size: 22px;
+            top: calc(50% - 30px);
+            cursor: pointer;
+        }
+    }
+
+    .modal-body {
+        font-family: "HNeue55tdRoman";
+        padding-left: 90px;
+        padding-right: 90px;
+        padding-bottom: 40px;
+
+        .modal-title {
+            color: #000;
+            font-size: 19px;
+            font-family: "HNeue55tdRoman";
+            width: 100%;
+            text-align: center;
+            padding-top: 35px;
+            padding-bottom: 35px;
+
+            .registered {
+                width: 100%;
+                padding: 10px;
+                font-size: 13px;
+                color: #0e9e0e;
+                text-align: center;
+            }
+        }
+
+        .error-icon {
+            font-size: 22px;
+            margin-right: 4px;
+            margin-top: 7px;
+        }
+
+        .form {
+            .form-group {
+                .form-control {
+                    width: 100%;
+                    height: 65px;
+                    padding: 6px 12px;
+                    border: none;
+                    background: #f7f7f7;
+                    border-radius: 15px;
+                    padding-left: 25px;
+                    font-family: "HNeue55tdRoman";
+                    color: #000;
+                    font-size: 14px;
+                    outline: none;
+
+                    &:focus {
+                        outline: none;
+                        box-shadow: none;
+                    }
+                }
+
+                .submit-btn {
+                    height: 65px;
+                    line-height: 65px;
+                    display: inline-block;
+                    width: 100%;
+                    border: none;
+                    border-radius: 15px;
+                    background: #f43947;
+                    font-family: HNeue75tdBd;
+                    font-feature-settings: "case"on;
+                    font-size: 16px;
+                    color: #fff;
+                    transition: .5s;
+                    outline: none;
+                }
+            }
+        }
+
+        .social-auth {
+            width: 100%;
+            margin-top: 30px;
+
+            .social-auth-title {
+                font-family: "HNeue55tdRoman";
+                color: #000;
+                font-size: 15px;
+                margin-bottom: 18px;
+            }
+
+            .social-icons {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                .social-icon {
+                    width: 32px;
+                    height: 32px;
+                    margin-right: 14px;
+
+                    &.fb-login {
+                        background: url('../../../../assets/img/fb_icon.png') no-repeat 0;
+                    }
+                }
+            }
+        }
+    }
+}

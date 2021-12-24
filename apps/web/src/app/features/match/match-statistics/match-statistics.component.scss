@@ -1,0 +1,18 @@
+.match-statistics {
+    position: relative;
+    margin-top: 30px;
+
+    .match-statistics-header {
+        padding: 30px 35px;
+        border-bottom: 1px solid #f4f4f4;
+        font-size: 16px;
+        color: #373737;
+        font-family: "HNeue55tdRoman";
+        font-feature-settings: "case"on;
+    }
+
+    .match-statistics-content {
+        padding: 30px 35px;
+        margin-bottom: 30px;
+    }
+}

@@ -1,0 +1,74 @@
+.my-teams-news-item {
+    position: relative;
+    width: 100%;
+    height: 360px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    cursor: pointer;
+
+    .my-teams-news-item-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 190px;
+        overflow: hidden;
+
+        .my-teams-news-item-image {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            transition: 300ms;
+            -o-object-position: top;
+            object-position: top;
+        }
+
+        .play-icon {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 100%;
+            background: rgba(0, 0, 0, .5);
+            border: 2px solid #fff;
+            z-index: 9;
+            text-align: center;
+            line-height: 44px;
+            color: #fff;
+            padding-left: 3px;
+            font-size: 15px;
+        }
+    }
+
+    .my-teams-news-item-title {
+        height: 123px;
+        padding: 17px 26px;
+        color: #2f3031;
+        overflow: hidden;
+        margin-bottom: 8px;
+        font-family: "HNeue75tdBd";
+        font-feature-settings: normal;
+    }
+
+    .my-teams-news-item-date {
+        position: relative;
+        padding: 0 26px 29px;
+        font-size: 12px;
+        z-index: 9;
+        color: #bababa;
+        font-family: "HNeue55tdRoman";
+    }
+
+    &:hover {
+        .my-teams-news-item-image-wrapper {
+            .my-teams-news-item-image {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+<div class="today-matches-wrapper">
+    <app-user-favorites></app-user-favorites>
+
+    <div class="wrapper">
+        <div class="col-12">
+            <app-today-matches></app-today-matches>
+        </div>
+    </div>
+</div>
+
+<div class="home-slider-wrapper" *ngIf="domLoaded">
+    <app-home-slider></app-home-slider>
+</div>
+
+<div class="wrapper" [ngClass]='{"p-0": isSmallScreen}'>
+    <div class="col-12" [ngClass]='{"p-0": isSmallScreen}'>
+        <app-mobile-home-middle-promotion></app-mobile-home-middle-promotion>
+
+        <div class="home-tabs">
+            <div class="col-6 h-100">
+                <h2 matRipple class="home-tab" [class.active]="activeSubMenuTabIndex == 1"
+                    (click)="subMenuTabChange(1)">
+                    მთავარი ამბები
+                </h2>
+            </div>
+            <div class="col-6 h-100">
+                <h2 matRipple class="home-tab" [class.active]="activeSubMenuTabIndex == 2"
+                    (click)="subMenuTabChange(2)">
+                    ბოლო სიახლეები
+                </h2>
+            </div>
+        </div>
+
+        <ng-container *ngIf="activeSubMenuTabIndex == 1">
+            <h1 class="position-absolute"
+                style="width: 1px; height: 1px; font-size: 1px; visibility:hidden; overflow: hidden;">
+                დღის მთავარი ამბები
+            </h1>
+            <div class="main-news">
+                <app-main-news [hasHomeAds]="true" [pageLimit]="3"></app-main-news>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="activeSubMenuTabIndex == 2">
+            <app-latest-news></app-latest-news>
+        </ng-container>
+
+    </div>
+</div>

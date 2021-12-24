@@ -1,0 +1,27 @@
+<div class="latest-news regular-container">
+
+    <div class="latest-news-items">
+        <app-loader *ngIf="mainLoading"></app-loader>
+        <a *ngFor="let n of news; trackBy: trackById" [routerLink]="['/news/', n.id, n.slug | slugify]">
+            <div matRipple class="latest-news-item d-flex align-items-center">
+                <div class="latest-news-item-info">
+                    <span class="latest-news-item-date">
+                        {{n.publish_date | toDate: 'HH:mm'}}
+                    </span>
+                    <img *ngIf="n.teams[0]" class="latest-news-item-category" defaultImage="assets/img/default.png"
+                        [alt]="n.teams[0].name" [src]="imageLinkGeneratorTeam(n.teams[0].pivot.team_id)">
+                </div>
+                <h1 class="latest-news-item-title">
+                    {{n.title | strip}}
+                </h1>
+            </div>
+        </a>
+    </div>
+    <div matRipple *ngIf="page <= 4 && !mainLoading"
+        class="latest-news-more d-flex align-items-center justify-content-center" [class.loading]="loading"
+        (click)="showMore()">
+        <app-loader *ngIf="loading" type="small"></app-loader>
+        <span *ngIf="!loading">მეტი სიახლის ჩვენება</span>
+    </div>
+
+</div>

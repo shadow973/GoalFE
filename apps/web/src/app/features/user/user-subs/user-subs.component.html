@@ -1,0 +1,17 @@
+<div class="user-subs">
+    <div class="user-subs-wrapper row flex-wrap">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let sub of subs; let i = index">
+            <div class="sub regular-container">
+                <a class="club" [routerLink]="['/club', sub.id, sub.name | slugify, 1]">
+                    <div class="image">
+                        <img class="img" [src]="teamImageUrl(sub.id)" />
+                    </div>
+                    <div class="name">{{sub.name}}</div>
+                </a>
+                <div class="subscribed" (click)="unsubscribe(sub)">გამოწერილია
+                    <i class="icon fa fa-times ml-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

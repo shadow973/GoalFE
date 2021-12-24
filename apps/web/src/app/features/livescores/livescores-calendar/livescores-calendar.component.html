@@ -1,0 +1,22 @@
+<div class="livescores-calendar">
+    <ng-container *ngIf="loadSwiper">
+        <div class="calendar-control left" (click)="slide(false)">
+            <i class="fa fa-angle-left"></i>
+        </div>
+
+        <div class="calendar-items">
+            <swiper class="w-100" [(config)]="swipeConfig" [index]="activeSlideIndex" #swiper>
+                <div class="px-2" *ngFor="let calendaritem of calendaritems; let i = index">
+                    <div class="calendar-item" [class.active]="i == activeSlideIndex" (click)="changeDay(calendaritem)">
+                        <div class="w-100">{{calendaritem.weekDay}}</div>
+                        <div class="w-100">{{calendaritem.day}}</div>
+                    </div>
+                </div>
+            </swiper>
+        </div>
+
+        <div class="calendar-control right" (click)="slide(true)">
+            <i class="fa fa-angle-right"></i>
+        </div>
+    </ng-container>
+</div>

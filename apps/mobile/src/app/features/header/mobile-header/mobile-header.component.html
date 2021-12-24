@@ -1,0 +1,38 @@
+<div class="header-mobile-wrapper" [class.collapsed]="scrolled" [class.menu-open]="menuOpen">
+    <div class="header">
+        <div class="wrapper h-100 d-flex align-items-center no-gutters">
+            <div class="col-5 text-left">
+                <a matRipple href="/">
+                    <img src="assets/img/logo.png" alt="goal.ge" class="logo">
+                </a>
+            </div>
+            <div class="col-7 text-right">
+                <div class="d-flex h-100 align-items-center justify-content-end">
+                    <div matRipple class="search-m" (click)="toggleSearch(true)">
+                        <i class="fa fa-search search-m-icon" aria-hidden="true"></i>
+                    </div>
+
+                    <div matRipple class="auth" *ngIf="!userLoggedIn" (click)="auth()">
+                        <div class="auth-icon"></div>
+                    </div>
+                    <div class="user" *ngIf="userLoggedIn && user">
+                        <a matRipple class="user-icon" [class.no-avatar]="!user.avatar"
+                            [routerLink]="['/user/', user.id ]">
+                            <img *ngIf="user.avatar" class="user-avatar" [src]="getAvatar(user.avatar)" />
+                        </a>
+                        <div matRipple class="logout" (click)="logout()"></div>
+                    </div>
+
+                    <div matRipple class="burger-nav" (click)="toggleMenu()">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <app-search-mobile *ngIf="searchOpen" (searchClosed)="toggleSearch(false)"></app-search-mobile>
+
+    </div>
+
+    <app-sub-menu [collapsed]="scrolled"></app-sub-menu>
+</div>

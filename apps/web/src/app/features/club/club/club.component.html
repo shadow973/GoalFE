@@ -1,0 +1,179 @@
+<div class="wrapper">
+    <div class="club">
+        <div class="club-header regular-container">
+            <app-loader type="small" *ngIf="loading"></app-loader>
+            <ng-container *ngIf="!loading">
+                <div class="club-info d-flex align-items-center justify-content-between">
+                    <div>
+                        <img class="club-image" [alt]="team?.name" [defaultImage]="'assets/img/default.png'"
+                            [lazyLoad]="imageLinkGeneratorTeam(team?.team_id)">
+                        <h1 class="club-name">
+                            {{team?.name}}
+                        </h1>
+                    </div>
+                    <div class="club-subscribe pointer" [class.club-subscribed]="clubSubscribed"
+                        (click)="subscribe(team.team_id, team.name)">
+                        <span *ngIf="!clubSubscribed">გამოწერა</span>
+                        <span *ngIf="clubSubscribed">გამოწერილია <i class="icon fa fa-check"></i></span>
+                    </div>
+                </div>
+                <div class="club-tabs d-flex align-items-center">
+                    <div class="club-tab" [class.active]="activeTabId == 1" (click)="changeTab(1)">
+                        მთავარი
+                    </div>
+                    <div class="club-tab" [class.active]="activeTabId == 8" (click)="changeTab(8)">
+                        სატურნირო ცხრილი
+                    </div>
+                    <div class="club-tab" [class.active]="activeTabId == 2" (click)="changeTab(2)">
+                        სიახლეები
+                    </div>
+                    <div class="club-tab" [class.active]="activeTabId == 3" (click)="changeTab(3)">
+                        მატჩები
+                    </div>
+                    <div class="club-tab" [class.active]="activeTabId == 4" (click)="changeTab(4)">
+                        შემადგენლობა
+                    </div>
+                    <div class="club-tab" [class.active]="activeTabId == 5" (click)="changeTab(5)">
+                        სტატისტიკა
+                    </div>
+                    <div class="club-tab" [class.active]="activeTabId == 6" (click)="changeTab(6)">
+                        ტრანსფერები
+                    </div>
+                    <div class="club-tab" *ngIf="team?.history" [class.active]="activeTabId == 7"
+                        (click)="changeTab(7)">
+                        ისტორია
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="row">
+            <div class="col-xxl-9 col-lg-8 col-9">
+                <div class="club-content pt-4">
+                    <app-loader type="normal" *ngIf="contentLoading"></app-loader>
+                    <ng-container *ngIf="!contentLoading">
+                        <ng-container *ngIf="activeTabId == 1">
+                            <div *ngIf="fullData && fullData.matches?.length">
+                                <div class="matches-heading">
+                                    მატჩები
+                                </div>
+                                <!-- <div class="matches-items no-gutters">
+                                    <ng-container *ngFor="let match of fullData.matches">
+                                        <app-today-match [match]="match"></app-today-match>
+                                    </ng-container>
+                                </div> -->
+                                <div class="mb-3">
+                                    <swiper [(config)]="swipeConfig">
+                                        <div *ngFor="let match of fullData.matches">
+                                            <app-team-match [match]="match"></app-team-match>
+                                        </div>
+                                    </swiper>
+                                </div>
+                            </div>
+                            <app-main-news-pagination *ngIf="teamNews && teamNews.data.length" [newsData]="teamNews"
+                                (pageChanged)="pageChanged($event)" [urlPagination]="true">
+                            </app-main-news-pagination>
+                            <div class="text-center"
+                                *ngIf="(!teamNews || (teamNews && !teamNews.data.length)) && !contentLoading">
+                                ჩანაწერები ვერ მოიძებნა
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTabId == 2">
+                            <app-main-news-pagination *ngIf="teamNews && teamNews.data.length" [newsData]="teamNews"
+                                (pageChanged)="pageChanged($event)" [urlPagination]="true">
+                            </app-main-news-pagination>
+                            <div class="text-center"
+                                *ngIf="(!teamNews || (teamNews && !teamNews.data.length)) && !contentLoading">
+                                ჩანაწერები ვერ მოიძებნა
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTabId == 3">
+                            <div class="w-100 regular-container px-sm-4 pb-sm-4 px-2 pb-2">
+                                <div class="matches-header d-flex align-items-center mb-2">
+                                    <div class="matches-title">
+                                        ბოლო და მომდევნო მატჩები
+                                    </div>
+                                    <div class="matches-slide-control ml-auto">
+                                        <i class="fa fa-chevron-left icon pointer"
+                                            (click)="slideMatches(false)"></i>
+                                        <i class="fa fa-chevron-right icon pointer"
+                                            (click)="slideMatches(true)"></i>
+                                    </div>
+                                </div>
+
+                                <app-matches *ngIf="teamMatches && teamMatches.length" [matches]="teamMatches">
+                                </app-matches>
+
+                                <div class="text-center"
+                                    *ngIf="(!teamMatches || (teamMatches && !teamMatches.length)) && !contentLoading">
+                                    ჩანაწერები ვერ მოიძებნა
+                                </div>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTabId == 4">
+                            <app-club-players *ngIf="teamPlayers && teamPlayers.length" [players]="teamPlayers">
+                            </app-club-players>
+                            <div class="text-center"
+                                *ngIf="(!teamPlayers || (teamPlayers && !teamPlayers.length)) && !contentLoading">
+                                ჩანაწერები ვერ მოიძებნა
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTabId == 5">
+                            <app-statistics *ngIf="teamStats" [statistics]="teamStats"></app-statistics>
+                            <div class="text-center" *ngIf="!teamStats && !contentLoading">
+                                ჩანაწერები ვერ მოიძებნა
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTabId == 6">
+                            <div class="w-100 regular-container px-sm-4 pb-sm-4 px-2 pb-2">
+                                <div class="matches-header d-flex align-items-center mb-2">
+                                    <div class="matches-title">
+                                        ტრანსფერები
+                                    </div>
+                                    <div class="matches-slide-control ml-auto">
+                                        <i class="fa fa-chevron-left icon pointer"
+                                            (click)="slideTransfers(false)"></i>
+                                        <i class="fa fa-chevron-right icon pointer"
+                                            (click)="slideTransfers(true)"></i>
+                                    </div>
+                                </div>
+
+                                <app-club-transfers *ngIf="teamTransfers && teamTransfers.length"
+                                    [transfers]="teamTransfers">
+                                </app-club-transfers>
+
+                                <div class="text-center"
+                                    *ngIf="(!teamTransfers || (teamTransfers && !teamTransfers.length)) && !contentLoading">
+                                    ჩანაწერები ვერ მოიძებნა
+                                </div>
+                            </div>
+
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTabId == 7">
+                            <div class="club-history regular-container"
+                                [innerHTML]="team.history?.description | safe : 'html'"></div>
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTabId == 8">
+                          <div *ngIf="teamStanding">
+                              <app-tables [standings]="teamStanding.standings"></app-tables>
+                          </div>
+                          <div class="text-center" *ngIf="!teamStanding && !loading">
+                              ჩანაწერები ვერ მოიძებნა
+                          </div>
+                        </ng-container>
+
+                    </ng-container>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-lg-4 col-3">
+                <app-club-sidebar *ngIf="fullData" [teamId]="teamId" [standings]="fullData.standings" [players]="fullData.players"></app-club-sidebar>
+            </div>
+        </div>
+    </div>
+</div>

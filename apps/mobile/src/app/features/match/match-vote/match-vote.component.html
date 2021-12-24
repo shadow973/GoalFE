@@ -1,0 +1,63 @@
+<div class="vote" *ngIf="match">
+    <div class="vote-header d-flex">
+        <div class="col-4 vote-team">
+            <div class="image">
+                <img [alt]="match.localTeam?.data?.name" [src]="imageLinkGenerator(match.localteam_id)" />
+            </div>
+            <div class="name">{{match.localTeam?.data?.name}}</div>
+        </div>
+        <div class="col-4 vote-controls">
+            <div class="vote-controls-title">
+                <span *ngIf="!voted">ხმის მიცემა</span>
+                <span *ngIf="!voted">თქვენი ხმა მიღებულია!</span>
+            </div>
+            <div class="vote-btns">
+                <button class="vote-btn" [class.active]="false" (click)="rate(1, match.match_id)">
+                    1
+                </button>
+                <button class="vote-btn" [class.active]="false" (click)="rate(0, match.match_id)">
+                    X
+                </button>
+                <button class="vote-btn" [class.active]="false" (click)="rate(2, match.match_id)">
+                    2
+                </button>
+            </div>
+        </div>
+        <div class="col-4 vote-team">
+            <div class="image">
+                <img [alt]="match.visitorTeam?.data?.name" [src]="imageLinkGenerator(match.visitorteam_id)" />
+            </div>
+            <div class="name">{{match.visitorTeam?.data?.name}}</div>
+        </div>
+    </div>
+
+    <div class="vote-content">
+        <div class="progress-header d-flex">
+            <div class="col-4 text-left">
+                <span>
+                    {{percentage(1, 2)}}%
+                    (1 ხმა)
+                    {{match.localTeam?.data?.name}}
+                </span>
+            </div>
+            <div class="col-4 text-center">
+                <span>
+                    100%
+                    (1 ხმა)
+                    ფრე
+                </span>
+            </div>
+            <div class="col-4 text-right">
+                <span>
+                    {{percentage(1, 2)}}%
+                    (1 ხმა)
+                    {{match.visitorTeam?.data?.name}}
+                </span>
+            </div>
+        </div>
+        <div class="custom-progress-bar d-flex">
+            <div class="custom-bar home" [style.width.%]="percentage(1, 2)"></div>
+            <div class="custom-bar away" [style.width.%]="percentage(1, 2)"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+<div class="user-favorites-modal">
+
+    <div class="user-favorites-modal-title">
+        გამოიწერე გუნდი, ჩემპიონატი ან ფეხბურთელი
+    </div>
+
+    <div class="user-favorites-modal-search">
+        <app-user-favorite-search (loading)="loading = $event" (result)="searchItems = $event">
+        </app-user-favorite-search>
+    </div>
+
+    <div class="user-favorites-modal-content">
+        <app-loader type="small" *ngIf="loading"></app-loader>
+
+        <ng-container *ngIf="searchItems">
+            <ng-container *ngIf="searchItems.teams && searchItems.teams.length">
+                <div class="favorites-search-header-title">გუნდები</div>
+                <a matRipple class="favorites-search-item d-flex align-items-center"
+                    *ngFor="let club of searchItems.teams" [routerLink]="['/club', club.team_id, club.slug, 1]">
+                    <img class="favorites-search-item-image" [alt]="club.name"
+                        [src]="imageLinkGeneratorClub(club.team_id)" />
+                    <span class="favorites-search-item-title">
+                        {{club.name}}
+                    </span>
+                    <div class="favorites-search-item-subscribe" [class.subscribed]="isSubscribed(club.team_id)"
+                        (click)="toggleSubscribe($event, 'club', club.team_id, club.slug, club.name)">
+                        <span *ngIf="!isSubscribed(club.team_id)">
+                            <i class="fas fa-star mr-1"></i>
+                            გამოწერა
+                        </span>
+                        <span *ngIf="isSubscribed(club.team_id)">
+                            <i class="fas fa-times mr-1"></i>
+                            გაუქმება
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="searchItems.leagues && searchItems.leagues.length">
+                <div class="favorites-search-header-title">ჩემპიონატი</div>
+                <a matRipple class="favorites-search-item d-flex align-items-center"
+                    *ngFor="let league of searchItems.leagues"
+                    [routerLink]="['/championship', league.league_id, league.slug, 1]">
+                    <img class="favorites-search-item-image" [alt]="league.name"
+                        [src]="imageLinkGeneratorChampionship(league.country_id)" />
+                    <span class="favorites-search-item-title">
+                        {{league.name}}
+                    </span>
+                    <div class="favorites-search-item-subscribe" [class.subscribed]="isSubscribed(league.league_id)"
+                        (click)="toggleSubscribe($event, 'championship', league.league_id, league.slug, league.name, league.country_id)">
+                        <span *ngIf="!isSubscribed(league.league_id)">
+                            <i class="fas fa-star mr-1"></i>
+                            გამოწერა
+                        </span>
+                        <span *ngIf="isSubscribed(league.league_id)">
+                            <i class="fas fa-times mr-1"></i>
+                            გაუქმება
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="searchItems.players && searchItems.players.length">
+                <div class="favorites-search-header-title">ფეხბურთელები</div>
+                <a matRipple class="favorites-search-item d-flex align-items-center"
+                    *ngFor="let player of searchItems.players"
+                    [routerLink]="['/player', player.player_id, player.slug, 1]">
+                    <img class="favorites-search-item-image" [alt]="player.fullname"
+                        [src]="imageLinkGeneratorPlayer(player.image_path)" />
+                    <span class="favorites-search-item-title">
+                        {{player.fullname}}
+                    </span>
+                    <div class="favorites-search-item-subscribe" [class.subscribed]="isSubscribed(player.player_id)"
+                        (click)="toggleSubscribe($event, 'player', player.player_id, player.slug, player.fullname, player.image_path)">
+                        <span *ngIf="!isSubscribed(player.player_id)">
+                            <i class="fas fa-star mr-1"></i>
+                            გამოწერა
+                        </span>
+                        <span *ngIf="isSubscribed(player.player_id)">
+                            <i class="fas fa-times mr-1"></i>
+                            გაუქმება
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="!searchItems">
+            <ng-container *ngIf="favoriteClubs && favoriteClubs.length">
+                <div class="favorites-search-header-title">გუნდები</div>
+                <a matRipple class="favorites-search-item d-flex align-items-center" *ngFor="let club of favoriteClubs"
+                    [routerLink]="['/club', club.id, club.slug, 1]">
+                    <img class="favorites-search-item-image" [alt]="club.name"
+                        [src]="imageLinkGeneratorClub(club.id)" />
+                    <span class="favorites-search-item-title">
+                        {{club.name}}
+                    </span>
+                    <div class="favorites-search-item-subscribe subscribed"
+                        (click)="toggleSubscribe($event, 'club', club.id, club.slug, club.name)">
+                        <span>
+                            <i class="fas fa-times mr-1"></i>
+                            გაუქმება
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="favoriteLeagues && favoriteLeagues.length">
+                <div class="favorites-search-header-title">ჩემპიონატი</div>
+                <a matRipple class="favorites-search-item d-flex align-items-center"
+                    *ngFor="let league of favoriteLeagues" [routerLink]="['/championship', league.id, league.slug, 1]">
+                    <img class="favorites-search-item-image" [alt]="league.name"
+                        [src]="imageLinkGeneratorChampionship(league.extraParam)" />
+                    <span class="favorites-search-item-title">
+                        {{league.name}}
+                    </span>
+                    <div class="favorites-search-item-subscribe subscribed"
+                        (click)="toggleSubscribe($event, 'championship', league.id, league.slug, league.name, league.extraParam)">
+                        <span>
+                            <i class="fas fa-times mr-1"></i>
+                            გაუქმება
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="favoritePlayers && favoritePlayers.length">
+                <div class="favorites-search-header-title">ფეხბურთელები</div>
+                <a matRipple class="favorites-search-item d-flex align-items-center"
+                    *ngFor="let player of favoritePlayers" [routerLink]="['/player', player.id, player.slug, 1]">
+                    <img class="favorites-search-item-image" [alt]="player.fullname"
+                        [src]="imageLinkGeneratorPlayer(player.extraParam)" />
+                    <span class="favorites-search-item-title">
+                        {{player.name}}
+                    </span>
+                    <div class="favorites-search-item-subscribe subscribed"
+                        (click)="toggleSubscribe($event, 'player', player.player_id, player.slug, player.name, player.extraParam)">
+                        <span>
+                            <i class="fas fa-times mr-1"></i>
+                            გაუქმება
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+        </ng-container>
+    </div>
+
+</div>

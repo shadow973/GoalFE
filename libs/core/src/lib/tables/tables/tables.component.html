@@ -1,0 +1,105 @@
+<ng-container *ngIf="type == 'small'">
+    <div class="tables mt-2">
+        <div class="tables-header d-flex no-gutters">
+            <div class="col-7"><span *ngIf="standings?.length && standings[0].group_id">{{ standings[0].group_name }}</span></div>
+            <div class="col-1 text-center">თ</div>
+            <div class="col-1 text-center">მ</div>
+            <div class="col-1 text-center">ფ</div>
+            <div class="col-1 text-center">წ</div>
+            <div class="col-1 text-center">ქ</div>
+        </div>
+
+        <div class="tables-content">
+            <div class="tables-row d-flex no-gutters" *ngFor="let standing of standings">
+                <div class="col-1">
+                    <div class="position">
+                        {{standing.position}}
+                    </div>
+                </div>
+                <div class="col-6 ellipsis pl-1">
+                    <a matRipple [routerLink]="['/club/', standing.team_id, standing.slug | slugify, 1]">
+                        <span class="name pointer">
+                            <img class="image" [alt]="standing?.team_name" src="assets/img/default.png"
+                                [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="imageLinkGeneratorTeam(standing?.team_id)">
+                            {{standing.team_name}}
+                        </span>
+                    </a>
+                </div>
+                <div class="overall col-1 text-center">{{standing.overall.games_played}}</div>
+                <div class="overall col-1 text-center">{{standing.overall.won}}</div>
+                <div class="overall col-1 text-center">{{standing.overall.draw}}</div>
+                <div class="overall col-1 text-center">{{standing.overall.lost}}</div>
+                <div class="point col-1 text-center">{{standing.points}}</div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+
+<ng-container *ngIf="type == 'normal'">
+    <div class="regular-container mt-2">
+
+        <div class="tables-tabs" *ngIf="standings?.length && !standings[0].group_id">
+            <div matRipple class="tables-tab" [class.active]="activeTab == 1" (click)="changeTab(1)">
+                საერთო
+            </div>
+            <div matRipple class="tables-tab" [class.active]="activeTab == 2" (click)="changeTab(2)">
+                სახლი
+            </div>
+            <div matRipple class="tables-tab" [class.active]="activeTab == 3" (click)="changeTab(3)">
+                გასვლა
+            </div>
+        </div>
+
+        <div class="tables p-sm-4 p-2">
+            <div class="tables-header d-flex no-gutters">
+                <div class="col-7"><span *ngIf="standings?.length && standings[0].group_id">{{ standings[0].group_name }}</span></div>
+                <div class="col-1 text-center">თ</div>
+                <div class="col-1 text-center">მ</div>
+                <div class="col-1 text-center">ფ</div>
+                <div class="col-1 text-center">წ</div>
+                <div class="col-1 text-center">ქ</div>
+            </div>
+
+            <div class="tables-content">
+                <div class="tables-row d-flex no-gutters" *ngFor="let standing of standings">
+                    <div class="col-7 ellipsis d-flex">
+                        <div class="position mr-2">
+                            {{standing.position}}
+                        </div>
+                        <a matRipple [routerLink]="['/club/', standing.team_id, standing.slug | slugify, 1]">
+                            <span class="name pointer">
+                                <img class="image" [alt]="standing?.team_name" src="assets/img/default.png"
+                                    [defaultImage]="'assets/img/default.png'"
+                                    [lazyLoad]="imageLinkGeneratorTeam(standing?.team_id)">
+                                {{standing.team_name}}
+                            </span>
+                        </a>
+                    </div>
+                    <ng-container *ngIf="activeTab == 1">
+                        <div class="overall col-1 text-center">{{standing.overall.games_played}}</div>
+                        <div class="overall col-1 text-center">{{standing.overall.won}}</div>
+                        <div class="overall col-1 text-center">{{standing.overall.draw}}</div>
+                        <div class="overall col-1 text-center">{{standing.overall.lost}}</div>
+                    </ng-container>
+                    <ng-container *ngIf="activeTab == 2">
+                        <div class="overall col-1 text-center">{{standing.home.games_played}}</div>
+                        <div class="overall col-1 text-center">{{standing.home.won}}</div>
+                        <div class="overall col-1 text-center">{{standing.home.draw}}</div>
+                        <div class="overall col-1 text-center">{{standing.home.lost}}</div>
+                    </ng-container>
+                    <ng-container *ngIf="activeTab == 3">
+                        <div class="overall col-1 text-center">{{standing.away.games_played}}</div>
+                        <div class="overall col-1 text-center">{{standing.away.won}}</div>
+                        <div class="overall col-1 text-center">{{standing.away.draw}}</div>
+                        <div class="overall col-1 text-center">{{standing.away.lost}}</div>
+                    </ng-container>
+
+                    <div class="point col-1 text-center">{{standing.points}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

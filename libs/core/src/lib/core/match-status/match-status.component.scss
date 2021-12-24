@@ -1,0 +1,22 @@
+.status {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .live-anime {
+        color: #ff4044;
+        animation: live 1s ease infinite;
+    }
+}
+
+
+@keyframes live {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

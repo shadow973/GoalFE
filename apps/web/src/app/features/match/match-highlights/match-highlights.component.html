@@ -1,0 +1,23 @@
+<div class="highlights"
+    *ngIf="overviewData.firstHalf && overviewData.firstHalf.length || overviewData.secondHalf && overviewData.secondHalf.length">
+    <div class="half-stats regular-container">
+
+        <div class="half" *ngIf="overviewData.firstHalf.length">
+            <div class="half-header">
+                <span>პირველი ტაიმი</span>
+            </div>
+            <ng-container *ngFor="let overview of overviewData.firstHalf">
+                <app-match-highlights-overview [overview]="overview"></app-match-highlights-overview>
+            </ng-container>
+        </div>
+
+        <div class="half" *ngIf="overviewData.secondHalf.length">
+            <div class="half-header">
+                <span>მეორე ტაიმი</span>
+            </div>
+            <ng-container *ngFor="let overview of overviewData.secondHalf">
+                <app-match-highlights-overview [overview]="overview"></app-match-highlights-overview>
+            </ng-container>
+        </div>
+    </div>
+</div>

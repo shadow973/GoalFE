@@ -1,0 +1,105 @@
+<div class="players">
+    <div class="sidebar-block-heading">
+        ტოპ ფეხბურთელები
+    </div>
+    <div class="regular-container">
+        <div class="player-tabs d-flex align-items-center">
+            <div class="player-tab" [class.active]="activeTabId == 1" (click)="changeTab(1)">
+                რეიტინგი
+            </div>
+            <div class="player-tab" [class.active]="activeTabId == 2" (click)="changeTab(2)">
+                გოლები
+            </div>
+            <div class="player-tab" [class.active]="activeTabId == 3" (click)="changeTab(3)">
+                ასისტები
+            </div>
+            <div class="player-tab" [class.active]="activeTabId == 4" (click)="changeTab(4)">
+                ბარათები
+            </div>
+        </div>
+        <div class="player-content">
+            <ng-container *ngIf="activeTabId == 1">
+                <div class="player-stats" *ngIf="players && players.rating && players.rating.length > 0">
+                    <a [routerLink]="['/player/', player.player_id,player.slug, 1 ]" class="player" *ngFor="let player of players.rating">
+                        <div class="player-details">
+                            <img class="player-image mr-2" [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="player.image_path">
+                                
+                                {{ player.fullname }}
+                        </div>
+                        <div class="player-score font-bold" *ngIf="player.rating">
+                            {{ player.rating.toPrecision(2) }}
+                        </div>
+                    </a>
+                </div>
+                <div class="text-center mb-3"
+                    *ngIf="!players || !players.rating || players.rating.length === 0">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="activeTabId == 2">
+                <div class="player-stats" *ngIf="players && players.goalscorers && players.goalscorers.length > 0">
+                    <a [routerLink]="['/player/', player.player_id,player.slug, 1 ]" class="player" *ngFor="let player of players.goalscorers">
+                        <div class="player-details">
+                            <img class="player-image mr-2" [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="player.image_path">
+                                
+                                {{ player.fullname }}
+                        </div>
+                        <div class="player-score font-bold">
+                            {{ player.goals }}
+                        </div>
+                    </a>
+                </div>
+                <div class="text-center mb-3"
+                    *ngIf="!players || !players.goalscorers || players.goalscorers.length === 0">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="activeTabId == 3">
+                <div class="player-stats" *ngIf="players && players.assists && players.assists.length > 0">
+                    <a [routerLink]="['/player/', player.player_id,player.slug, 1 ]" class="player" *ngFor="let player of players.assists">
+                        <div class="player-details">
+                            <img class="player-image mr-2" [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="player.image_path">
+                                
+                                {{ player.fullname }}
+                        </div>
+                        <div class="player-score font-bold">
+                            {{ player.assists }}
+                        </div>
+                    </a>
+                </div>
+                <div class="text-center mb-3"
+                    *ngIf="!players || !players.assists || players.assists.length === 0">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="activeTabId == 4">
+                <div class="player-stats" *ngIf="players && players.cards && players.cards.length > 0">
+                    <a [routerLink]="['/player/', player.player_id,player.slug, 1 ]" class="player" *ngFor="let player of players.cards">
+                        <div class="player-details">
+                            <img class="player-image mr-2" [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="player.image_path">
+                                
+                                {{ player.fullname }}
+                        </div>
+                        <div class="player-score font-bold">
+                            {{ player.cards }}
+                        </div>
+                    </a>
+                </div>
+                <div class="text-center mb-3"
+                    *ngIf="!players || !players.cards || players.cards.length === 0">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </ng-container>
+        </div>
+        <!-- <div class="text-center">
+            <a href="#" class="view-full">სრული ცხრილის ნახვა</a>
+        </div> -->
+    </div>
+</div>

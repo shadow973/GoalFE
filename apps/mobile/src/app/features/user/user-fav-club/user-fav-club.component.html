@@ -1,0 +1,19 @@
+<div class="form-group">
+    <input #input type="text" class="form-control" placeholder="საყვარელი კლუბი" name="club" [(ngModel)]="searchValue"
+        (ngModelChange)="searchValueChanged($event)">
+
+    <div #menu class="search-results scroller" *ngIf="result || loading">
+        <app-loader *ngIf="loading" type="small"></app-loader>
+        <ng-container *ngIf="!loading">
+            <div class="tag d-flex align-items-center" *ngFor="let team of result" (click)="selectClub(team)">
+                <div>
+                    <img class="tag-image" alt="{{team.name}}" defaultImage="assets/img/default.png"
+                        [lazyLoad]="teamImageUrl(team.team_id)" />
+                    <span class="tag-title">
+                        {{team.name}}
+                    </span>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

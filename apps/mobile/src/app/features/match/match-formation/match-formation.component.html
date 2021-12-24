@@ -1,0 +1,77 @@
+<div class="match-formation" *ngIf="match.formations.localteam_formation && match.formations.visitorteam_formation">
+
+    <div class="w-100 regular-container formations" *ngIf="match && match.formations">
+        <div class="formations-header d-flex align-items-center">
+            <div class="col-4 text-left">
+                {{match.formations.localteam_formation}}
+            </div>
+            <div class="col-4 text-center">
+                გუნდების წყობა
+            </div>
+            <div class="col-4 text-right">
+                {{match.formations.visitorteam_formation}}
+            </div>
+        </div>
+
+        <app-match-formation-stadium [match]="match" [homeTeamLineup]="homeTeamLineup" [awayTeamLineup]="awayTeamLineup"
+            *ngIf="homeTeamLineup?.length && awayTeamLineup?.length">
+        </app-match-formation-stadium>
+
+    </div>
+
+
+    <div class="w-100 regular-container" *ngIf="matchPlayers && matchPlayers.lineup?.length > 0">
+
+        <div class="lineup">
+            <div class="lineup-header"> საწყისი შემადგენლობა </div>
+            <div class="lineup-content d-flex flex-wrap no-gutters">
+                <div class="col-6">
+                    <ng-container *ngFor="let p of homeTeamLineup; let i= index; trackBy: trackById">
+                        <a class="match-player home"
+                            [routerLink]="['/player', p.player_id, p.player_name | slugify, 1]">
+                            <app-match-formation-player [player]="p" [isLineup]="true"
+                                [substitutions]="match.substitutions">
+                            </app-match-formation-player>
+                        </a>
+                    </ng-container>
+                </div>
+                <div class="col-6">
+                    <ng-container *ngFor="let p of awayTeamLineup; let i= index; trackBy: trackById">
+                        <a class="match-player away"
+                            [routerLink]="['/player', p.player_id, p.player_name | slugify, 1]">
+                            <app-match-formation-player [player]="p" [isLineup]="true"
+                                [substitutions]="match.substitutions" [away]="true">
+                            </app-match-formation-player>
+                        </a>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <div class="lineup" *ngIf="matchPlayers.bench?.length > 0">
+            <div class="lineup-header">სათადარიგო სკამები </div>
+            <div class="lineup-content d-flex flex-wrap no-gutters">
+                <div class="col-6">
+                    <ng-container *ngFor="let p of homeTeamBench; let i= index; trackBy: trackById">
+                        <a class="match-player home"
+                            [routerLink]="['/player', p.player_id, p.player_name | slugify, 1]">
+                            <app-match-formation-player [player]="p" [substitutions]="match.substitutions">
+                            </app-match-formation-player>
+                        </a>
+                    </ng-container>
+                </div>
+                <div class="col-6">
+                    <ng-container *ngFor="let p of awayTeamBench; let i= index; trackBy: trackById">
+                        <a class="match-player away"
+                            [routerLink]="['/player', p.player_id, p.player_name | slugify, 1]">
+                            <app-match-formation-player [player]="p" [substitutions]="match.substitutions"
+                                [away]="true">
+                            </app-match-formation-player>
+                        </a>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

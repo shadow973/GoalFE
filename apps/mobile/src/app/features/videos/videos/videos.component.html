@@ -1,0 +1,44 @@
+<div class="wrapper" [ngClass]='{"p-0": isSmallScreen}'>
+    <div class="videos">
+        <div class="videos-header regular-container">
+            <div class="videos-title">ვიდეო არქივი</div>
+            <div class="videos-tabs">
+                <div class="videos-tab pointer active">ყველა</div>
+            </div>
+        </div>
+        <div class="videos-content">
+            <app-loader *ngIf="loading"></app-loader>
+
+            <ng-container *ngIf="videoData && !loading">
+                <div class="row">
+                    <div *ngFor="let v of videoData?.data" class="col-md-6 col-sm-12 py-3">
+                        <app-video [video]="v"></app-video>
+                    </div>
+                </div>
+
+                <div class="main-news-pagination">
+                    <nav class="row mt-4">
+                        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(1)">პირველი</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                <a (click)="setPage(pager.currentPage - 1)">უკან</a>
+                            </li>
+                            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                                <a (click)="setPage(page)">{{page}}</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.currentPage + 1)">წინ</a>
+                            </li>
+                            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                <a (click)="setPage(pager.totalPages)">ბოლო</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+
+</div>

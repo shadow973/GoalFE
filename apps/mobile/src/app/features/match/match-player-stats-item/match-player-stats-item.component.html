@@ -1,0 +1,32 @@
+<div class="match-player-stat">
+    <div class="regular-container p-4">
+        <div class="player-stat-block-title mb-2">{{ blockTitle }}</div>
+
+        <div class="player-list" *ngIf="stats">
+            <a *ngFor="let player of visibleStats; let i = index" [routerLink]="['/player/', player.player_id,player.player_slug, 1 ]" class="player-item d-flex">
+                <div class="player-details d-flex align-items-center justify-content-center">
+                    <div class="player-image mr-2">
+                        <img [src]="player.image_path">
+                    </div>
+                    <div>
+                        <div class="player-name">{{ player.player_name }}</div>
+                        <div class="player-team d-flex">
+                            <div class="mr-1">
+                                <img class="team-image" [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="imageLinkGenerator(player.team_id)">
+                            </div>
+                            <div class="team-name">{{ player.team_name }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="player-score" [class.trophy]="i == 0">
+                    <span class="best-score mr-2" *ngIf="i == 0">
+                        <img src="assets/img/trophy.svg">  
+                    </span> 
+                    {{ player.stat }}
+                </div>
+            </a>
+            <button (click)="togglePlayers()" class="btn-toggle-all mt-4">{{ toggleButtonText }}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+.comments-modal {
+    position: relative;
+    width: 300px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+
+    .close-modal {
+        position: absolute;
+        right: 15px;
+        font-size: 22px;
+        top: 15px;
+        cursor: pointer;
+    }
+
+    .modal-body {
+        font-family: "HNeue55tdRoman";
+        padding-top: 30px;
+
+        .modal-title {
+            color: #000;
+            font-size: 16px;
+            font-family: "HNeue55tdRoman";
+            width: 100%;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+    }
+
+    .modal-footer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+
+        .modal-btn {
+            padding: 7px 17px 10px 16px;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 14px;
+            font-family: "HNeue55tdRoman";
+            font-feature-settings: "case"on;
+            border: 0;
+            outline: 0;
+
+            &.accept {
+                background-color: #e53c48;
+                margin-right: 15px;
+            }
+
+            &.decline {
+                background-color: #a4abb7;
+            }
+        }
+    }
+}

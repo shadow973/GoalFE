@@ -1,0 +1,23 @@
+<div class="my-teams-header regular-container">
+    <div class="d-flex my-teams-header-top">
+        <div class="my-teams-header-title">
+            ჩემი გუნდები
+        </div>
+        <div class="my-teams-header-search">
+            <app-my-teams-search></app-my-teams-search>
+        </div>
+    </div>
+
+    <div class="my-teams-tabs d-flex" [hidden]="!loadSwiper">
+        <swiper class="w-100" #swiper [(config)]="swipeConfig" [(index)]="activeSlideIndex">
+            <div matRipple *ngFor="let club of favoriteClubs; let i = index;trackBy: trackById" class="my-teams-tab"
+                (click)="chooseTeam(club)" [class.active]="activeTeamId == club.id">
+                {{club.name}}
+            </div>
+        </swiper>
+    </div>
+
+    <div class="teams-no-found" *ngIf="!favoriteClubs || favoriteClubs.length == 0">
+        გთხოვთ დაამატოთ ფავორიტი გუნდები
+    </div>
+</div>

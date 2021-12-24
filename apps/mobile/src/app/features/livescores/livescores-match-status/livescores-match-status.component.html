@@ -1,0 +1,52 @@
+<div class="match-date" *ngIf="match.time_status == 'NS'">
+    <span *ngIf="match.starting_at">{{ match.starting_at | toDate: 'HH:mm' }}</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'TBA'">
+    <span *ngIf="match.starting_at">{{match.starting_at | toDate: 'HH:mm' }}</span>
+</div>
+<div class="match-date live" *ngIf="match.time_status == 'LIVE'">
+    <span class="live-anime">{{getTime(match.time)}}</span>
+    <span class="live-anime">'</span>
+</div>
+<div class="match-date live" *ngIf="match.time_status == 'HT'">
+    <span class="live-anime">HT</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'FT'">
+    <span> FT </span>
+</div>
+<div class="match-date live" *ngIf="match.time_status == 'ET'">
+    <span>{{getTime(match.time)}}</span>
+    <span class="live-anime">'</span>
+</div>
+<div class="match-date live" *ngIf="match.time_status == 'PEN_LIVE'">
+    <span class="live-anime">პენ</span>
+    <span class="live-anime">'</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'AET'">
+    <span>AET</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'FT_PEN'">
+    <span>პენ</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'CANCL'">
+    <span>CANCL.</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'POSTP'">
+    <span>POSTP.</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'INT'">
+    <span>INT</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'ABAN'">
+
+    <span>ABAN</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'SUSP'">
+    <span>SUSP</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'AWARDED'">
+    <span>AWARDED</span>
+</div>
+<div class="match-date" *ngIf="match.time_status == 'AU'">
+    <span>AU</span>
+</div>

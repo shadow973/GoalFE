@@ -1,0 +1,17 @@
+<a class="video-item regular-container" [routerLink]="['/news/', video.id, video.slug | slugify]">
+    <div class="video-item-image-wrapper">
+        <img class="video-item-image" defaultImage="assets/img/default.png" [alt]="video.title | strip"
+            [lazyLoad]="imageLinkGenerator(video.main_gallery_item?.filename)">
+        <div class="play-icon">
+            <i class="fa fa-play"></i>
+        </div>
+    </div>
+    <div class="video-item-content">
+        <div class="video-item-title">
+            {{video.title | strip}}
+        </div>
+        <div class="video-item-country" *ngIf="video?.categories">
+            {{video.categories[0].title}}
+        </div>
+    </div>
+</a>

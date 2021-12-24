@@ -1,0 +1,144 @@
+<div class="mobile-nav" [class.open]="menuOpen" [hidden]="!menuOpen">
+    <div class="nav-items">
+        <div class="nav-item dropdown" *ngFor="let navbarItem of navbarItems; let i = index">
+            <a matRipple *ngIf="navbarItem.type == 'catItem'" class="nav-link h-100 d-flex align-items-center"
+                [routerLinkActive]="'active'" [routerLink]="['/category/', navbarItem.id, navbarItem.slug, 1 ]">
+                <img class="nav-link-icon" [lazyLoad]="navbarItem.img" *ngIf="navbarItem.img">
+                {{navbarItem.name}}
+            </a>
+            <a matRipple *ngIf="navbarItem.type == 'page' && !navbarItem.hasPage"
+                class="nav-link h-100 d-flex align-items-center" [routerLinkActive]="'active'"
+                [routerLink]="['/',navbarItem.slug]">
+                <img class="nav-link-icon" [lazyLoad]="navbarItem.img" *ngIf="navbarItem.img">
+                {{navbarItem.name}}
+            </a>
+
+            <a matRipple *ngIf="navbarItem.type == 'page' && navbarItem.hasPage"
+                class="nav-link h-100 d-flex align-items-center" [routerLinkActive]="'active'"
+                [routerLink]="['/',navbarItem.slug, 1]">
+                <img class="nav-link-icon" [lazyLoad]="navbarItem.img" *ngIf="navbarItem.img">
+                {{navbarItem.name}}
+            </a>
+            <div matRipple *ngIf="navbarItem.type == 'other' || navbarItem.type == 'cat'"
+                class="nav-link h-100 d-flex align-items-center" (click)="openChildCats(i, $event)">
+                <img class="nav-link-icon" [lazyLoad]="navbarItem.img" *ngIf="navbarItem.img">
+                {{navbarItem.name}}
+                <i class="drop-down-arrow fa fa-angle-down" [class.rotated]="visibleChildCatsIndex == i"></i>
+            </div>
+
+            <div *ngIf="navbarItem.children && navbarItem.type2 == 'geo'" class="dropdown-menu"
+                [hidden]="visibleChildCatsIndex !== i">
+                <div class="dropdown-menu-wrapper">
+                    <div class="dropdown-menu-section">
+                        <ng-container *ngFor="let left of navbarItem.children">
+                            <a *ngIf="left.type == 'cat'" [routerLink]="['/category/', left.id, left.slug,  1 ]">
+                                <div class="dropdown-menu-section-item">
+                                    {{left.name}}
+                                </div>
+                            </a>
+                            <a *ngIf="left.type == 'club'" [routerLink]="['/club/', left.id, left.slug,  1 ]">
+                                <div class="dropdown-menu-section-item">
+                                    {{left.name}}
+                                </div>
+                            </a>
+                            <a *ngIf="left.type != 'cat' && left.type != 'club'"
+                                [routerLink]="['/championship/', left.id, left.slug,  1 ]">
+                                <div class="dropdown-menu-section-item">
+                                    {{left.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                    </div>
+                    <div class="dropdown-menu-section" *ngIf="navbarItem.clubs">
+                        <div class="cat-name">კლუბები</div>
+                        <ng-container *ngFor="let leagues of navbarItem.clubs">
+                            <a [routerLink]="['/club/', leagues.id,leagues.slug, 1 ]" *ngIf="!leagues.type">
+                                <div matRipple class="dropdown-menu-section-item">
+                                    <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                        [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                    {{leagues.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                        <ng-container *ngFor="let leagues of navbarItem.clubs2">
+                            <a [routerLink]="['/club/', leagues.id,leagues.slug, 1 ]" *ngIf="!leagues.type">
+                                <div matRipple class="dropdown-menu-section-item">
+                                    <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                        [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                    {{leagues.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="navbarItem.top_leagues && navbarItem.type == 'other'" class="dropdown-menu"
+                [hidden]="visibleChildCatsIndex !== i">
+                <div class="dropdown-menu-wrapper">
+                    <div class="dropdown-menu-section">
+                        <div class="cat-name">ტოპ ლიგები</div>
+                        <ng-container *ngFor="let leagues of navbarItem.top_leagues.part_1">
+                            <a [routerLink]="['/championship/', leagues.id, leagues.slug,  1 ]">
+                                <div matRipple class="dropdown-menu-section-item">
+                                    <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                        [lazyLoad]="imageLinkGeneratorCountry(leagues.img)">
+                                    {{leagues.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                        <ng-container *ngFor="let leagues of navbarItem.top_leagues.part_2">
+                            <a [routerLink]="['/championship/', leagues.id, leagues.slug, 1 ]">
+                                <div matRipple class="dropdown-menu-section-item">
+                                    <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                        [lazyLoad]="imageLinkGeneratorCountry(leagues.img)">
+                                    {{leagues.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="navbarItem.top_teams && navbarItem.type == 'other'" class="dropdown-menu"
+                [hidden]="visibleChildCatsIndex !== i">
+                <div class="dropdown-menu-wrapper">
+                    <div class="dropdown-menu-section">
+                        <div class="cat-name">ტოპ კლუბები</div>
+                        <ng-container *ngFor="let leagues of navbarItem.top_teams.part_1">
+                            <a [routerLink]="['/club/', leagues.id, leagues.slug,  1 ]">
+                                <div matRipple class="dropdown-menu-section-item">
+                                    <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                        [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                    {{leagues.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                        <div class="cat-name"></div>
+                        <ng-container *ngFor="let leagues of navbarItem.top_teams.part_2">
+                            <a [routerLink]="['/club/', leagues.id, leagues.slug, 1 ]">
+                                <div matRipple class="dropdown-menu-section-item">
+                                    <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                        [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                    {{leagues.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                        <div class="cat-name"></div>
+                        <ng-container *ngFor="let leagues of navbarItem.top_teams.part_3">
+                            <a [routerLink]="['/club/', leagues.id, leagues.slug, 1 ]">
+                                <div matRipple class="dropdown-menu-section-item">
+                                    <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                        [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                    {{leagues.name}}
+                                </div>
+                            </a>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

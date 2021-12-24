@@ -1,0 +1,30 @@
+<div class="search text-left">
+
+    <form class="h-100">
+        <input #input class="search-input" type="text" autocomplete="off" name="search" placeholder="ძიება"
+            [(ngModel)]="searchValue" (ngModelChange)="searchValueChanged($event)" />
+        <button class="search-btn d-flex align-items-center" aria-label="ძიება">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </form>
+
+    <div #menu class="search-results" *ngIf="result || loading">
+        <app-loader *ngIf="loading" type="small"></app-loader>
+        <ng-container *ngIf="!loading">
+            <a matRipple class="tag d-flex align-items-center" *ngFor="let team of result"
+                [routerLink]="['/club', team.team_id, team.name | slugify, 1]">
+                <div>
+                    <img class="tag-image" alt="{{team.name}}" defaultImage="assets/img/default.png"
+                        [lazyLoad]="teamImageUrl(team.team_id)" />
+                    <span class="tag-title">
+                        {{team.name}}
+                    </span>
+                </div>
+                <div class="tag-subscribe" (click)="toggleSubscribe($event, team.team_id, team.name)">
+                    <span *ngIf="!isClubSubscribed(team.team_id)">გამოწერა</span>
+                    <span *ngIf="isClubSubscribed(team.team_id)">გამოწერილია</span>
+                </div>
+            </a>
+        </ng-container>
+    </div>
+</div>

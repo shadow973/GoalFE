@@ -1,0 +1,31 @@
+<div class="standings">
+    <div *ngFor="let standingBlock of standings">
+        <div *ngIf="standingBlock.standings && standingBlock.standings.data && standingBlock.standings.data.length" class="standings-container regular-container">
+            <table *ngIf="standings && standings.length > 0" class="table-standings w-100">
+                <tr class="table-heading">
+                    <th>#</th>
+                    <th class="text-left">გუნდი</th>
+                    <th>თ</th>
+                    <th>ბშ</th>
+                    <th>ქ</th>
+                </tr> 
+                <tr *ngFor="let standing of standingBlock.standings.data">
+                    <td class="team-position"><span class="badge badge-standings">{{ standing.position }}</span></td>
+                    <td class="text-left">
+                        <a [routerLink]="['/club/', standing.team_id,standing.slug, 1 ]">
+                            <img class="team-image" [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="imageLinkGenerator(standing.team_id)">
+                                {{ standing.team_name }}
+                        </a>
+                    </td>
+                    <td>{{ standing.overall.games_played }}</td>
+                    <td>{{ standing.overall.goals_scored }}:{{ standing.overall.goals_against }}</td>
+                    <td>{{ standing.total.points }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div *ngIf="standings && standings.length === 0" class="text-center">
+        მონაცემები ვერ მოიძებნა
+    </div>
+</div>

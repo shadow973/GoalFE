@@ -1,0 +1,40 @@
+.stats-list {
+    .stat-heading {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+        padding: 14px;
+        background-color: #F8F8F8;
+    }
+
+    .stat-item {
+        border-bottom: 1px solid #E3E3E3;
+        display: flex;
+        justify-content: space-between;
+        padding: 14px 18px;
+
+        .stat-name {
+            font-size: 12px;
+            color: #747474;
+            line-height: 2;
+        }
+
+        .player-stat {
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .player-stat.greater {
+            color: #E53C48;
+        }
+
+
+    }
+
+    .stat-item:hover, .stat-item:active, .stat-item:focus, .stat-item:nth-of-type(even) {
+        background-color: #F8F8F8;
+    }
+}

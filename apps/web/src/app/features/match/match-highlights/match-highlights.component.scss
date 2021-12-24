@@ -1,0 +1,25 @@
+.highlights {
+    width: 100%;
+
+    .half-stats {
+        padding: 25px 20px;
+
+        .half {
+            margin-bottom: 32px;
+
+            .half-header {
+                background: #f4f4f4;
+                height: 50px;
+                line-height: 50px;
+                border-radius: 15px;
+                margin-bottom: 28px;
+                padding-left: 20px;
+                padding-right: 20px;
+                color: #2f3031;
+                font-size: 13px;
+                font-family: "HNeue55tdRoman";
+                font-feature-settings: "case"on;
+            }
+        }
+    }
+}

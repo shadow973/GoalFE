@@ -1,0 +1,10 @@
+<div class="search text-left">
+
+    <form class="h-100">
+        <input #input class="search-input" type="text" autocomplete="off" name="search" placeholder="მოძებნე"
+            [(ngModel)]="searchValue" (ngModelChange)="searchValueChanged($event)" />
+        <button class="search-btn d-flex align-items-center" aria-label="ძიება">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </form>
+</div>

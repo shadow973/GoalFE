@@ -1,0 +1,342 @@
+body {
+    position: relative;
+    padding: 0 !important;
+    margin: 0;
+    width: 100%;
+    background: #f4f4f4;
+    font-size: 14px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+img {
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: normal;
+}
+
+.scroller {
+    overflow-y: auto;
+    scrollbar-color: #f93039 rgb(233, 233, 233);
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: rgb(233, 233, 233);
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #f93039;
+    }
+}
+
+.wrapper {
+    width: 100%;
+    padding: 0 15px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+
+    >.col-12 {
+        padding: 0;
+    }
+}
+
+.regular-container {
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.mat-form-field {
+    position: relative !important;
+
+    .mat-select {
+        background: #f4f4f4 !important;
+        border-radius: 15px !important;
+        color: #2f3031 !important;
+        font-family: "HNeue55tdRoman" !important;
+        font-feature-settings: "case"on !important;
+        font-size: 12px !important;
+        padding: 6px 15px 10px 17px !important;
+
+        .mat-select-arrow {
+            border-top-color: #aaa !important;
+        }
+    }
+}
+
+.mat-select-panel {
+    border-radius: 15px !important;
+    background: #f4f4f4 !important;
+    border: transparent !important;
+    overflow-y: auto !important;
+    z-index: 1000 !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175) !important;
+
+    .mat-option {
+        color: #2f3031 !important;
+        font-family: "HNeue55tdRoman" !important;
+        font-feature-settings: "case"on !important;
+        font-size: 13px !important;
+        cursor: pointer !important;
+
+        &:hover,
+        &.mat-active {
+            background: #f93039 !important;
+            color: #fff !important;
+        }
+    }
+}
+
+.mat-checkbox-layout {
+    margin-bottom: 0 !important;
+}
+
+.mat-checkbox-inner-container {
+    width: 21px !important;
+    height: 21px !important;
+}
+
+.mat-ripple-element {
+    background-color: rgba(0, 0, 0, 0.07) !important;
+}
+
+.cdk-overlay-container {
+    z-index: 33334 !important;
+}
+
+.cdk-overlay-pane {
+    //width: 100%;
+    max-width: 100vw !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    .mat-dialog-container {
+        padding: 10px !important;
+
+        .app-modal {
+            width: 100% !important;
+            border-radius: 10px !important;
+
+            .modal-head {
+                padding: 20px !important;
+                font-size: 13px !important;
+            }
+
+            .modal-body {
+                padding-left: 25px !important;
+                padding-right: 25px !important;
+                padding-bottom: 10px !important;
+
+                .modal-title {
+                    font-size: 15px !important;
+                    padding-top: 15px !important;
+                    padding-bottom: 20px !important;
+                }
+
+                .form {
+                    .form-group {
+                        margin-bottom: 5px !important;
+
+                        .form-control {
+                            padding: 6px 12px !important;
+                            font-size: 14px !important;
+                        }
+
+                        .submit-btn {
+                            margin-top: 15px !important;
+                            font-size: 14px !important;
+                        }
+                    }
+                }
+
+                .social-auth {
+                    .social-auth-title {
+                        font-size: 13px !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .mat-select-panel {
+        border-radius: 0 !important;
+    }
+}
+
+.news-description>* {
+    max-width: 100%;
+
+    iframe,
+    img,
+    video {
+        max-width: 100%;
+    }
+
+}
+
+// share socials
+.sb-button {
+    margin: 4px !important;
+}
+
+.sb-wrapper {
+    height: 24px !important;
+    width: 24px !important;
+    min-width: auto !important;
+    line-height: 24px !important;
+
+    .sb-icon {
+        font-size: 11px !important;
+    }
+}
+
+// video player
+.video-player-wrapper,
+.news-video,
+.news-description {
+    iframe {
+        width: 655px;
+        height: 372px;
+        border: 0;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+// banners
+.mobile-promotion {
+    position: relative;
+    overflow: hidden;
+    //background-color: #f1eeee;
+    z-index: 10;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.mobile-catfish {
+        position: fixed;
+        width: 100%;
+        min-width: 320px;
+        height: 100px;
+        bottom: 50px;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        transform: translateY(100px);
+        animation: bannerFromBottom 300ms forwards 1s;
+    }
+
+    &.mobile-home-top,
+    &.mobile-home-middle,
+    &.mobile-news-item,
+    &.mobile-news-top,
+    &.mobile-news-bottom {
+        width: 100%;
+        min-width: 300px;
+        height: 150px;
+        margin: 10px auto 20px auto;
+    }
+}
+
+.main-wrapper {
+    z-index: 2;
+}
+
+.top-ge-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100px;
+    height: 60px;
+}
+
+#top-ge-counter-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+// BODY WRAP
+.body-wrap {
+    overflow-x: hidden;
+}
+
+.hide-mobile {
+    display: none !important;
+}
+
+.news-content img {
+    max-width: 100% !important;
+}
+
+.wrapper > .category-news, .wrapper > .club, 
+.wrapper > .videos, .wrapper > .livescores, 
+.wrapper > .statistics-page, .wrapper > .transfers {
+    margin-top: 8px;
+}
+
+
+// iOS ONLY
+@supports (-webkit-touch-callout: none) {
+    .custom-shadow {
+        display: none !important;
+    }
+}
+
+@keyframes bannerFromRight {
+    0% {
+        right: -300px;
+    }
+
+    100% {
+        right: 0;
+    }
+}
+
+@keyframes bannerFromBottom {
+    0% {
+        transform: translateY(100px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}

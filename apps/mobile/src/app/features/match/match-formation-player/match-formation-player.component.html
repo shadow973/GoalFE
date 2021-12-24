@@ -1,0 +1,19 @@
+<div class="match-player-item" [class.away]="away">
+    <div class="number">
+        {{player.number}}
+    </div>
+    <div class="name">
+        {{player.player_name}} {{player.captain ? '(C)' : ''}}
+    </div>
+
+    <ng-container *ngIf="isLineup">
+        <div class="goal" *ngFor="let LocalTeamGoals of convertGoals(player.stats.goals.scored)">
+            <i class="fa fa-futbol-o"></i>
+        </div>
+    </ng-container>
+
+    <div class="yellow-card" *ngIf="player.stats.cards.yellowcards == 1 && isLineup"></div>
+    <div class="red-card" *ngIf="player.stats.cards.redcards > 0 && isLineup"></div>
+    <div class="up-arrow" *ngIf="playerSubstitutionStatus == 1"></div>
+    <div class="down-arrow" *ngIf="playerSubstitutionStatus == -1"></div>
+</div>

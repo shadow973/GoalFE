@@ -1,0 +1,30 @@
+<div class="standings">
+    <div class="sidebar-block-heading">
+        სატურნირო ცხრილი
+    </div>
+    <div *ngIf="standings && standings.length > 0" class="regular-container p-3">
+        <table class="table-standings w-100">
+            <tr class="table-heading">
+                <th>#</th>
+                <th class="text-left">გუნდი</th>
+                <th>თ</th>
+                <th>ქ</th>
+            </tr>
+            <tr [class.current-team]="standing.team_id == teamId" *ngFor="let standing of standings">
+                <td class="team-position">{{ standing.position }}</td>
+                <td class="text-left">
+                    <a [routerLink]="['/club/', standing.team_id,standing.slug, 1 ]">
+                        <img class="team-image" [defaultImage]="'assets/img/default.png'"
+                            [lazyLoad]="standing.logo_path">
+                            {{ standing.team_name }}
+                    </a>
+                </td>
+                <td>{{ standing.overall.games_played }}</td>
+                <td>{{ standing.total.points }}</td>
+            </tr>
+        </table>
+        <!-- <div class="text-center mt-3">
+            <a href="#" class="view-full">სრული ცხრილის ნახვა</a>
+        </div> -->
+    </div>
+</div>

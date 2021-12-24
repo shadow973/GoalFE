@@ -1,0 +1,80 @@
+.player {
+    border: 1px solid #f4f4f4;
+    border-radius: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+    align-items: center;
+    display: flex;
+    color: #333;
+    text-decoration: none;
+    transition: .3s;
+
+    .player-image-wrapper {
+        border-radius: 15px;
+        width: 50px;
+        height: 60px;
+        border: 5px solid #f4f4f4;
+        overflow: hidden;
+        margin-left: -2px;
+        background: #fff;
+
+        .player-image {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+    }
+
+    .player-name {
+        width: calc(100% - 105px);
+        color: #2f3031;
+        font-size: 13px;
+        font-family: "HNeue55tdRoman";
+        padding-left: 14px;
+    }
+
+    .player-point {
+        width: 65px;
+        height: 20px;
+        padding-left: 20px;
+        line-height: 16px;
+
+        &.ball {
+            background: url('../../../assets/img/ball_icon.png') no-repeat 0;
+        }
+
+        &.yellow-card {
+            background: url('../../../assets/img/yell1.png') no-repeat 0;
+        }
+    }
+
+    &:hover {
+        background: #e63c47;
+        color: #fff;
+
+        .player-name {
+            color: #fff;
+        }
+    }
+}
+
+.statistic-box {
+    max-height: 59vh;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    .statistic-header {
+        height: 50px;
+        padding-bottom: 35px;
+        color: #2f3031;
+        font-family: "HNeue75tdBd";
+        font-size: 17px;
+        font-feature-settings: "case"on;
+    }
+
+    .statistic-scrollable {
+        height: calc(100% - 75px);
+    }
+}

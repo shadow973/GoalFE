@@ -1,0 +1,95 @@
+.overview {
+    width: 100%;
+    padding: 5px 22px;
+    display: flex;
+    align-items: center;
+
+    .number {
+        width: 30px;
+    }
+
+    .overview-item {
+        display: flex;
+        align-items: center;
+
+        .overview-item-icon {
+            position: relative;
+            border-radius: 3px;
+            font-size: 18px;
+            margin: 0 4px;
+
+            &.yellow-card {
+                width: 15px;
+                height: 20px;
+                background-color: #fec838;
+            }
+
+            &.red-card {
+                width: 15px;
+                height: 20px;
+                background-color: red;
+            }
+        }
+
+        .arrow {
+            width: 12px;
+            height: 16px;
+            position: relative;
+            top: 2px;
+
+            &.down-arrow {
+                background: url('../../../../assets/img/red_down.png') no-repeat;
+                background-size: 100% 100%;
+            }
+
+            &.up-arrow {
+                background: url('../../../../assets/img/green_up.png') no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+
+        .overview-item-name {
+            font-size: 13px;
+            color: #292929;
+            font-family: "HNeue55tdRoman";
+            padding: 0 6px;
+
+            &.out {
+                color: #a6a6a6;
+            }
+
+            .overview-item-name-additional {
+                color: #a6a6a6;
+            }
+        }
+    }
+
+    &.left {
+
+        .overview-item-icon,
+        .arrow {
+            margin-left: 12px;
+        }
+    }
+
+    &.right {
+        flex-direction: row-reverse;
+
+        .number {
+            text-align: right;
+        }
+
+        .overview-item {
+            flex-direction: row-reverse;
+
+            .overview-item-icon,
+            .arrow {
+                margin-right: 12px;
+            }
+        }
+    }
+
+    &.center {
+        justify-content: center;
+    }
+}

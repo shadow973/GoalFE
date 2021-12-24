@@ -1,0 +1,54 @@
+<div class="comments">
+    <app-comments-write [commentsService]="commentsService" [userLoggedIn]="userLoggedIn" [itemId]="itemId"
+        (posted)="getComments(); commentsVisible = true"></app-comments-write>
+
+    <div class="comments-top comment-wrapper" *ngIf="topComment">
+        <app-comment [commentsService]="commentsService" [top]="true" [userLoggedIn]="userLoggedIn" [userId]="userId"
+            [itemId]="itemId" [replyCommentId]="topComment.id" [comment]="topComment"
+            [hasControls]="topComment.author.id == userId" (refresh)="getComments($event)">
+        </app-comment>
+
+        <div class="comment-replies" *ngIf="topComment.replies && topComment.replies.length && commentsVisible">
+            <div class="comment-reply-wrapper" *ngFor="let cr of topComment.replies; let i = index; trackBy: trackById">
+                <app-comment [commentsService]="commentsService" [userLoggedIn]="userLoggedIn" [userId]="userId"
+                    [itemId]="itemId" [replyCommentId]="cr.comment_id" [comment]="cr"
+                    [hasControls]="cr.author.id == userId" (refresh)="getComments($event)">
+                </app-comment>
+            </div>
+        </div>
+    </div>
+
+    <div class="comments-all" *ngIf="comments && comments.length">
+        <div class="comments-all-header" (click)="toggleComments()">
+            <ng-container *ngIf="!commentsVisible">
+                კომენტარების ნახვა ({{comments?.length}})
+            </ng-container>
+            <ng-container *ngIf="commentsVisible">
+                კომენტარების დახურვა
+            </ng-container>
+        </div>
+        <div class="comments-all-content" *ngIf="commentsVisible">
+            <div class="comment-wrapper" *ngFor="let c of comments; let i = index; trackBy: trackById">
+                <app-comment [commentsService]="commentsService" [userLoggedIn]="userLoggedIn" [userId]="userId"
+                    [itemId]="itemId" [replyCommentId]="c.id" [comment]="c" [hasControls]="c.author.id == userId"
+                    (refresh)="getComments($event)">
+                </app-comment>
+
+                <div class="comment-replies" *ngIf="c.replies && c.replies.length">
+                    <div class="comment-reply-wrapper" *ngFor="let cr of c.replies; let i = index; trackBy: trackById">
+                        <app-comment [commentsService]="commentsService" [userLoggedIn]="userLoggedIn" [userId]="userId"
+                            [itemId]="itemId" [replyCommentId]="cr.comment_id" [comment]="cr"
+                            [hasControls]="c.author.id == userId" (refresh)="getComments($event)">
+                        </app-comment>
+                    </div>
+                </div>
+            </div>
+            <div class="position-relative" *ngIf="loading">
+                <app-loader type="small"></app-loader>
+            </div>
+            <div class="comments-all-header" *ngIf="commentsVisible && showMoreVissible" (click)="showMore()">
+                მეტის ნახვა
+            </div>
+        </div>
+    </div>
+</div>

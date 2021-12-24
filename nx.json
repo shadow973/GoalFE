@@ -1,0 +1,33 @@
+{
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "goal-front",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "accessToken": "MTFlZmJmOTYtOWI3YS00ZmYwLTg1NzktMzQxMWZiMzcwN2VifHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "web": { "tags": [] },
+    "web-e2e": { "tags": [], "implicitDependencies": ["web"] },
+    "shared": { "tags": [] },
+    "core": { "tags": [] },
+    "promotion": { "tags": [] },
+    "mobile": { "tags": [] },
+    "mobile-e2e": { "tags": [], "implicitDependencies": ["mobile"] },
+    "comments": { "tags": [] }
+  }
+}

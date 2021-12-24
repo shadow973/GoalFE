@@ -1,0 +1,29 @@
+<div class="sidebar-news regular-container">
+    <h1 class="sidebar-news-header">
+        ყველა სიახლე
+    </h1>
+    <div class="sidebar-news-items">
+        <a *ngFor="let n of news; trackBy: trackById" [routerLink]="['/news/', n.id, n.slug | slugify]">
+            <div class="sidebar-news-item d-flex align-items-center">
+                <div class="sidebar-news-item-info">
+                    <span class="sidebar-news-item-date">
+                        {{n.publish_date | toDate: 'HH:mm'}}
+                    </span>
+                    <img *ngIf="n.teams[0]" class="sidebar-news-item-category" defaultImage="assets/img/default.png"
+                        [alt]="n.teams[0].name" [src]="imageLinkGeneratorTeam(n.teams[0].pivot.team_id)">
+                </div>
+                <h1 class="sidebar-news-item-title">
+                    {{n.title | strip}}
+                </h1>
+            </div>
+        </a>
+    </div>
+    <div class="sidebar-news-more d-flex align-items-center justify-content-center" [class.loading]="loading"
+        (click)="showMore()">
+        <app-loader *ngIf="loading" type="small"></app-loader>
+        <ng-container *ngIf="!loading">
+            <span *ngIf="page <= 3">მეტი</span>
+            <span *ngIf="page > 3">დღის ყველა სიახლე</span>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+.livescore-league {
+    margin-bottom: 15px;
+
+    .livescore-league-header {
+        height: 35px;
+        width: 100%;
+        background: #f4f4f4;
+        border-radius: 15px;
+        padding: 0 15px;
+        align-items: center;
+
+        .league-image {
+            width: 33px;
+            height: 33px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            margin-left: 25px;
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+
+        .league-name {
+            color: #000;
+            font-size: 13px;
+            font-family: "HNeue55tdRoman";
+        }
+
+        .league-tables {
+            font-family: "HNeue55tdRoman";
+            color: #000;
+            font-feature-settings: "case"on;
+            font-size: 12px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+
+            .league-tables-icon {
+                display: none;
+                width: 20px;
+                height: 20px;
+                margin: 0 10px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-image: url('../../../../assets/img/icon_444.png');
+                opacity: 0.8;
+            }
+        }
+    }
+}

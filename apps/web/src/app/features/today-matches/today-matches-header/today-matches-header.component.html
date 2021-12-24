@@ -1,0 +1,47 @@
+<div class="today-matches-header d-flex" *ngIf="domLoaded">
+    <div class="today-matches-tabs d-flex no-gutters" #tabs>
+        <div class="tabs-swiper">
+            <div class="custom-shadow shadow-left"></div>
+            <div class="custom-shadow shadow-right"></div>
+
+            <swiper #swiper [(config)]="swipeConfig" [(index)]="activeSlideIndex">
+                <div class="league-tab" *ngFor="let league of leagues; trackBy: trackByLeagueId">
+                    <div class="league d-flex align-items-center" (click)="selectleague(league.league_id)"
+                        [class.active]="league.league_id == activeLeagueId">
+                        <div class="icon">
+                            <img class="h-100" [alt]="league.name"
+                                [src]="imageLinkGeneratorCountry(league.country_id)" />
+                        </div>
+                        <span>{{league.name}}</span>
+                    </div>
+                </div>
+            </swiper>
+        </div>
+
+        <div class="tabs-fixed ml-auto d-flex no-gutters">
+            <div class="col-auto">
+                <div class="league fav-matches d-flex align-items-center" (click)="ShowFavMatches()"
+                    [class.active]="activeLeagueId == -1">
+                    <div class="icon">
+                        <img src="assets/img/favorit.png" alt="ფავორიტები" />
+                    </div>
+                    <span>ფავორიტები</span>
+                </div>
+            </div>
+            <div class="col-auto ml-auto">
+                <a class="league all-matches d-flex align-items-center" [routerLink]="['/livescore']">
+                    <span>ყველა</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="today-matches-controls d-flex ml-auto justify-content-end">
+        <div class="today-matches-control" (click)="slideTabs(true)">
+            <i class="fa fa-chevron-left"></i>
+        </div>
+        <div class="today-matches-control" (click)="slideTabs(false)">
+            <i class="fa fa-chevron-right"></i>
+        </div>
+    </div>
+</div>

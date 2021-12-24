@@ -1,0 +1,18 @@
+<div *ngIf="leaguesLoading || !domLoaded" class="loader-container">
+    <app-loader type="small"></app-loader>
+</div>
+
+<div class="today-matches" *ngIf="(leagues && leagues.length) || (favMatchIds && favMatchIds.length)" [hidden]="!domLoaded">
+    <app-loader *ngIf="loading" type="small"></app-loader>
+    <app-today-matches-header *ngIf="!leaguesLoading" [leagues]="leagues" (favoritesSelected)="getFavoriteMatches()"
+        (leagueSelected)="getMatchesByLeagueId($event)"></app-today-matches-header>
+
+    <div class="today-matches-items no-gutters">
+        <swiper [(config)]="swipeConfig">
+            <div *ngFor="let match of matches; trackBy: trackByMatchId">
+                <app-today-match [match]="match"></app-today-match>
+            </div>
+        </swiper>
+    </div>
+
+</div>

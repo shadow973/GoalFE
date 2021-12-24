@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <div class="w-100 d-flex">
+        <div class="col-xxl-9 col-lg-8 col-9">
+            <div class="w-100 regular-container livescores">
+                <app-livescores-header></app-livescores-header>
+                <app-livescores-calendar *ngIf="!showFavEnabled"></app-livescores-calendar>
+                <div class="livescores-leagues">
+                    <app-livescores-content [showFavorites]="showFavEnabled"></app-livescores-content>
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-3">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+</div>

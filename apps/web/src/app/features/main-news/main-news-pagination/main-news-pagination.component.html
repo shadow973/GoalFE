@@ -1,0 +1,30 @@
+<div class="main-news">
+    <div class="main-news-items" [class.grid-view]="gridView">
+        <ng-container *ngFor="let n of newsData?.data; trackBy: trackById; let i = index">
+            <app-main-news-item class="grid-item" [newsItem]="n" [gridView]="gridView">
+            </app-main-news-item>
+        </ng-container>
+    </div>
+
+    <div class="main-news-pagination">
+        <nav class="d-flex mt-4">
+            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(1)">პირველი</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                    <a (click)="setPage(pager.currentPage - 1)">უკან</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                    <a (click)="setPage(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.currentPage + 1)">წინ</a>
+                </li>
+                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                    <a (click)="setPage(pager.totalPages)">ბოლო</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

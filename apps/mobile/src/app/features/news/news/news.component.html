@@ -1,0 +1,118 @@
+<div class="news-page d-flex no-gutters">
+    <div class="col-12">
+        <div class="w-100 news-content">
+            <app-loader type="normal" *ngIf="loading"></app-loader>
+
+            <ng-container *ngIf="fullNews">
+                <h1 class="news-title">
+                    {{fullNews.title | strip}}
+                </h1>
+
+                <div class="news-date">
+                    {{ fullNews.publish_date | toDate: 'DD MMM YYYY, HH:mm' }}
+                </div>
+
+                <div class="row">
+                    <img class="news-image" *ngIf="!fullNews?.main_video" [alt]="fullNews.title | strip"
+                        [src]="imageLinkGenerator(fullNews?.main_gallery_item?.filename_webp)">
+                    <div class="news-video" *ngIf="fullNews?.main_video"
+                        [innerHTML]="fullNews.main_video | safe : 'html'">
+                    </div>
+                </div>
+
+                <div class="d-flex w-100 align-items-center">
+                    <div class="socials-and-zoom ml-auto d-flex">
+                        <app-share-socials [extraTitle]="fullNews.title"
+                            [extraImage]="imageLinkGenerator(fullNews?.main_gallery_item?.filename_webp)">
+                        </app-share-socials>
+                        <div class="zoom">
+                            <div class="d-flex">
+                                <a matRipple class="zoom-btn btn-gray" (click)="toggleFontSize(true)">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                                <a matRipple class="zoom-btn btn-gray" (click)="toggleFontSize(false)">
+                                    <i class="fas fa-minus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-player-wrapper" *ngIf="fullNews?.meta?.xfields?.ifthumb"
+                    [innerHTML]="videoChecker(fullNews?.meta?.xfields?.ifthumb) | safe : 'html'"></div>
+
+                <ng-container *ngIf="newsDescPartThree">
+                    <div class="news-description " [innerHTML]="newsDescPartOne | strip | safe: 'html'"
+                        [ngStyle]="{'font-size.px': descTextSize}"></div>
+
+                    <app-mobile-news-top-promotion></app-mobile-news-top-promotion>
+
+                    <div class="news-description " [innerHTML]="newsDescPartTwo | strip | safe: 'html'"
+                        [ngStyle]="{'font-size.px': descTextSize}"></div>
+
+                    <div class="mobile-scroll-promotion-spacer">
+                        <app-mobile-news-scroll-promotion class="mobile-scroll-promotion-comp">
+                        </app-mobile-news-scroll-promotion>
+                    </div>
+
+                    <div class="news-description mt-0" [innerHTML]="newsDescPartThree | strip | safe: 'html'"
+                        [ngStyle]="{'font-size.px': descTextSize}"></div>
+                </ng-container>
+
+                <ng-container *ngIf="newsDescPartOne && newsDescPartTwo && !newsDescPartThree">
+                    <div class="news-description " [innerHTML]="newsDescPartOne | strip | safe: 'html'"
+                        [ngStyle]="{'font-size.px': descTextSize}"></div>
+
+                    <app-mobile-news-top-promotion></app-mobile-news-top-promotion>
+
+                    <div class="news-description" [innerHTML]="newsDescPartTwo | strip | safe: 'html'"
+                        [ngStyle]="{'font-size.px': descTextSize}"></div>
+                </ng-container>
+
+                <ng-container *ngIf="!newsDescPartOne || !newsDescPartTwo">
+                    <app-mobile-news-top-promotion></app-mobile-news-top-promotion>
+                    <div class="news-description" [innerHTML]="fullNews.content | strip | safe: 'html'"
+                        [ngStyle]="{'font-size.px': descTextSize}"></div>
+                </ng-container>
+
+                <div class="news-tags">
+                    <a matRipple class="news-tag" *ngFor="let team of fullNews.teams" [routerLink]="['/club/', team.team_id,
+                        team.slug, 1 ]">
+                        <div class="image">
+                            <img class="image-file" [src]="imageLinkGeneratorTeam(team.team_id)" [alt]="team.name" />
+                        </div>
+                        <span class="name">{{team.name}}</span>
+                    </a>
+
+                    <a class="news-tag" *ngFor="let player of fullNews.players"
+                        [routerLink]="['/player/',  player.player_id, player.slug, 1 ]">
+                        <div class="image">
+                            <img class="image-file" alt="{{player.common_name}}" [src]="player.image_path" />
+                        </div>
+                        <span class="name">{{player.common_name}}</span>
+                    </a>
+
+                    <a class="news-tag" *ngFor="let league of fullNews.leagues"
+                        [routerLink]="['/championship/',  league.league_id, league.slug, 1 ]">
+                        <div class="image">
+                            <img class="image-file" [src]="imageLinkGeneratorCountry(league.country_id)"
+                                [alt]="league.name" />
+                        </div>
+                        <span class="name">{{league.name}}</span>
+                    </a>
+                </div>
+
+                <app-mobile-news-bottom-promotion></app-mobile-news-bottom-promotion>
+
+                <div class="news-comments">
+                    <app-comments [commentsService]="newsCommentsService" [itemId]="newsId"></app-comments>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>
+
+<div class="main-news">
+    <app-main-news [pageLimit]="3"></app-main-news>
+</div>

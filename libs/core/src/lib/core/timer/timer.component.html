@@ -1,0 +1,6 @@
+<div class="timer">
+    <span *ngIf="hours && minutes && seconds && hours != '' && minutes != '' && seconds != ''">
+        <span *ngIf="days > 0">{{ days }}D</span>
+        {{ hours }}:{{ minutes }}:{{ seconds }}
+    </span>
+</div>

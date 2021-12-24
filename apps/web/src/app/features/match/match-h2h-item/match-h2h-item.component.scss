@@ -1,0 +1,83 @@
+.h2h-item {
+    color: #949698;
+}
+
+.table-h2h {
+    color: #282828;
+    margin-left: 0;
+}
+
+.h2h-item .highlight {
+    color: #000;
+    font-weight: bold;
+}
+
+.h2h-table-container {
+    background: #fff;
+    padding: 25px 0;
+    border-radius: 15px;
+}
+
+.table-h2h .h2h-match {
+    padding: 15px 25px;
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+    line-height: 2;
+}
+
+.table-h2h .h2h-league img {
+    width: 20px;
+    height: 20px;
+}
+
+.table-h2h .match-status {
+    display: inline-block;
+}
+
+.badge {
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    height: 24px;
+    width: 24px;
+    line-height: 1.7;
+    color: #ffffff;
+}
+
+.badge-win {
+    background-color: #47b552;
+}
+
+.badge-draw {
+    background-color: #f5b946;
+}
+
+.badge-lose {
+    background-color: #e53c48;
+}
+
+// .local-team {
+//     margin-right: -34px;
+// }
+
+// .visitor-team {
+//     margin-left: -34px;
+// }
+
+.h2h-league {
+    background-color: #f1f1f1;
+    border: 1px solid #f1f1f1;
+    padding: 8px 20px;
+    border-radius: 30px;
+}
+
+.btn-toggle-all {
+    background-color: #F4F4F4;
+    padding: 13px;
+    font-size: 13px;
+    color: #5C5C5C;
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    text-align: center;
+}

@@ -1,0 +1,33 @@
+.statistics {
+    width: 100%;
+
+    &.wrap-statistics {
+        background-color: #fff;
+        padding: 10px 15px;
+        border-radius: 15px;
+    }
+
+    .statistics-tabs {
+        height: 50px;
+        line-height: 50px;
+        margin: 10px 0;
+        border: 1px solid #f4f4f4;
+        border-radius: 15px;
+        text-align: center;
+
+        .statistics-tab {
+            height: 100%;
+            margin: 0 5px;
+            font-size: 11px;
+            font-family: "HNeue55tdRoman";
+
+            &.active {
+                border-bottom: 3px solid #e53c48;
+            }
+        }
+    }
+
+    .statistic-normal-container {
+        padding: 20px;
+    }
+}

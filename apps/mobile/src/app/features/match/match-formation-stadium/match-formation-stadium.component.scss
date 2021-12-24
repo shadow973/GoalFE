@@ -1,0 +1,88 @@
+.stadium {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 738px;
+    flex-direction: column;
+    margin: 10px auto;
+    background: #45A74F url('../../../../assets/img/Pitch_mobile.png') no-repeat;
+    background-size: 94% 94%;
+    background-position: center center;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    border-radius: 8px;
+
+    .team-formation {
+        max-width: 100% ;
+        flex-direction: column;
+        padding: 22px 0;
+
+        .team-formation-line {
+            flex-direction: row !important;
+        }
+
+        &.away {
+            flex-direction: column-reverse !important;
+
+            .team-formation-line {
+                flex-direction: row-reverse !important;
+            }
+        }
+
+    }
+
+    .stadium-player {
+        .icon {
+            width: 30px;
+            height: 30px;
+            background-size: 100% 100%;
+            text-align: center;
+            font-family: "HNeue75tdBd";
+            font-size: 12px;
+            margin: 0 auto;
+            border-radius: 50%;
+            padding-bottom: 2px;
+            text-align: center;
+            line-height: 28px;
+            background: #fff;
+            color: #2E2E2E;
+            position: relative;
+
+            .rating {
+                font-size: 10px;
+                color: #1A5921;
+                background-color: #8BEC95;
+                border: 2px solid #45A74F;
+                position: absolute;
+                font-family: "HNeue75tdBd";
+                font-weight: bold;
+                right: -20px;
+                top: -12px;
+                line-height: normal;
+                border-radius: 8px;
+                padding: 0px 5px;
+            }
+        }
+
+        .name {
+            width: 100%;
+            height: 24px;
+            margin: 5px auto 0;
+            line-height: 20px;
+            border-radius: 17px;
+            font-family: "HNeue75tdBd";
+            color: #fff;
+            font-feature-settings: "case"on;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        &.away {
+            .icon {
+                background: #FFF282;
+                color: #2E2E2E;
+            }
+        }
+    }
+}

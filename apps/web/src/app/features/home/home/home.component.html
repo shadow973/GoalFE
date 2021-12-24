@@ -1,0 +1,34 @@
+<div class="today-matches-wrapper">
+    <div class="wrapper">
+        <div class="col-12">
+            <app-today-matches></app-today-matches>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="col-xxl-9 col-lg-8 col-9">
+        <app-home-main-news></app-home-main-news>
+        
+        <div class="main-news">
+            <div class="main-news-header regular-container d-flex align-items-center">
+                <h1 class="main-news-title">
+                    დღის მთავარი ამბები
+                </h1>
+                <div class="main-news-controls ml-auto">
+                    <div class="main-news-control" (click)="changeGrid(false)" [class.active]="!gridView">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="main-news-control" (click)="changeGrid(true)" [class.active]="gridView">
+                        <i class="fa fa-th"></i>
+                    </div>
+                </div>
+            </div>
+            <app-main-news [pageLimit]="3" [gridView]="gridView"></app-main-news>
+        </div>
+
+    </div>
+    <div class="col-xxl-3 col-lg-4 col-3">
+        <app-sidebar></app-sidebar>
+    </div>
+</div>

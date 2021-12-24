@@ -1,0 +1,24 @@
+.mobile-news-scroll {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 440px;
+    clip: rect(0, 100vw, 440px, 0);
+    -webkit-clip-path: inset(0 0);
+    clip-path: inset(0 0);
+
+    .mobile-news-scroll-inner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        transform: translate(-50%, -50%);
+        font-size: 36px;
+        background-color: transparent !important;
+    }
+}

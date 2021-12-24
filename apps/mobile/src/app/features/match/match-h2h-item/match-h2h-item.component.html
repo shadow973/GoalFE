@@ -1,0 +1,40 @@
+<div class="h2h-item mb-4">
+    <div class="h2h-item-heading mb-4" *ngIf="team">ბოლო მატჩები: <span class="highlight">{{ team.name }}</span></div>
+    <div class="h2h-item-heading mb-4" *ngIf="!team">ურთიერთ შეხვედრები</div>
+    <div class="h2h-table-container">
+        <div class="table-h2h w-100">
+            <div [routerLink]="['/match/', match.match_id ]" *ngFor="let match of visibleMatches">
+                <div class="h2h-match d-flex">
+                    <div class="d-flex left-side">
+                        <div class="match-date mr-3">
+                            {{ getDate(match.starting_at) }}<br />{{ getTime(match.starting_at) }}
+                        </div>
+                        <div class="match-teams mr-3">
+                            <div class="local-team" [class.highlight]="match.localteam_score > match.visitorteam_score">{{ match.localteam_name }}</div>
+                            <div class="visitor-team" [class.highlight]="match.visitorteam_score > match.localteam_score">{{ match.visitorteam_name }}</div>
+                        </div>
+                    </div>
+                    <div class="match-score text-right highlight d-flex justify-content-center align-items-center">
+                        <div class="scores mr-3">
+                            <div>{{ match.localteam_score }}</div>
+                            <div>{{ match.visitorteam_score }}</div>
+                        </div>
+                        <div class="match-score-status text-right">
+                            <div *ngIf="team" class="match-status">
+                                <span *ngIf="isDraw(match)" class="badge badge-match-status badge-draw">ფ</span>
+                                <span *ngIf="isWon(team.id, match)" class="badge badge-match-status badge-win">მ</span>
+                                <span *ngIf="isLost(team.id, match)" class="badge badge-match-status badge-lose">წ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button (click)="toggleMatches()" class="btn-toggle-all mt-4">
+                    {{ toggleButtonText }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

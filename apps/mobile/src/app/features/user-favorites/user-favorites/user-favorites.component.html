@@ -1,0 +1,27 @@
+<div class="user-favorites">
+    <div matRipple class="user-favorite" (click)="openModal()">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <ng-container *ngFor="let fav of favorites; let i = index; trackBy: trackById">
+        <ng-container *ngIf="fav.type == 'club'">
+            <a [routerLink]="['/club/', fav.id, fav.slug, 1 ]" matRipple class="user-favorite">
+                <img class="user-favorite-image" [alt]="fav.slug" [src]="imageLinkGeneratorClub(fav.id)" />
+            </a>
+        </ng-container>
+
+        <ng-container *ngIf="fav.type == 'championship'">
+            <a [routerLink]="['/championship/', fav.id, fav.slug, 1 ]" matRipple class="user-favorite">
+                <img class="user-favorite-image" [alt]="fav.slug"
+                    [src]="imageLinkGeneratorChampionship(fav.extraParam)" />
+            </a>
+        </ng-container>
+
+        <ng-container *ngIf="fav.type == 'player'">
+            <a [routerLink]="['/player/', fav.id, fav.slug, 1 ]" matRipple class="user-favorite">
+                <img class="user-favorite-image" [alt]="fav.slug" [src]="imageLinkGeneratorPlayer(fav.extraParam)" />
+            </a>
+        </ng-container>
+    </ng-container>
+
+</div>

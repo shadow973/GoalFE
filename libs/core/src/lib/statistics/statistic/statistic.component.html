@@ -1,0 +1,61 @@
+<ng-container *ngIf="type == 'small'">
+    <ng-container *ngFor=" let player of statistic">
+        <a class="pointer" [routerLink]="['/player/',  player?.player_id, player?.player_name | slugify, 1 ]">
+            <div matRipple class="player">
+                <div class="player-image-wrapper">
+                    <img class="player-image" [alt]="player.player_name" [defaultImage]="'assets/img/default.png'"
+                        [lazyLoad]="imageLinkGenerator(player.player_image)">
+                </div>
+                <div class="player-name ellipsis">
+                    {{player.player_name}}
+                </div>
+                <div class="player-point ball" *ngIf="statisticType == 1">
+                    {{player.goals}}
+                </div>
+                <div class="player-point ball" *ngIf="statisticType == 2">
+                    {{player.assists}}
+                </div>
+                <div class="player-point yellow-card" *ngIf="statisticType == 3">
+                    {{player.yellowcards}}
+                </div>
+            </div>
+        </a>
+    </ng-container>
+
+
+</ng-container>
+
+<ng-container *ngIf="type != 'small'">
+    <div class="statistic-box">
+        <div class="statistic-header">
+            <span *ngIf="statisticType == 1">ბომბარდირები</span>
+            <span *ngIf="statisticType == 2">ასისტები</span>
+            <span *ngIf="statisticType == 3">ბარათები</span>
+        </div>
+        <div class="statistic-scrollable w-100 scroller">
+            <ng-container *ngFor=" let player of statistic">
+                <a class="pointer" [routerLink]="['/player/',  player?.player_id, player?.player_name | slugify, 1 ]">
+                    <div matRipple class="player">
+                        <div class="player-image-wrapper">
+                            <img class="player-image" [alt]="player.player_name"
+                                [defaultImage]="'assets/img/default.png'"
+                                [lazyLoad]="imageLinkGenerator(player.player_image)">
+                        </div>
+                        <div class="player-name ellipsis">
+                            {{player.player_name}}
+                        </div>
+                        <div class="player-point ball" *ngIf="statisticType == 1">
+                            {{player.goals}}
+                        </div>
+                        <div class="player-point ball" *ngIf="statisticType == 2">
+                            {{player.assists}}
+                        </div>
+                        <div class="player-point yellow-card" *ngIf="statisticType == 3">
+                            {{player.yellowcards}}
+                        </div>
+                    </div>
+                </a>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

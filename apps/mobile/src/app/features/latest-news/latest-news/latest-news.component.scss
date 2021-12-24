@@ -1,0 +1,78 @@
+.latest-news {
+    width: 100%;
+    overflow: hidden;
+
+    .latest-news-header {
+        height: 74px;
+        display: flex;
+        align-items: center;
+        padding: 0 25px;
+        font-family: "HNeue75tdBd";
+        font-feature-settings: "case"on;
+        font-size: 17px;
+        color: #2f3031;
+    }
+
+    .latest-news-items {
+        position: relative;
+        width: 100%;
+        min-height: 100px;
+        padding: 7px 0;
+
+        .latest-news-item {
+            width: 100%;
+            padding: 7px 15px;
+            //border-top: 1px solid #f4f4f4;
+            cursor: pointer;
+
+            .latest-news-item-info {
+                width: 70px;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                border-radius: 15px;
+                background: #f0f0f0;
+                transition: 300ms;
+
+                .latest-news-item-date {
+                    color: #000;
+                    font-size: 12px;
+                    font-family: "HNeue55tdRoman";
+                    margin-bottom: 8px;
+                }
+
+                .latest-news-item-category {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+
+            .latest-news-item-title {
+                color: #000;
+                font-size: 12px;
+                line-height: 16px;
+                font-family: "HNeue55tdRoman";
+                width: calc(100% - 75px);
+                padding-left: 20px;
+            }
+        }
+    }
+
+    .latest-news-more {
+        position: relative;
+        width: calc(100% - 30px);
+        margin-left: 15px;
+        margin-bottom: 20px;
+        height: 40px;
+        border-radius: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #F1F1F1;
+        color: #5C5C5C;
+        font-size: 11px;
+        font-family: "HNeue55tdRoman";
+    }
+}

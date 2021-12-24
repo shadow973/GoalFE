@@ -1,0 +1,37 @@
+<app-loader *ngIf="loading" position="top" type="small"></app-loader>
+
+<div class="goal-sound-btn" *ngIf="showFavorites">
+    <div class="sound-toggle" (click)="toggleMuteSound()">
+        <ng-container *ngIf="soundMute">
+            <span>
+                ხმის ჩართვა
+            </span>
+            <i class="fa fa-volume-up sound-icon"></i>
+        </ng-container>
+        <ng-container *ngIf="!soundMute">
+            <span>
+                ხმის გამორთვა
+            </span>
+            <i class="fa fa-volume-off sound-icon"></i>
+        </ng-container>
+    </div>
+</div>
+
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" (scrolled)="infiniteScroll()">
+    <ng-container *ngIf="leagues && leagues.length">
+        <app-livescores-league *ngFor="let l of leagues; let i = index;trackBy: trackById" [league]="l"
+            [contentVisible]="i<30">
+        </app-livescores-league>
+
+        <div class="bottom-loader">
+            <app-loader *ngIf="loadingBottom" type="small"></app-loader>
+        </div>
+        
+    </ng-container>
+
+    <ng-container *ngIf="!loading && (!leagues || !leagues.length)">
+        <div class="w-100 text-center">მატჩები ვერ მოიძებნა</div>
+    </ng-container>
+
+
+</div>

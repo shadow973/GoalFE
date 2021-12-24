@@ -1,0 +1,11 @@
+<div class="match-video" *ngIf="video">
+    <ng-container *ngIf="video.type == 'video'">
+        <iframe class="match-video-frame" [src]="url" frameborder="0" scrolling="no"></iframe>
+    </ng-container>
+    <ng-container *ngIf="video.type == 'clip'">
+        <video class="match-video-player" controls>
+            <source [src]="url">
+            თქვენს ბრაუზერს არ გააჩნია ვიდეო ფლეიერის მხარდაჭერა
+        </video>
+    </ng-container>
+</div>

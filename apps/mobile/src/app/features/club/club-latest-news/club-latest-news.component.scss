@@ -1,0 +1,171 @@
+.latest-news-item {
+    width: 100%;
+    height: 110px;
+    margin-bottom: 10px;
+    display: flex;
+    cursor: pointer;
+    overflow: hidden;
+
+    .latest-news-item-image-wrapper {
+        position: relative;
+        width: 100px;
+        min-width: 100px;
+        height: 110px;
+        overflow: hidden;
+
+        .latest-news-item-image {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            transition: 300ms;
+            -o-object-position: top;
+            object-position: top;
+        }
+
+        .play-icon {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            border-radius: 100%;
+            background: rgba(0, 0, 0, .5);
+            border: 2px solid #fff;
+            z-index: 9;
+            text-align: center;
+            line-height: 44px;
+            color: #fff;
+            padding-left: 3px;
+            font-size: 15px;
+        }
+    }
+
+    .latest-news-item-content {
+        position: relative;
+        height: 100%;
+
+        .latest-news-item-title {
+            padding: 5px 1rem;
+            color: #000431;
+            font-family: "HNeue75tdBd";
+            font-size: 13px;
+        }
+
+        .latest-news-item-match-wrapper {
+            padding: 0 1rem;
+        }
+
+        .latest-news-item-description {
+            color: #8f8f8f;
+            font-family: "HNeue55tdRoman";
+            padding-left: 1rem;
+            margin-bottom: 22px;
+            font-size: 13px;
+            padding-right: 15px;
+        }
+
+        .latest-news-item-date {
+            position: absolute;
+            bottom: 0;
+            padding: 5px 1rem;
+            color: #bababa;
+            font-family: "HNeue55tdRoman";
+            font-size: 12px;
+            display: flex;
+            background: white;
+          white-space: nowrap;
+
+            .latest-news-item-category {
+                width: 17px;
+                height: 17px;
+                margin-right: 10px;
+            }
+        }
+
+        .latest-news-item-match {
+            background: #f4f4f4;
+            height: 100%;
+            border-radius: 15px;
+            padding: 10px;
+            display: flex;
+
+            .team {
+                text-align: center;
+                padding-left: 5px;
+                padding-right: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+
+                .team-image {
+                    width: 45px;
+                    height: 45px;
+                    margin-bottom: 14px;
+                }
+
+                .team-name {
+                    width: 100%;
+                    color: #101010;
+                    font-size: 14px;
+                    font-family: "HNeue75tdBd";
+                    font-feature-settings: "case"on;
+                }
+            }
+
+            .score {
+                background: #fff;
+                border-radius: 15px;
+
+                .report {
+                    display: flex;
+
+                    .data {
+                        height: 62px;
+                        line-height: 62px;
+                        text-align: center;
+                        color: #101010;
+                        font-size: 25px;
+                        font-family: "HNeue75tdBd";
+                        font-weight: 700;
+                        font-feature-settings: "case"on;
+
+                        &:first-child {
+                            border-right: 1px solid #f4f4f4;
+                        }
+                    }
+                }
+
+                .time {
+                    width: 100%;
+                    height: 54px;
+                    line-height: 51px;
+                    border-top: 1px solid #f4f4f4;
+                    font-size: 10px;
+                    font-family: "HNeue75tdBd";
+                    font-feature-settings: "case"on;
+
+                    &.live {
+                        span {
+                            color: #ff4044;
+                            animation: live 1s ease infinite;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+.latest-news-more {
+    width: 100%;
+    padding: 14px;
+    background: #FFFFFF;
+    border-radius: 26px;
+    border: 1px solid #fff;
+}

@@ -1,0 +1,117 @@
+<ng-container *ngIf='newsItem'>
+  <div class='main-news-item regular-container' *ngIf='!newsItem.match_id'
+       [style]="'height:' + (fullImage ? ((isSmallScreen ? 512 : 320) + 'px !important') : '')">
+    <!-- <ng-container *ngIf='!isSmallScreen'>
+      <ng-container *ngTemplateOutlet='imageContent'></ng-container>
+    </ng-container> -->
+    <div class='main-news-item-content' [ngClass]='{"adaptive-for-big-screen": !isSmallScreen}'>
+      <div>
+        <a matRipple [routerLink]="['/news/', newsItem.id, newsItem.slug | slugify]">
+          <h2 class='main-news-item-title'>
+            {{newsItem.title | strip}}
+          </h2>
+          <h3 class='main-news-item-description' *ngIf='newsItem.content'
+              [innerHTML]="newsItem.content | truncate : 100 | strip | safe: 'html'">
+          </h3>
+        </a>
+      </div>
+      <ng-container *ngIf='!isSmallScreen'>
+        <ng-container *ngTemplateOutlet='bottomControls'></ng-container>
+      </ng-container>
+    </div>
+    <ng-container *ngIf='isSmallScreen'>
+      <ng-container *ngTemplateOutlet='imageContent'></ng-container>
+      <ng-container *ngTemplateOutlet='bottomControls'></ng-container>
+    </ng-container>
+  </div>
+
+  <ng-container *ngIf='newsItem.match_id'>
+    <div class='main-news-item regular-container main-news-match-item position-relative'>
+      <ng-container *ngIf='isSmallScreen'>
+        <ng-container *ngTemplateOutlet='matchContentBlock'></ng-container>
+      </ng-container>
+      <a matRipple [routerLink]="['/match/', newsItem.match_id]">
+        <div class='main-news-item-image-wrapper' (deferLoad)='showItem = true'>
+          <img class='main-news-item-image' [alt]='newsItem.title | strip' *ngIf='showItem'
+               [src]='imageLinkGenerator(newsItem.main_gallery_item?.filename_webp)'>
+          <div class='play-icon' *ngIf='newsItem?.main_video'><i class='fa fa-play'></i></div>
+        </div>
+      </a>
+      <ng-container *ngTemplateOutlet='matchScore'></ng-container>
+      <ng-container *ngIf='!isSmallScreen'>
+        <ng-container *ngTemplateOutlet='matchContentBlock'></ng-container>
+      </ng-container>
+      <div class='bottom-controls-match' [ngClass]='{"position-absolute": !isSmallScreen}'>
+        <ng-container *ngTemplateOutlet='bottomControls'></ng-container>
+      </div>
+    </div>
+  </ng-container>
+
+</ng-container>
+
+<ng-template #matchContentBlock>
+  <a matRipple [routerLink]="['/match/', newsItem.match_id]">
+    <div class='main-news-item-content d-flex'>
+      <div class='main-news-item-title col'>
+        {{newsItem.title | strip}}
+      </div>
+    </div>
+  </a>
+</ng-template>
+
+<ng-template #matchScore>
+  <div class='match-card' [ngClass]='{"position-absolute border-radius-match": !isSmallScreen}'>
+    <div>
+      <img class='team-image' [alt]='newsItem.matche.localteam_mini.name'
+           [src]='imageLinkGeneratorTeamBig(newsItem.matche.localteam_mini.team_id)' />
+      <span class='team-name'>{{ newsItem.matche.localteam_mini.name }}</span>
+    </div>
+    <div class='score-block'>
+      <span class='score-text' [ngClass]='{winner: localTeamIsWinner}'>{{ newsItem.matche.localteam_score }}</span>
+      <div class='time'>
+        <app-match-status [match]='newsItem.matche'></app-match-status>
+      </div>
+      <span class='score-text' [ngClass]='{winner: !localTeamIsWinner}'>{{ newsItem.matche.visitorteam_score }}</span>
+    </div>
+    <div>
+      <img class='team-image' alt='{{newsItem.matche.visitorteam_mini.name}}'
+           [src]='imageLinkGeneratorTeamBig(newsItem.matche.visitorteam_mini.team_id)' />
+      <span class='team-name'>{{ newsItem.matche.visitorteam_mini.name }}</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #bottomControls>
+  <div class='main-news-item-date'>
+    <app-likes-comments [parentPostObject]='newsItem' [userId]='userId'
+                        (commentsClick)='videoCommentsClick(newsItem)'></app-likes-comments>
+    <div [ngClass]='{"ml-5": !isSmallScreen}'>
+      <ng-container *ngIf='newsItem.teams && newsItem.teams.length'>
+        <img *ngIf='newsItem.teams[0]' class='main-news-item-category' [alt]='newsItem.teams[0].name'
+             [src]='imageLinkGeneratorTeam(newsItem.teams[0].pivot.team_id)'>
+      </ng-container>
+      {{newsItem.publish_date | toDate}}
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #imageContent>
+  <div class='main-news-item-image-wrapper' (deferLoad)='showItem = true'
+       [style]="'height: ' + (fullImage ? '100% !important' : '')">
+    <iframe allowfullscreen='allowfullscreen' [src]="(newsItem.main_video | getVideo) | safe: 'resourceUrl'"
+            width='100%' height='100%' *ngIf='newsItem?.main_video' class='video-frame'></iframe>
+    <ng-container *ngIf='!newsItem?.main_video'>
+      <a matRipple [routerLink]="['/news/', newsItem.id, newsItem.slug | slugify]">
+        <div class='image-block' [ngStyle]='{"background-image": "url("+
+        imageLinkGenerator(newsItem.main_gallery_item?.filename_webp)+")"}'>
+        </div>
+        <!--        <img class='main-news-item-image' [alt]='newsItem.title | strip' *ngIf='showItem'-->
+        <!--             [src]='!!newsItem.test-->
+        <!--             ? "https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3"-->
+        <!--             : imageLinkGenerator(newsItem.main_gallery_item?.filename)'>-->
+      </a>
+      <!--<div class="play-icon" *ngIf="newsItem?.main_video"><i class="fa fa-play"></i></div>-->
+    </ng-container>
+  </div>
+</ng-template>

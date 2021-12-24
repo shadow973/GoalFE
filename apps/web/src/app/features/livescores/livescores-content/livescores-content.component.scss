@@ -1,0 +1,35 @@
+.goal-sound-btn {
+    width: 100%;
+    color: #2f3031;
+    margin-top: -26px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: flex-end;
+
+    .sound-toggle {
+        width: 150px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border-radius: 15px;
+        font-size: 11px;
+        cursor: pointer;
+        font-family: "HNeue55tdRoman";
+        font-feature-settings: "case"on;
+        padding: 0 15px;
+        margin-right: -15px;
+
+        .sound-icon {
+            width: 22px;
+            margin-left: 6px;
+            font-size: 24px;
+        }
+    }
+}
+
+.bottom-loader {
+    position: relative;
+    width: 100%;
+    height: 30px;
+}

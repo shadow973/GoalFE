@@ -1,0 +1,16 @@
+@import '~ngx-sharebuttons/themes/default/default-theme';
+
+@import 'assets/styles/myboostrap';
+
+@import 'assets/styles/material';
+@import 'assets/styles/fonts';
+@import 'assets/styles/common';
+@import 'assets/styles/responsive';
+
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/brands';

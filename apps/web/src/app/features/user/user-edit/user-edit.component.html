@@ -1,0 +1,54 @@
+<div class="app-modal">
+    <div class="modal-head text-center">
+        <div class="modal-title">
+            <span>პარამეტრების რედაქტირება</span>
+        </div>
+        <i class="fa fa-times close-modal" (click)="close()"></i>
+    </div>
+    <div class="modal-body">
+        <form class="form" (submit)="update()" #registerForm="ngForm">
+            <div class="form-group FormGroup text-center">
+                <div class="photo-upload">
+                    <img *ngIf="user.avatar != null || user.avatar_new" height="100" [src]="checkFBImage(user.avatar)">
+                    <input #fileInput type="file" (change)="handleInputChange($event)" name="avatar"
+                        accept="image/png, image/jpeg, image/jpg, image/gif" [(ngModel)]="avatarFile" />
+                    <span *ngIf="!user.avatar && !user.avatar_new">ატვირთეთ <br> ფოტო
+                    </span>
+                </div>
+                <input name="_method" type="hidden" value="PATCH">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="სახელი" name="first_name"
+                    [(ngModel)]="user.first_name">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="გვარი" name="last_name"
+                    [(ngModel)]="user.last_name">
+            </div>
+
+            <app-user-fav-club [club]="user.club" (clubSelected)="favClubSelected($event)"></app-user-fav-club>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="მომხმარებლის ნიკი" name="username" minlength="3"
+                    [(ngModel)]="user.username" disabled>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="მობილური" name="phone" minlength="9"
+                    [(ngModel)]="user.phone">
+            </div>
+
+            თუ არ გსურთ პაროლის შეცვლა, დატოვეთ ცარიელი.
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="პაროლი" name="newPassword"
+                    [(ngModel)]="newPassword" minlength="6">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="submit-btn" value="დამახსოვრება"
+                    [disabled]="registerForm.invalid">
+            </div>
+
+        </form>
+    </div>
+
+    <app-loader *ngIf="loading"></app-loader>
+</div>

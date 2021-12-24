@@ -1,0 +1,62 @@
+.match-player-stat {
+    .player-stat-block-title {
+        font-family: HNeue75tdBd;
+        font-weight: bold;
+        font-feature-settings: "case" on;
+        margin-bottom: 22px !important;
+        font-size: 15px;
+    }
+
+    .btn-toggle-all {
+        background-color: #F4F4F4;
+        padding: 13px;
+        font-size: 13px;
+        color: #949494;
+        border: none;
+        border-radius: 30px;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .player-item {
+        width: 100%;
+        border: 1px solid #E8E8E8;
+        border-radius: 10px;
+        margin-bottom: 4px;
+        padding: 4px 20px 4px 4px;
+        justify-content: space-between;
+        color: #3E3E3E;
+
+        .player-score {
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 50px;
+        }
+
+        .trophy {
+            color: #47B652;
+        }
+
+        .player-image img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .team-image {
+            width: 20px;
+            height: 20px;
+        }
+
+        .player-name {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-size: 12px;
+            color: #7C7C7C;
+            margin-top: 4px;
+        }
+    }
+}

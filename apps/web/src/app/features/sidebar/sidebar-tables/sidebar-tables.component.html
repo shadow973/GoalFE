@@ -1,0 +1,12 @@
+<div class="sidebar-tables regular-container">
+    <app-league-select (changed)="leagueChanged($event)" [includeCups]="false">
+    </app-league-select>
+
+    <div class="tables">
+        <app-loader type="small" *ngIf="loading"></app-loader>
+        <app-tables *ngIf="standings" type="small" [standings]="standings"></app-tables>
+        <div class="text-center" *ngIf="!standings">
+            ჩანაწერები ვერ მოიძებნა
+        </div>
+    </div>
+</div>

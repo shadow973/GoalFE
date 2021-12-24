@@ -1,0 +1,23 @@
+<div class="match-statistics-item" *ngIf="homeStat != null || homeStat != undefined  && awayStat != null || awayStat != undefined">
+    <div class="row">
+        <div class="match-statistics-item-header">
+            <div class="col-auto"> {{homeStat}}{{(isPercentage)? '%': ''}} </div>
+            <div class="col-auto text-center title"> {{title}} </div>
+            <div class="col-auto text-right"> {{awayStat}}{{(isPercentage)? '%': ''}} </div>
+        </div>
+        <div class="match-statistics-item-content">
+            <div class="col-6 left" [ngClass]="(homeStat > awayStat ) ? 'red' : 'black'">
+                <div class="bar">
+                    <div *ngIf="isPercentage" class="fill" [style.width.%]="homeStat"></div>
+                    <div *ngIf="!isPercentage" class="fill" [style.width.%]="getPecent(homeStat, awayStat)"></div>
+                </div>
+            </div>
+            <div class="col-6 right" [ngClass]="(awayStat > homeStat ) ? 'red' : 'black'">
+                <div class="bar">
+                    <div *ngIf="isPercentage" class="fill" [style.width.%]="awayStat"></div>
+                    <div *ngIf="!isPercentage" class="fill" [style.width.%]="getPecent(awayStat, homeStat)"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

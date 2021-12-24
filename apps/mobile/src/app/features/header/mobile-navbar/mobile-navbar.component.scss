@@ -1,0 +1,108 @@
+.mobile-nav {
+    position: fixed;
+    width: 84%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background: #fff;
+    color: #2f3031;
+    overflow-y: auto;
+    visibility: hidden;
+
+    &.open {
+        visibility: visible;
+    }
+
+    .nav-items {
+        background: #e5e5e5;
+
+        .nav-item {
+            border-bottom: 1px solid #ccc;
+            position: relative;
+            background: #fff;
+
+            .dropdown-menu {
+                position: relative;
+                width: 100%;
+                padding: 0;
+                border: 0;
+                background: #e5e5e5;
+                display: block;
+
+                .dropdown-menu-wrapper {
+                    width: 100%;
+
+                    .dropdown-menu-section {
+                        width: 100%;
+
+                        .cat-name {
+                            font-size: 15px;
+                            font-family: "HNeue75tdBd";
+                            height: 35px;
+                            line-height: 30px;
+                            padding-left: 23px;
+                        }
+
+                        .dropdown-menu-section-item {
+                            position: relative;
+                            width: 100%;
+                            background: #f4f4f4;
+                            display: block;
+                            height: 40px;
+                            line-height: 40px;
+                            border-bottom: 1px solid #ccc;
+                            padding-left: 35px;
+
+                            &:hover,
+                            &.active {
+                                background: #e63c47;
+                                color: #fff;
+                            }
+
+                            .item-logo {
+                                width: 20px;
+                                height: 20px;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .nav-link {
+                font-family: "HNeue75tdBd" !important;
+                color: #2f3031;
+                font-size: 16px;
+                background: #fff;
+                height: 40px;
+                width: 100%;
+                display: block;
+                line-height: 40px;
+                padding-left: 20px;
+                position: relative;
+
+                &:hover,
+                &.active {
+                    color: #fff;
+                    background-color: #e53c48;
+                }
+
+                .nav-link-icon {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 10px;
+                }
+
+                .drop-down-arrow {
+                    margin-left: auto;
+                    font-size: 30px;
+
+                    &.rotated {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+    }
+
+}

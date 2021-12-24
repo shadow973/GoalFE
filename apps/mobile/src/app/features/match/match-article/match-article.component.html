@@ -1,0 +1,15 @@
+<div class="match-article regular-container" *ngIf="article">
+    <div class="match-article-title">
+        {{article.title | strip}}
+    </div>
+
+    <img class="match-article-image" *ngIf="!article.main_video" [alt]="article.title | strip"
+        [src]="imageLinkGenerator(article.main_gallery_item?.filename_webp)">
+    <div class="match-article-video" *ngIf="article.main_video" [innerHTML]="article.main_video | safe : 'html'">
+    </div>
+
+    <div class="video-player-wrapper" *ngIf="article.meta?.xfields?.ifthumb"
+        [innerHTML]="videoChecker(article.meta?.xfields?.ifthumb) | safe : 'html'"></div>
+
+    <div class="match-article-description" [innerHTML]="article.content | strip | safe: 'html'"></div>
+</div>

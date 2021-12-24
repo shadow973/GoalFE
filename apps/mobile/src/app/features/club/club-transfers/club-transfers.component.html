@@ -1,0 +1,45 @@
+<div class="transfers">
+
+    <ng-container *ngFor="let transfer of transfers; let i = index; trackBy: trackById">
+
+        <div class="transfer d-flex align-items-center no-gutters flex-wrap">
+            <a matRipple class="transfer-player col-lg col-12"
+                [routerLink]="['/player/',  transfer.player_id, transfer.player_name | slugify, 1 ]">
+                <div class="transfer-player-image" [class.no-image]="!transfer.player_image">
+                    <img [alt]="transfer.player_name" *ngIf="transfer.player_image"
+                        [defaultImage]="'assets/img/default.png'"
+                        [lazyLoad]="imageLinkGeneratorPlayer(transfer.player_id)" />
+                </div>
+                <div class="transfer-player-info"
+                    *ngIf="transfer.player_name || transfer.player_country_id || transfer.player_position">
+                    <div class="transfer-player-name">
+                        {{transfer.player_name ? transfer.player_name : ''}}
+                        <img *ngIf="transfer.player_country_id" [defaultImage]="'assets/img/default.png'"
+                            [lazyLoad]="imageLinkGeneratorCountry(transfer.player_country_id)" />
+                    </div>
+                    <div class="transfer-player-position">
+                        {{transfer.player_position}}
+                    </div>
+                </div>
+            </a>
+            <div class="transfer-price col-lg-2 col-12">
+                <label>{{transfer.amount}}</label>
+            </div>
+            <a matRipple class="transfer-from col-lg-2 col-6 d-flex align-items-center"
+                [routerLink]="['/club/',  transfer.from_team_id, transfer.from_team_name | slugify, 1 ]">
+                <img class="transfer-team-img" [alt]="transfer.from_team_name" [src]="transfer.from_team_image" />
+                <span class="transfer-team-name">{{transfer.from_team_name}}</span>
+                <div class="arrow"></div>
+            </a>
+            <a matRipple class="transfer-to col-lg-2 col-6 d-flex align-items-center"
+                [routerLink]="['/club/',  transfer.to_team_id,transfer.to_team_name | slugify, 1 ]">
+                <img class="transfer-team-img" [alt]="transfer.to_team_name" [src]="transfer.to_team_image" />
+                <span class="transfer-team-name">{{transfer.to_team_name}}</span>
+            </a>
+            <div class="transfer-date col-lg-1 col-12 d-flex align-items-center pr-1">
+                {{transfer.date}}
+            </div>
+        </div>
+
+    </ng-container>
+</div>

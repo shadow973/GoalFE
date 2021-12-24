@@ -1,0 +1,205 @@
+.player {
+
+    .player-header {
+        position: relative;
+        padding: 35px;
+
+        .player-image {
+            width: 130px;
+            border: 2px solid #f4f4f4;
+            border-radius: 10px;
+
+            img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+        }
+
+        .info {
+            margin-bottom: 11px;
+
+            span {
+                width: 100%;
+                color: #aeaeae;
+                font-size: 14px;
+                font-feature-settings: "case"on;
+                font-family: "HNeue55tdRoman";
+            }
+
+            label {
+                position: relative;
+                width: 100%;
+                top: -5px;
+                color: #2f3031;
+                font-size: 15px;
+                font-feature-settings: "case"on;
+                text-transform: uppercase;
+                font-family: "HNeue55tdRoman";
+                font-weight: 700;
+            }
+        }
+
+        .player-club-info {
+            background: #fafafa;
+            height: 170px;
+            width: 100%;
+            border-radius: 15px;
+            display: inline-flex;
+            align-items: center;
+            padding-left: 40px;
+
+            .club-logo {
+                width: 90px;
+                height: auto;
+                display: inline-flex;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .club-info {
+                width: calc(100% - 90px);
+                padding-left: 40px;
+            }
+        }
+    }
+
+    .player-tabs {
+        width: 100%;
+        height: 50px;
+        padding: 0 25px;
+        border-top: 1px solid #f4f4f4;
+
+        .player-tab {
+            height: 100%;
+            padding-left: 7px;
+            padding-right: 7px;
+            padding-top: 15px;
+            display: inline-flex;
+            font-size: 14px;
+            font-family: "HNeue55tdRoman";
+            color: #949698;
+            margin: 0 5px;
+
+            &:hover,
+            &.active {
+                color: #000;
+                border-bottom: 2px solid #e53c48;
+            }
+        }
+    }
+
+    .player-content {
+        position: relative;
+        width: 100%;
+        min-height: 300px;
+
+        .player-statistics-header {
+            display: flex;
+            padding: 15px 0;
+            color: #2f3031;
+
+            .player-statistics-title {
+                font-family: "HNeue75tdBd";
+                font-size: 17px;
+                font-feature-settings: "case"on;
+                padding: 15px 25px;
+            }
+        }
+
+        .player-statistics-content {
+            padding: 0 10px;
+
+            .player-statistics-box {
+                background: #fafafa;
+                width: 100%;
+                border-radius: 15px;
+                margin-bottom: 25px;
+
+                .player-statistics-box-top {
+                    width: 100%;
+                    padding-top: 35px;
+                    padding-bottom: 21px;
+                    padding-left: 25px;
+
+                    .info {
+                        span {
+                            font-family: "HNeue55tdRoman";
+                            color: #aeaeae;
+                            font-size: 14px;
+                            font-feature-settings: "case"on;
+                            width: 100%;
+                        }
+
+                        label {
+                            width: 100%;
+                            position: relative;
+                            top: -5px;
+                            font-family: "HNeue55tdRoman";
+                            color: #2f3031;
+                            font-size: 17px;
+                            font-feature-settings: "case"on;
+                            text-transform: uppercase;
+                            font-weight: 700;
+                        }
+                    }
+                }
+
+                .player-statistics-box-bottom {
+                    width: 100%;
+                    border-top: 1px solid #efefef;
+                    height: 60px;
+                    padding-left: 36px;
+
+                    .bottom-item {
+                        height: 30px;
+                        padding-right: 15px;
+                        list-style: none;
+                        display: inline-flex;
+                        align-items: center;
+                        color: #2f3031;
+                        font-size: 15px;
+                        font-family: "HNeue75tdBd";
+                        font-feature-settings: "case"on;
+                        background-position: left 22px;
+                        display: flex;
+                        align-items: center;
+
+                        &.icon1 {
+                            background: url('../../../../assets/img/stat_icon_1.png') left 7px no-repeat;
+                            padding-left: 24px;
+                        }
+
+                        &.icon2 {
+                            background: url('../../../../assets/img/stat_icon_2.png') left 7px no-repeat;
+                            padding-left: 24px;
+                        }
+
+                        &.icon3 {
+                            background: url('../../../../assets/img/stat_icon_3.png') left 7px no-repeat;
+                            padding-left: 20px;
+                        }
+
+                        .card {
+                            width: 15px;
+                            height: 20px;
+                            border-radius: 3px;
+                            display: inline-flex;
+                            margin-right: 10px;
+
+                            &.yellow {
+                                background: #fec838;
+                            }
+
+                            &.red {
+                                background: #e21b22;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

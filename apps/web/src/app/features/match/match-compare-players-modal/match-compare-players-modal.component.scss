@@ -1,0 +1,89 @@
+.app-modal {
+    position: relative;
+    width: 600px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+
+    .modal-head {
+        text-align: left;
+        color: #000;
+        font-size: 16px;
+        font-family: "HNeue55tdRoman";
+        border-radius: 15px;
+        position: relative;
+        padding: 15px;
+
+        .modal-header-control {
+            color: #e61f1f;
+            text-decoration: underline;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            font-size: 22px;
+            top: calc(50% - 30px);
+            cursor: pointer;
+        }
+    }
+
+    .modal-body {
+        font-family: "HNeue55tdRoman";
+        padding: 15px;
+        overflow: hidden;
+
+        .player-list {
+            max-height: 70vh;
+            overflow-y: scroll;
+        }
+
+        .submit-btn {
+            height: 50px;
+            line-height: 50px;
+            display: inline-block;
+            width: 100%;
+            border: none;
+            border-radius: 15px;
+            background: #f43947;
+            font-family: HNeue75tdBd;
+            font-feature-settings: "case"on;
+            font-size: 16px;
+            color: #fff;
+            transition: .5s;
+            outline: none;
+        }
+
+        .modal-title {
+            color: #000;
+            font-size: 19px;
+            font-family: "HNeue55tdRoman";
+            width: 100%;
+            text-align: left;
+        }
+
+        .player-item {
+            justify-content: space-between;
+            font-size: 14px;
+            color: #3C3C3C;
+            font-weight: bold;
+            padding: 5px 15px 5px;
+            border: 1px solid #E8E8E8;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+
+            .player-details {
+                img {
+                    width: 30px;
+                    height: 30px;    
+                }
+            }
+        }
+
+        .player-item.chosen {
+            border: 2px solid #E53C48;
+        }
+    }
+}

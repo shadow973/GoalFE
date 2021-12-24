@@ -1,0 +1,82 @@
+.user-favorites-modal {
+    width: calc(100% + 20px);
+    height: 70vh;
+    margin-left: -10px;
+    margin-bottom: -10px;
+    overflow-y: auto;
+    border-radius: 40px 40px 0px 0px;
+    background-color: #fff;
+    padding: 0 30px;
+
+    .user-favorites-modal-title {
+        width: 100%;
+        text-align: center;
+        font-size: 17px;
+        font-family: "HNeue55tdRoman";
+        color: #000;
+        padding: 16px;
+    }
+
+    .user-favorites-modal-search {
+        width: 100%;
+    }
+
+    .user-favorites-modal-content {
+        position: relative;
+        width: 100%;
+        height: auto;
+
+        .favorites-search-header-title {
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: "HNeue55tdRoman";
+            font-feature-settings: "case"on;
+
+        }
+
+        .favorites-search-item {
+            width: 100%;
+            height: 40px;
+            padding: 0 10px;
+            margin-bottom: 5px;
+            border: 1px solid #E8E8E8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+
+            .favorites-search-item-image {
+                width: 26px;
+                height: 26px;
+                margin-right: 8px;
+            }
+
+            .favorites-search-item-title {
+                color: #3C3C3C;
+                font-family: "HNeue55tdRoman";
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            .favorites-search-item-subscribe {
+                min-width: 85px;
+                height: 20px;
+                line-height: 20px;
+                margin-left: auto;
+                border-radius: 3px;
+                text-align: center;
+                font-family: "HNeue55tdRoman";
+                font-feature-settings: "case"on;
+                font-size: 11px;
+                color: #fff;
+                background-color: #E53C48;
+
+                &.subscribed {
+                    color: #858585;
+                    background: #E5E5E5;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<div class="comment-write" (click)="checkAuth($event)">
+
+    <!-- <div class="please-log-in" *ngIf="!userLoggedIn">
+        <div>კომენტარის დასაწერად გაიარეთ ავტორიზაცია</div>
+        <button class="comment-auth-btn" (click)="openLoginModal()">ავტორიზაცია</button>
+    </div> -->
+
+    <ng-container>
+        <textarea class="comment-write-text" placeholder="დაწერეთ კომენტარი" name="comment" [(ngModel)]="commentValue"
+            (keypress)="checkSubmit($event)"></textarea>
+        <button class="comment-write-btn" (click)="postComment()">გაგზავნა</button>
+    </ng-container>
+
+</div>
+
+<div class="error-text">
+    {{errorText}}
+</div>

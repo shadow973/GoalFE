@@ -1,0 +1,85 @@
+<div class="match-header d-flex align-items-center justify-content-center">
+    <ng-container *ngIf="match">
+        <a class="team home" [routerLink]="['/club', match.localteam_id, match.localTeam.data.name | slugify, 1]">
+            <div class="d-inline-block">
+                <div class="team-image">
+                    <img [alt]="match.visitorTeam.data.name" [src]="imageLinkGenerator(match.localteam_id)" />
+                </div>
+                <div class="team-name">{{match.localTeam.data.name}}</div>
+            </div>
+        </a>
+
+        <div class="info">
+            <div class="status" *ngIf="match.time.status == 'NS'">
+                {{ match.time.starting_at.date_time | toDate:'DD MMM YYYY, HH:mm' }}
+            </div>
+            <div class="status live" *ngIf="match.time.status == 'LIVE'">
+                {{match.time.minute}}
+                <span class="live-annime">'</span>
+            </div>
+            <div class="status live" *ngIf="match.time.status == 'HT'">
+                HT
+            </div>
+            <div class="status" *ngIf="match.time.status == 'FT'">
+                FT
+            </div>
+            <div class="status live" *ngIf="match.time.status == 'ET'">
+                ET ({{match.time.minute}})
+                <span class="live-anime">'</span>
+            </div>
+            <div class="status live" *ngIf="match.time.status == 'PEN_LIVE'">
+                პენალტები
+            </div>
+            <div class="status" *ngIf="match.time.status == 'AET'">
+                AET
+            </div>
+            <div class="status" *ngIf="match.time.status  == 'FT_PEN'">
+                FT (პენალტები)
+            </div>
+            <div class="status" *ngIf="match.time.status == 'CANCL'">
+                <strong>CANCL</strong>
+            </div>
+            <div class="status" *ngIf="match.time.status == 'POSTP'">
+                <strong>POSTP</strong>
+            </div>
+            <div class="status" *ngIf="match.time.status == 'INT'">
+                <strong>INT</strong>
+            </div>
+            <div class="status" *ngIf="match.time.status == 'ABAN'">
+                <strong>ABAN</strong>
+            </div>
+            <div class="status" *ngIf="match.time.status == 'SUSP'">
+                <strong>SUSP</strong>
+            </div>
+            <div class="status" *ngIf="match.time.status == 'AU'">
+                <strong>AU</strong>
+            </div>
+            <div class="full-result" *ngIf="match.time.status == 'NS'">-</div>
+            <div class="full-result" *ngIf="match.time.status != 'NS' && match.time.status != 'FT_PEN'">
+                {{match.scores.localteam_score}} : {{match.scores.visitorteam_score}}
+            </div>
+            <div class="full-result" *ngIf="match.time.status != 'NS' && match.time.status == 'FT_PEN'">
+                {{match.scores.localteam_score}} : {{match.scores.visitorteam_score}}
+                <span style="font-size: 14px;">
+                    პენ({{match.scores.localteam_pen_score}} : {{match.scores.visitorteam_pen_score}})
+                </span>
+            </div>
+            <div class="result" *ngIf="match.time.status == 'HT'">
+                პირველი ტაიმი
+                <span>{{match.scores.ht_score}}</span>
+            </div>
+            <div class="result" *ngIf="match.time.status == 'FT'">
+                მატჩი დასრულდა
+            </div>
+        </div>
+
+        <a class="team away" [routerLink]="['/club', match.visitorteam_id, match.visitorTeam.data.name | slugify, 1]">
+            <div class="d-inline-block">
+                <div class="team-image">
+                    <img [alt]="match.visitorTeam.data.name" [src]="imageLinkGenerator(match.visitorteam_id)" />
+                </div>
+                <div class="team-name">{{match.visitorTeam.data.name}}</div>
+            </div>
+        </a>
+    </ng-container>
+</div>

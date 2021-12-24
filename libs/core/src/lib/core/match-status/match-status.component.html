@@ -1,0 +1,55 @@
+<div class="status" *ngIf="match">
+    <ng-container *ngIf="match.time_status == 'NS'">
+        {{match.starting_at | toDate: 'DD/MM'}}
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'LIVE'">
+        <span class="live-anime">
+            LIVE
+        </span>
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'HT'">
+        <span class="live-anime">
+            HT
+        </span>
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'FT'">
+        FT
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'ET'">
+        <span class="live-anime">
+            ET
+        </span>
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'PEN_LIVE'">
+        <span class="live-anime">
+            PEN
+        </span>
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'AET'">
+        AET
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'FT_PEN'">
+        FT
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'CAN'">
+        CAN
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'POSTP'">
+        POSTP
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'INT'">
+        INT
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'ABAN'">
+        ABAN
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'SUSP'">
+        SUSP
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'TBA'">
+        TBA
+    </ng-container>
+    <ng-container *ngIf="match.time_status == 'AU'">
+        AU
+    </ng-container>
+</div>

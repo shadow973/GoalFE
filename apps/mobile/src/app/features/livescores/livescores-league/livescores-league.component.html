@@ -1,0 +1,32 @@
+<div class="livescore-league">
+    <div matRipple class="livescore-league-header d-flex align-items-center no-gutters">
+        <div class="col pointer h-100" (click)="toggleContent()">
+            <div class="w-100 d-flex align-items-center h-100">
+                <mat-checkbox [checked]="favorite" (click)="toggleFavLeague($event)"></mat-checkbox>
+                <div class="league-image">
+                    <img [defaultImage]="'assets/img/default.png'" [alt]="league?.name"
+                        [lazyLoad]="imageLinkGenerator(league?.country_id)">
+                </div>
+                <div class="league-name w-100 ellipsis">
+                    {{league?.league_name}}
+                </div>
+            </div>
+        </div>
+        <div class="ml-auto">
+            <a matRipple class="league-tables" [routerLink]="['/championship/',  league?.league_id,  league?.slug, 1]">
+                <span class="league-tables-text">ცხრილები</span>
+                <div class="league-tables-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div class="livescore-league-content" *ngIf="contentVisible">
+        <ng-container *ngIf="league?.data && league?.data.length">
+            <app-livescores-match *ngFor="let m of league?.data; let i = index;trackBy: trackById" [match]="m">
+            </app-livescores-match>
+        </ng-container>
+
+        <ng-container *ngIf="!league?.data || !league?.data.length">
+            <div class="w-100 text-center">მატჩები ვერ მოიძებნა</div>
+        </ng-container>
+    </div>
+</div>

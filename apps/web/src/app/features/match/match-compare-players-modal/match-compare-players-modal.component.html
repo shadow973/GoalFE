@@ -1,0 +1,26 @@
+<div class="app-modal">
+    <div class="modal-head">
+        <div class="modal-title">
+            <span>აირჩიეთ ფეხბურთელები შესადარებლად</span>
+        </div>
+        <i class="fa fa-times close-modal" (click)="close()"></i>
+    </div>
+    <div class="modal-body">
+        <div class="player-list">
+            <div [class.chosen]="chosenPlayerIds.indexOf(player.player_id) !== -1"
+             (click)="handlePlayerClick(player)" 
+             *ngFor="let player of visiblePlayers" class="player-item d-flex align-items-center">
+                <div class="player-details">
+                    <img [src]="player.image_path" class="mr-2" />
+                    {{ player.player_name }}
+                </div>
+                <div class="player-stat">
+                    {{ player.stats.rating }}
+                </div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button class="submit-btn" (click)="close()">დახურვა</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,123 @@
+.league-select {
+    width: 100%;
+    position: relative;
+
+    .league-select-btn {
+        width: 100%;
+        height: 66px;
+        padding: 0 17px;
+        border-radius: 15px;
+        background: #fff;
+        color: #2f3031;
+        border: 1px solid #f4f4f4;
+        font-size: 15px;
+        font-family: "HNeue75tdBd";
+
+        &:active {
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        .option-image {
+            margin-right: 17px;
+            width: 20px;
+        }
+
+        .league-icon {
+            transition: transform 200ms ease;
+        }
+
+        &.open {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+
+            .league-icon {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .league-select-menu {
+        position: absolute;
+        width: 100%;
+        height: 360px;
+        top: 66px;
+        left: 0;
+        padding-top: 15px;
+        border-radius: 15px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        border: 1px solid rgba(0, 0, 0, .15);
+        background-color: #fff;
+        font-size: 14px;
+        z-index: 1000;
+
+        .league-select-search {
+            position: relative;
+            padding: 0 20px;
+
+            .league-select-search-input {
+                width: 100%;
+                height: 45px;
+                line-height: 45px;
+                border-radius: 15px;
+                border: none;
+                background: #f4f4f4;
+                padding-left: 20px;
+                font-family: "HNeue55tdRoman";
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .search-icon {
+                color: #aaa;
+                font-size: 27px;
+                position: absolute;
+                right: 35px;
+                top: 8px;
+            }
+        }
+
+        .league-select-options {
+            width: 100%;
+            height: calc(100% - 60px);
+            margin-top: 15px;
+            overflow-y: auto;
+
+            .league-select-option {
+                width: 100%;
+                height: 46px;
+                line-height: 46px;
+                padding: 0 20px;
+                color: #2f3031;
+                font-family: "HNeue75tdBd";
+                font-size: 15px;
+                cursor: pointer;
+                background: transparent;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                display: flex;
+                align-items: center;
+                transition: all 150ms linear;
+
+                &.active {
+                    background: #f93039;
+                    color: #fff;
+                }
+
+                .option-image {
+                    margin-right: 10px;
+                    width: 20px;
+                    vertical-align: baseline;
+                }
+            }
+        }
+    }
+}

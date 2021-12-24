@@ -1,0 +1,26 @@
+<div class="wrapper">
+    <div class="search-result d-flex">
+        <div class="col-xxl-9 col-lg-8 col-9">
+            <div class="search-result-header w-100 regular-container d-flex align-items-center">
+                <span class="pr-1">ძიების რეზულტატი:</span>
+                <span>{{query}}</span>
+            </div>
+            <div class="search-result-content w-100">
+                <app-loader *ngIf="loading" position="top"></app-loader>
+                <ng-container *ngIf="searchResults">
+                    <app-main-news-pagination *ngIf="searchResults.data && searchResults.data.length"
+                        [newsData]="searchResults" (pageChanged)="pageChanged($event)" [urlPagination]="true">
+                    </app-main-news-pagination>
+                </ng-container>
+
+                <div class="text-center p-3"
+                    *ngIf="(!searchResults || (searchResults && !searchResults.data.length)) && !loading">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-3">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+</div>

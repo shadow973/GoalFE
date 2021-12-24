@@ -1,0 +1,26 @@
+<div class="header">
+    <div class="wrapper h-100 d-flex align-items-center">
+        <div class="col text-left">
+            <a [routerLink]="['/']">
+                <img src="assets/img/logo.png" alt="goal.ge" class="logo">
+            </a>
+        </div>
+        <div class="col text-right">
+            <div class="d-flex h-100 align-items-center justify-content-end">
+                <app-search></app-search>
+                <div class="auth" *ngIf="!userLoggedIn" (click)="auth()">
+                    <div class="auth-name">ავტორიზაცია</div>
+                    <div class="auth-icon"></div>
+                </div>
+                <div class="user" *ngIf="userLoggedIn && user">
+                    <div class="user-icon" [class.no-avatar]="!user.avatar">
+                        <img *ngIf="user.avatar" class="user-avatar" [src]="getAvatar(user.avatar)" />
+                    </div>
+                    <a class="user-name" [routerLink]="['/user/', user.id ]">{{user.username}}</a>
+                    <div class="logout" (click)="logout()"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-navbar></app-navbar>

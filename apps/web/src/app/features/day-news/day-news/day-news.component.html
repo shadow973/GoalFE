@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="w-100 d-flex">
+        <div class="col-xxl-9 col-lg-8 col-9">
+            <div class="daynews-news">
+                <div class="daynews-news-header regular-container d-flex align-items-center">
+                    <div class="daynews-news-title">
+                        დღის ყველა სიახლე
+                    </div>
+                    <div class="daynews-news-controls ml-auto hide-mobile">
+                        <div class="daynews-news-control" (click)="changeGrid(false)" [class.active]="!gridView">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                        <div class="daynews-news-control" (click)="changeGrid(true)" [class.active]="gridView">
+                            <i class="fa fa-th"></i>
+                        </div>
+                    </div>
+                </div>
+                <app-loader *ngIf="loading" position="top"></app-loader>
+
+                <ng-container *ngIf="newsData">
+                    <app-main-news-pagination *ngIf="newsData" [gridView]="gridView" [newsData]="newsData"
+                        (pageChanged)="pageChanged($event)" [urlPagination]="true">
+                    </app-main-news-pagination>
+                </ng-container>
+
+                <div class="text-center" *ngIf="!newsData && !loading">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </div>
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-3">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+</div>

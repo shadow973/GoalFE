@@ -1,0 +1,98 @@
+.club-player {
+    border: 1px solid #f1f1f1;
+    display: inline-block;
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 5px;
+
+    .club-player-left {
+        width: 55%;
+        display: inline-block;
+        float: left;
+        align-items: center;
+        display: flex;
+
+        .club-player-image {
+            width: 100px;
+            height: 110px;
+            display: inline-block;
+            float: left;
+            border-radius: 15px;
+            border-right: 1px solid #f1f1f1;
+            padding: 5px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 15px;
+                -o-object-fit: cover;
+                object-fit: cover;
+            }
+        }
+
+        .club-player-info {
+            width: calc(100% - 90px);
+            display: inline-block;
+            float: left;
+            padding-left: 22px;
+
+            .club-player-name {
+                color: #2f3031;
+                font-family: "HNeue75tdBd";
+                font-feature-settings: "case"on;
+                font-size: 15px;
+                font-weight: 700;
+
+                img {
+                    width: 16px;
+                    height: 12px;
+                    border-radius: 5px;
+                    margin-left: 13px;
+                    position: relative;
+                    top: -2px;
+                }
+            }
+
+            .club-player-age {}
+
+            .club-player-number {
+                color: #a4a4a4;
+                font-size: 14px;
+                font-family: "HNeue55tdRoman";
+            }
+        }
+    }
+
+    .club-player-right {
+        width: 45%;
+        display: inline-block;
+        float: right;
+        align-items: center;
+        padding-top: 30px;
+
+        .club-player-right-list {
+            width: 33.33333333333333%;
+            display: inline-block;
+            float: right;
+            text-align: center;
+
+            label {
+                display: inline-block;
+                width: 100%;
+                font-family: "HNeue55tdRoman";
+                color: #484848;
+                font-size: 16px;
+            }
+
+            span {
+                display: inline-block;
+                width: 100%;
+                font-family: "HNeue55tdRoman";
+                font-feature-settings: "case"on;
+                color: #9e9e9e;
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+    }
+}

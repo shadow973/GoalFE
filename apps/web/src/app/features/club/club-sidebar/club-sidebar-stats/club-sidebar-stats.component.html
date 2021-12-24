@@ -1,0 +1,103 @@
+<div *ngIf="leagues && leagues.length">
+    <div class="sidebar-block-heading">
+        გუნდის სტატისტიკა
+    </div>
+
+    <div class="regular-container team-leagues">
+        <ng-container *ngIf="leagues && leagues.length">
+            <mat-form-field class="w-100">
+
+                <mat-select [value]="leagues[0]" name="league" (selectionChange)="leagueChanged($event)">
+                    <mat-select-trigger>
+                        <img class="league-image mr-3" 
+                            [src]="imageLinkGeneratorChampionship(chosenLeague.country_id)">
+                            {{chosenLeague.league_name}}
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let league of leagues" [value]="league">
+                        <img class="league-image mr-3" 
+                            [src]="imageLinkGeneratorChampionship(league.country_id)">
+                            {{league.league_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </ng-container>
+    
+        <ng-container *ngIf="chosenLeague">
+            <div class="stats-block">
+                <div class="stats-block-title">
+                    <span>მოგება</span>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სახლში</div>
+                        <div class="stats-value">{{ chosenLeague.stats.win.home }}</div>
+                    </div>
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სტუმრად</div>
+                        <div class="stats-value">{{ chosenLeague.stats.win.away }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-block">
+                <div class="stats-block-title">
+                    <span>ფრე</span>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სახლში</div>
+                        <div class="stats-value">{{ chosenLeague.stats.draw.home }}</div>
+                    </div>
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სტუმრად</div>
+                        <div class="stats-value">{{ chosenLeague.stats.draw.away }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-block">
+                <div class="stats-block-title">
+                    <span>წაგება</span>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სახლში</div>
+                        <div class="stats-value">{{ chosenLeague.stats.lost.home }}</div>
+                    </div>
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სტუმრად</div>
+                        <div class="stats-value">{{ chosenLeague.stats.lost.away }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-block">
+                <div class="stats-block-title">
+                    <span>გატანილი გოლი</span>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სახლში</div>
+                        <div class="stats-value">{{ chosenLeague.stats.goals_for.home }}</div>
+                    </div>
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სტუმრად</div>
+                        <div class="stats-value">{{ chosenLeague.stats.goals_for.away }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-block">
+                <div class="stats-block-title">
+                    <span>გაშვებული გოლი</span>
+                </div>
+                <div class="stats-data">
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სახლში</div>
+                        <div class="stats-value">{{ chosenLeague.stats.goals_against.home }}</div>
+                    </div>
+                    <div class="stats-item d-flex justify-content-between">
+                        <div class="stats-key">სტუმრად</div>
+                        <div class="stats-value">{{ chosenLeague.stats.goals_against.away }}</div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+.nav {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    background: #1C232D;
+
+    .nav-items {
+        .nav-item {
+
+            .dropdown-menu {
+                top: 80px;
+                padding: 18px 0;
+                border-radius: 20px;
+                border: none;
+                z-index: 99999999999;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+
+                &::before {
+                    content: "";
+                    width: 100%;
+                    height: 50px;
+                    background: transparent;
+                    position: absolute;
+                    top: -30px;
+                    left: 24px;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: -12px;
+                    left: 43px;
+                    width: 0;
+                    height: 0;
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-bottom: 13px solid #fff;
+                }
+
+                .dropdown-menu-wrapper {
+                    width: 730px;
+
+                    .dropdown-menu-left {
+                        padding-top: 15px;
+                        padding-left: 5px;
+
+                        .dropdown-menu-left-item {
+                            width: 100%;
+                            color: #2f3031;
+                            font-size: 16px;
+                            font-family: "HNeue55tdRoman";
+                            font-feature-settings: "case"off;
+                            width: 100%;
+                            transition: .5s;
+                            font-weight: 700;
+                            padding-top: 2px;
+                            padding-bottom: 8px;
+                            border-radius: 5px;
+                            padding-left: 7px;
+                            margin-left: -5px;
+
+                            &:hover,
+                            &.active {
+                                color: #fff;
+                                background: #e53c48;
+                            }
+                        }
+                    }
+
+                    .dropdown-menu-right {
+                        background: #f1f2f3;
+                        border-radius: 20px;
+                        width: 100%;
+                        padding: 30px;
+
+                        .cat-name {
+                            font-family: "HNeue75tdBd";
+                            color: #2f3031;
+                            font-size: 14px;
+                            height: 40px;
+                        }
+
+                        .dropdown-menu-right-item {
+                            width: 100%;
+                            color: #2f3031;
+                            font-size: 12px;
+                            font-family: "HNeue55tdRoman";
+                            font-feature-settings: "case"off;
+                            padding-top: 4px;
+                            padding-bottom: 4px;
+                            border-radius: 3px;
+                            width: 100%;
+                            padding-left: 5px;
+                            margin-left: -5px;
+                            transition: .5s;
+
+                            &:hover,
+                            &.active {
+                                background: #e63c47;
+                                color: #fff;
+                            }
+
+                            .item-logo {
+                                margin-right: 10px;
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+
+            &:hover .dropdown-menu {
+                display: block;
+            }
+
+            .nav-link {
+                position: relative;
+                font-family: "HNeue75tdBd";
+                color: #fff;
+                text-transform: uppercase;
+                font-feature-settings: "case"on;
+                cursor: pointer;
+
+                .featured {
+                    position: absolute;
+                    right: 5px;
+                    top: 3px;
+                    background-color: #e63c47;
+                    border-radius: 2px;
+                    height: 14px;
+                    line-height: 12px;
+                    font-size: 11px;
+                    padding: 0 3px;
+                    transition: all 100ms;
+                }
+
+                &:hover,
+                &.active {
+                    background-color: #394453;
+
+                    .featured {
+                        background-color: #1C232D;
+                    }
+                }
+            }
+        }
+    }
+
+}

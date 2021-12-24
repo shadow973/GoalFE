@@ -1,0 +1,38 @@
+.match {
+    position: relative;
+    min-height: 200px;
+
+    .match-tabs {
+        position: relative;
+        width: auto;
+        height: 60px;
+        bottom: -10px;
+        padding: 0 10px 10px 10px;
+        overflow-x: auto;
+        white-space: nowrap;
+        display: block !important;
+        text-align: center;
+        border-top: 1px solid #f4f4f4;
+
+        .match-tab {
+            height: 100%;
+            padding-left: 7px;
+            padding-right: 7px;
+            padding-top: 15px;
+            display: inline-flex;
+            font-size: 14px;
+            font-family: "HNeue55tdRoman";
+            color: #949698;
+            margin: 0 5px;
+
+            &.active {
+                color: #000;
+                border-bottom: 2px solid #e53c48;
+            }
+        }
+    }
+
+    .vote-wrapper {
+        padding: 25px 20px;
+    }
+}

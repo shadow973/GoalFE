@@ -1,0 +1,36 @@
+<a class="livescores-match text-center d-flex align-items-center pointer"
+    [routerLink]="['/match', match.match_id]" target="_blank">
+    <mat-checkbox [checked]="favorite" (click)="toggleFav($event)"></mat-checkbox>
+
+    <app-livescores-match-status [match]="match"></app-livescores-match-status>
+
+    <div class="match-info d-flex align-items-center">
+        <div class="team text-right home">
+            <div class="goal-info" *ngIf="currentGoals[match.match_id]?.local?.isgoal">
+                <span>გოლი</span>
+            </div>
+            <span class="team-name ellipsis">{{match.localteam_name}}</span>
+            <img class="team-image" [alt]="match.localteam_name" [defaultImage]="'assets/img/default.png'"
+                [lazyLoad]="match.localteam_logo_path" />
+        </div>
+
+        <div class="match-score" [class.not-finished]="match.time_status == 'LIVE' || match.time_status == 'HT'">
+            <ng-container *ngIf="match.time_status == 'NS'"> - </ng-container>
+            <div class="score" *ngIf="match.time_status != 'NS'">
+                <span>{{match.localteam_score}}</span>
+                <span> - </span>
+                <span>{{match.visitorteam_score}}</span>
+            </div>
+        </div>
+
+        <div class="team text-left away">
+            <img class="team-image" [alt]="match.visitorteam_name" [defaultImage]="'assets/img/default.png'"
+                [lazyLoad]="match.visitorteam_logo_path" />
+            <span class="team-name ellipsis">{{match.visitorteam_name}}</span>
+            <div class="goal-info" *ngIf="currentGoals[match.match_id]?.visitor?.isgoal">
+                <span>გოლი</span>
+            </div>
+        </div>
+
+    </div>
+</a>

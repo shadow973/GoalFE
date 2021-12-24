@@ -1,0 +1,26 @@
+<div class="main-wrapper d-flex flex-column">
+  <app-mobile-navbar></app-mobile-navbar>
+
+  <div class="w-100 body-wrap" [class.menu-open]="menuOpen">
+
+      <app-mobile-header></app-mobile-header>
+
+      <div class="mobile-navbar-overlay" *ngIf="menuOpen" (click)="toggleMobileNavbar()"></div>
+
+      <div class="mt-1 main-routing-wrapper">
+          <router-outlet></router-outlet>
+      </div>
+
+      <div class="mt-auto">
+          <app-footer></app-footer>
+      </div>
+
+  </div>
+</div>
+<app-footer-nav></app-footer-nav>
+
+<!-- <div matRipple class="scroll-top" [class.visible]="scrollTopVisible" (click)="scrollTop()">
+  <i class="fa fa-chevron-up"></i>
+</div> -->
+
+<app-mobile-catfish-promotion></app-mobile-catfish-promotion>

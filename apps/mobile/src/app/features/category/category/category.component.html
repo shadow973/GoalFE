@@ -1,0 +1,20 @@
+<div class="wrapper">
+    <div class="category-news">
+        <div class="category-news-header regular-container d-flex align-items-center">
+            <div class="category-news-title">
+                {{categoryInfo?.title}}
+            </div>
+        </div>
+        <app-loader *ngIf="loading" position="top"></app-loader>
+
+        <ng-container *ngIf="newsData">
+            <app-main-news-pagination *ngIf="newsData.data && newsData.data.length" [newsData]="newsData"
+                (pageChanged)="pageChanged($event)" [urlPagination]="true">
+            </app-main-news-pagination>
+        </ng-container>
+
+        <div class="text-center" *ngIf="(!newsData || (newsData && !newsData.data.length)) && !loading">
+            ჩანაწერები ვერ მოიძებნა
+        </div>
+    </div>
+</div>

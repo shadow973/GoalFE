@@ -1,0 +1,69 @@
+.match-player-item {
+    display: flex;
+    align-items: center;
+
+    .number {
+        width: 30px;
+    }
+
+    .name {
+        font-size: 13px;
+        color: #2f3031;
+        font-family: "HNeue55tdRoman";
+        font-feature-settings: "case"on;
+        padding-left: 12px;
+    }
+
+    .goal {
+        padding-left: 12px;
+        font-size: 18px;
+    }
+
+    .yellow-card {
+        width: 15px;
+        height: 20px;
+        border-radius: 3px;
+        background: #fec838;
+        margin-left: 12px;
+    }
+
+    .red-card {
+        width: 15px;
+        height: 20px;
+        border-radius: 3px;
+        background: red;
+        margin-left: 12px;
+    }
+
+    &.away {
+        flex-direction: row-reverse;
+        text-align: right;
+
+        .goal,
+        .yellow-card,
+        .red-card {
+            margin-left: 0;
+            margin-right: 12px;
+        }
+    }
+}
+
+.down-arrow {
+    position: relative;
+    width: 12px;
+    height: 16px;
+    top: 2px;
+    background: url('../../../../assets/img/red_down.png') no-repeat;
+    background-size: 100% 100%;
+    margin-left: 12px;
+}
+
+.up-arrow {
+    position: relative;
+    width: 12px;
+    height: 16px;
+    top: 2px;
+    background: url('../../../../assets/img/green_up.png') no-repeat;
+    background-size: 100% 100%;
+    margin-left: 12px;
+}

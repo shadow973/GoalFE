@@ -1,0 +1,29 @@
+<div class="compare">
+    <div class="regular-container p-3">
+        <button (click)="openModal()" class="btn-choose-players font-bold mb-5">
+            <img src="assets/img/compare.svg" class="mr-2" />
+            აირჩიეთ მოთამაშეები
+        </button>
+
+        <div *ngIf="chosenPlayers?.length == 2">
+            <div class="players-container row mb-5">
+                <div class="col-6 pl-3 pr-0">
+                    <ng-container>
+                        <app-match-compare-players-item [players]="players" [player]="chosenPlayers[0]"></app-match-compare-players-item>
+                    </ng-container>
+                </div>
+                <div class="col-6 pl-3"> 
+                    <ng-container>
+                        <app-match-compare-players-item [players]="players" [player]="chosenPlayers[1]"></app-match-compare-players-item>
+                    </ng-container>
+                </div>
+            </div>
+    
+            <div class="compare-stats-container">
+                <ng-container>
+                    <app-match-compare-players-stats [player1]="chosenPlayers[0]" [player2]="chosenPlayers[1]"></app-match-compare-players-stats>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+.transfers {
+    .transfer {
+        border: 1px solid #f1f1f1;
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 5px;
+
+        .transfer-player {
+            display: flex;
+            align-items: center;
+
+            .transfer-player-image {
+                border-radius: 15px;
+                padding: 5px;
+                width: 80px !important;
+                height: 90px !important;
+                border: 1px solid #f1f1f1 !important;
+                margin: 5px !important;
+
+                &.no-image {
+                    background: url('../../../../assets/img/no_image.png');
+                    background-size: cover;
+                    background-position: 50%;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 15px;
+                    -o-object-fit: cover;
+                    object-fit: cover;
+                }
+            }
+
+            .transfer-player-info {
+                padding-left: 22px;
+
+                .transfer-player-name {
+                    color: #2f3031;
+                    font-family: "HNeue75tdBd";
+                    font-feature-settings: "case"on;
+                    font-size: 15px;
+
+                    img {
+                        width: 16px;
+                        height: 12px;
+                        border-radius: 5px;
+                        margin-left: 13px;
+                        position: relative;
+                        top: -2px;
+                    }
+                }
+
+                .transfer-player-position {
+                    color: #b2b2b2;
+                    font-family: "HNeue55tdRoman";
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .transfer-price {
+            color: #2f3031;
+            font-family: "HNeue55tdRoman";
+            font-feature-settings: "case"on;
+            font-size: 18px;
+            width: 100%;
+            font-weight: 400;
+            margin-bottom: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .transfer-from {
+            justify-content: flex-end;
+            padding-right: 15px;
+            height: 30px;
+        }
+
+        .transfer-to {
+            justify-content: flex-start;
+            padding-left: 10px;
+            height: 30px;
+        }
+
+        .transfer-team-img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .transfer-team-name {
+            color: #666;
+            font-size: 13px;
+            font-family: "HNeue55tdRoman";
+            max-width: 70%;
+        }
+
+        .arrow {
+            background: url('../../../../assets/img/right_arrow.png') no-repeat 100%;
+            background-size: 100% 100%;
+            width: 14px;
+            height: 10px;
+            position: relative;
+            left: 15px;
+        }
+
+        .transfer-date {
+            color: #aaa;
+            font-size: 13px;
+            font-family: "HNeue55tdRoman";
+            height: 40px;
+            justify-content: center;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+.contact {
+    min-height: 300px;
+    padding: 25px 30px;
+    font-family: "HNeue55tdRoman";
+    font-size: 16px;
+    color: #333;
+
+    a {
+        color: #e63c47;
+        opacity: 0.85;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

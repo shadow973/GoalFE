@@ -1,0 +1,56 @@
+<div class="statistics"
+    *ngIf="statistics.goalscorers?.length || statistics.assistscorers?.length || statistics.cardscorers?.length">
+    <ng-container *ngIf="type == 'small'">
+        <div class="statistics-tabs d-flex justify-content-center">
+            <div matRipple class="statistics-tab pointer" *ngIf="statistics.goalscorers?.length"
+                [class.active]="activeTab == 1" (click)="changeTab(1)">
+                ბომბარდირები
+            </div>
+            <div matRipple class="statistics-tab pointer" *ngIf="statistics.assistscorers?.length"
+                [class.active]="activeTab == 2" (click)="changeTab(2)">
+                ასისტები
+            </div>
+            <div matRipple class="statistics-tab pointer" *ngIf="statistics.cardscorers?.length"
+                [class.active]="activeTab == 3" (click)="changeTab(3)">
+                ბარათები
+            </div>
+        </div>
+        <app-statistic *ngIf="activeTab == 1  && statistics.goalscorers?.length" [type]="type" [statisticType]="1"
+            [statistic]="statistics.goalscorers">
+        </app-statistic>
+        <app-statistic *ngIf="activeTab == 2  && statistics.assistscorers?.length" [type]="type" [statisticType]="2"
+            [statistic]="statistics.assistscorers">
+        </app-statistic>
+        <app-statistic *ngIf="activeTab == 3  && statistics.cardscorers?.length" [type]="type" [statisticType]="3"
+            [statistic]="statistics.cardscorers">
+        </app-statistic>
+    </ng-container>
+
+
+    <div *ngIf="type != 'small'" class="row justify-content-center">
+        <div class="col-xl-4 col-lg-6 col-sm-12 mb-3" *ngIf="statistics.goalscorers?.length">
+            <div class="regular-container w-100 statistic-normal-container">
+                <app-statistic [type]="type" [statisticType]="1" [statistic]="statistics.goalscorers">
+                </app-statistic>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-sm-12 mb-3" *ngIf="statistics.assistscorers?.length">
+            <div class="regular-container w-100 statistic-normal-container">
+                <app-statistic [type]="type" [statisticType]="2" [statistic]="statistics.assistscorers">
+                </app-statistic>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-sm-12 mb-3" *ngIf="statistics.cardscorers?.length">
+            <div class="regular-container w-100 statistic-normal-container">
+                <app-statistic [type]="type" [statisticType]="3" [statistic]="statistics.cardscorers">
+                </app-statistic>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="text-center"
+    *ngIf="!statistics.goalscorers?.length && !statistics.assistscorers?.length && !statistics.cardscorers?.length">
+    ჩანაწერები ვერ მოიძებნა
+</div>

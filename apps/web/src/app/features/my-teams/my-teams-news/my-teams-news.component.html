@@ -1,0 +1,15 @@
+<a [routerLink]="['/news/', teamNews.id, teamNews.slug | slugify]">
+    <div class="my-teams-news-item regular-container">
+        <div class="my-teams-news-item-image-wrapper">
+            <img class="my-teams-news-item-image" [alt]="teamNews?.title | strip" defaultImage="assets/img/default.png"
+                [lazyLoad]="imageLinkGenerator(teamNews?.main_gallery_item?.filename)">
+            <div class="play-icon" *ngIf="teamNews?.main_video"><i class="fa fa-play"></i></div>
+        </div>
+        <div class="my-teams-news-item-title">
+            {{teamNews?.title | strip}}
+        </div>
+        <div class="my-teams-news-item-date">
+            {{teamNews.publish_date | toDate}}
+        </div>
+    </div>
+</a>

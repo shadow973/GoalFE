@@ -1,0 +1,102 @@
+.tables-tabs {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #f4f4f4;
+
+    .tables-tab {
+        height: 100%;
+        cursor: pointer;
+        margin-right: 20px;
+        padding: 25px 4px;
+        font-size: 14px;
+        font-family: "HNeue55tdRoman";
+        font-feature-settings: "case"on;
+        color: #949698;
+        transition: color 150ms;
+
+        &:hover,
+        &.active {
+            color: #000;
+            border-bottom: 2px solid #e53c48;
+        }
+
+    }
+}
+
+.tables {
+    width: 100%;
+
+    .tables-header {
+        width: 100%;
+        height: 28px;
+        line-height: 21px;
+        padding: 0 2px 0 25px;
+        border-radius: 15px;
+        border: 1px solid #f4f4f4;
+        color: #a3a3a3;
+        font-size: 12px;
+        font-family: "HNeue55tdRoman";
+    }
+
+    .tables-content {
+        .tables-row {
+            width: 100%;
+            height: 26px;
+            margin-top: 1px;
+            border-radius: 15px;
+            line-height: 24px;
+            font-family: "HNeue55tdRoman";
+            font-size: 12px;
+            color: #2f3031;
+            background: #f4f4f4;
+            transition: all 200ms ease;
+
+            &:hover {
+                color: #fff;
+                background: #e63c47;
+            }
+
+            .position-col {
+                width: 25px;
+            }
+
+            .position {
+                width: 19px;
+                color: #101010;
+                font-size: 10px;
+                height: 100%;
+                background: #fff;
+                border: 1px solid #e7e7e7;
+                border-radius: 100%;
+                text-align: center;
+                border-radius: 15px;
+                line-height: 24px;
+            }
+
+            .name {
+                opacity: .9;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                .image {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 2px;
+                    margin-top: -3px;
+                }
+            }
+
+            .overall {
+                font-weight: 400;
+            }
+
+            .point {
+                font-weight: 700;
+            }
+        }
+    }
+}

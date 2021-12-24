@@ -1,0 +1,153 @@
+<div class="wrapper">
+    <div class="championship">
+        <div class="championship-header regular-container">
+            <app-loader type="small" *ngIf="loading"></app-loader>
+            <ng-container *ngIf="!loading">
+                <div class="championship-info d-flex align-items-center justify-content-between">
+                    <div>
+                        <img class="championship-image" [alt]="championship?.name"
+                            defaultImage="assets/img/default.png"
+                            [src]="imageLinkGeneratorChampionship(championship?.country_id)">
+                        <h1 class="championship-name">
+                            {{championship?.name}}
+                        </h1>
+                    </div>
+                    <!-- <div class="championship-subscribe pointer">
+                        გამოწერა
+                        <i class="icon fa fa-check"></i>
+                    </div> -->
+                </div>
+                <div class="championship-tabs d-flex align-items-center">
+                    <div class="championship-tab" [class.active]="activeTabId == 1" (click)="changeTab(1)">
+                        სიახლეები
+                    </div>
+                    <div class="championship-tab" *ngIf="round" [class.active]="activeTabId == 2"
+                        (click)="changeTab(2)">
+                        მატჩები
+                    </div>
+                    <div class="championship-tab" [class.active]="activeTabId == 3" (click)="changeTab(3)">
+                        სატურნირო ცხრილი
+                    </div>
+                    <div class="championship-tab" [class.active]="activeTabId == 4" (click)="changeTab(4)">
+                        სტატისტიკა
+                    </div>
+                    <div class="championship-tab" *ngIf="championship?.history"
+                        [class.active]="activeTabId == 5" (click)="changeTab(5)">
+                        ისტორია
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="row mt-4">
+            <div class="col-xxl-9 col-lg-8 col-9">
+                <div class="championship-content">
+                    <app-loader type="normal" *ngIf="contentLoading"></app-loader>
+
+                    <ng-container *ngIf="activeTabId == 1">
+                        <app-main-news-pagination *ngIf="championshipNews && championshipNews.data.length"
+                            [newsData]="championshipNews" (pageChanged)="pageChanged($event)" [urlPagination]="true">
+                        </app-main-news-pagination>
+                        <div class="text-center"
+                            *ngIf="(!championshipNews || (championshipNews && !championshipNews.data.length)) && !contentLoading">
+                            ჩანაწერები ვერ მოიძებნა
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTabId == 2">
+                        <div class="w-100 regular-container px-sm-4 pb-sm-4 px-1 pb-1">
+                            <div class="matches-header d-flex align-items-center mb-2">
+                                <div class="matches-title">
+                                    ბოლო და მომდევნო მატჩები
+                                </div>
+                                <div *ngIf="championship.is_cup" class="d-flex ml-auto matches-season-control">
+                                    <mat-form-field>
+                                        <mat-select [(ngModel)]="season" (ngModelChange)="matchSeasonChanged()">
+                                            <mat-option *ngFor="let s of seasons" [value]="s">
+                                                {{s.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="ml-3">
+                                        <mat-select [(ngModel)]="stage" (ngModelChange)="getChampionshipMatches()">
+                                            <mat-option *ngFor="let s of stages" [value]="s">
+                                                {{s.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <mat-form-field *ngIf="stage && stage.type == 'Group Stage'" class="ml-3">
+                                        <mat-select [(ngModel)]="round" (ngModelChange)="getChampionshipMatches()">
+                                            <mat-option *ngFor="let r of rounds" [value]="r">
+                                                ტური {{r.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div *ngIf="!championship.is_cup" class="d-flex ml-auto matches-season-control">
+                                    <mat-form-field class="mr-3">
+                                        <mat-select [(ngModel)]="season" (ngModelChange)="matchSeasonChanged()">
+                                            <mat-option *ngFor="let s of seasons" [value]="s">
+                                                {{s.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <mat-form-field>
+                                        <mat-select [(ngModel)]="round" (ngModelChange)="getChampionshipMatches()">
+                                            <mat-option *ngFor="let r of rounds" [value]="r">
+                                                ტური {{r.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <app-matches *ngIf="championshipMatches && championshipMatches.length"
+                                [matches]="championshipMatches"></app-matches>
+                            <div class="text-center"
+                                *ngIf="(!championshipMatches || (championshipMatches && !championshipMatches.length)) && !contentLoading">
+                                ჩანაწერები ვერ მოიძებნა
+                            </div>
+                        </div>
+
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTabId == 3">
+                        <!-- <div class="standings-season" *ngIf="championshipStandings">
+                            <mat-form-field>
+                                <mat-select [(ngModel)]="season" (ngModelChange)="getChampionshipStandings()">
+                                    <mat-option *ngFor="let s of seasons" [value]="s">
+                                        {{s.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+                        <div *ngIf="championshipStandings">
+                            <app-tables [standings]="standing.standings.data" *ngFor="let standing of championshipStandings"></app-tables>
+                        </div>
+                        <div class="text-center" *ngIf="!championshipStandings && !loading">
+                            ჩანაწერები ვერ მოიძებნა
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTabId == 4">
+                        <app-statistics *ngIf="championshipStats" [statistics]="championshipStats"></app-statistics>
+                        <div class="text-center" *ngIf="!championshipStats && !loading">
+                            ჩანაწერები ვერ მოიძებნა
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTabId == 5">
+                        <div *ngIf="championship.history?.description" class="championship-history regular-container"
+                            [innerHTML]="championship.history?.description | safe : 'html'"></div>
+                    </ng-container>
+
+                </div>
+            </div>
+            <div class="col-xxl-3 col-lg-4 col-3">
+                <app-sidebar></app-sidebar>
+            </div>
+        </div>
+    </div>
+</div>

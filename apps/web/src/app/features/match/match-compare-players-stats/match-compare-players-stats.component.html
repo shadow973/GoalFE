@@ -1,0 +1,107 @@
+<div *ngIf="player1 && player2" class="compare-stats-blocks">
+    <div class="stats-list mb-5">
+        <div class="stat-heading font-bold">
+            <img class="stat-icon" src="assets/img/statistics-general.svg" class="mr-2" /> ზოგადი სტატისტიკა
+        </div>
+        <div class="stat-items">
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.goals.scored, player2.stats.goals.scored)">{{ player1.stats.goals.scored }}</div>
+                <div class="stat-name">გოლი</div>
+                <div [class]="getStatClass(player2.stats.goals.scored, player1.stats.goals.scored)">{{ player2.stats.goals.scored }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.goals.assists, player2.stats.goals.assists)">{{ player1.stats.goals.assists }}</div>
+                <div class="stat-name">ასისტი</div>
+                <div [class]="getStatClass(player2.stats.goals.assists, player1.stats.goals.assists)">{{ player2.stats.goals.assists }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.other.minutes_played, player2.stats.other.minutes_played)">{{ player1.stats.other.minutes_played }}</div>
+                <div class="stat-name">ჩატარებული წუთი</div>
+                <div [class]="getStatClass(player2.stats.other.minutes_played, player1.stats.other.minutes_played)">{{ player2.stats.other.minutes_played }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.passing.passes, player2.stats.passing.passes)">{{ player1.stats.passing.passes }}</div>
+                <div class="stat-name">პასი</div>
+                <div [class]="getStatClass(player2.stats.passing.passes, player1.stats.passing.passes)">{{ player2.stats.passing.passes }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.passing.accurate_passes, player2.stats.passing.accurate_passes)">{{ player1.stats.passing.accurate_passes }}</div>
+                <div class="stat-name">ზუსტი პასი</div>
+                <div [class]="getStatClass(player2.stats.passing.accurate_passes, player1.stats.passing.accurate_passes)">{{ player2.stats.passing.accurate_passes }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.fouls.drawn, player2.stats.fouls.drawn)">{{ player1.stats.fouls.drawn }}</div>
+                <div class="stat-name">ჯარიმა</div>
+                <div [class]="getStatClass(player2.stats.fouls.drawn, player1.stats.fouls.drawn)">{{ player2.stats.fouls.drawn }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.dribbles.attempts, player2.stats.dribbles.attempts)">{{ player1.stats.dribbles.attempts }}</div>
+                <div class="stat-name">დრიბლინგის მცდელობა</div>
+                <div [class]="getStatClass(player2.stats.dribbles.attempts, player1.stats.dribbles.attempts)">{{ player2.stats.dribbles.attempts }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.dribbles.success, player2.stats.dribbles.success)">{{ player1.stats.dribbles.success }}</div>
+                <div class="stat-name">წარმატებული დრიბლინგი</div>
+                <div [class]="getStatClass(player2.stats.dribbles.success, player1.stats.dribbles.success)">{{ player2.stats.dribbles.success }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.duels.total, player2.stats.duels.total)">{{ player1.stats.duels.total }}</div>
+                <div class="stat-name">დუელი</div>
+                <div [class]="getStatClass(player2.stats.duels.total, player1.stats.duels.total)">{{ player2.stats.duels.total }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.duels.won, player2.stats.duels.won)">{{ player1.stats.duels.won }}</div>
+                <div class="stat-name">მოგებული დუელი</div>
+                <div [class]="getStatClass(player2.stats.duels.won, player1.stats.duels.won)">{{ player2.stats.duels.won }}</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="stats-list mb-5">
+        <div class="stat-heading font-bold">
+            <img class="stat-icon" src="assets/img/statistics-defense.svg" class="mr-2" /> დაცვითი ფაზა
+        </div>
+        <div class="stat-items">
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.other.tackles, player2.stats.other.tackles)">{{ player1.stats.other.tackles }}</div>
+                <div class="stat-name">ართმევა</div>
+                <div [class]="getStatClass(player2.stats.other.tackles, player1.stats.other.tackles)">{{ player2.stats.other.tackles }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.other.interceptions, player2.stats.other.interceptions)">{{ player1.stats.other.interceptions }}</div>
+                <div class="stat-name">ჩაჭრა</div>
+                <div [class]="getStatClass(player2.stats.other.interceptions, player1.stats.other.interceptions)">{{ player2.stats.other.interceptions }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.other.blocks, player2.stats.other.blocks)">{{ player1.stats.other.blocks }}</div>
+                <div class="stat-name">ბლოკი</div>
+                <div [class]="getStatClass(player2.stats.other.blocks, player1.stats.other.blocks)">{{ player2.stats.other.blocks }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-list mb-5">
+        <div class="stat-heading font-bold">
+            <img class="stat-icon" src="assets/img/statistics-attack.svg" class="mr-2" /> შემტევი ფაზა
+        </div>
+        <div class="stat-items">
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.shots.shots_total, player2.stats.shots.shots_total)">{{ player1.stats.shots.shots_total }}</div>
+                <div class="stat-name">დარტყმა</div>
+                <div [class]="getStatClass(player2.stats.shots.shots_total, player1.stats.shots.shots_total)">{{ player2.stats.shots.shots_total }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.passing.total_crosses, player2.stats.passing.total_crosses)">{{ player1.stats.passing.total_crosses }}</div>
+                <div class="stat-name">ჩაწოდება</div>
+                <div [class]="getStatClass(player2.stats.passing.total_crosses, player1.stats.passing.total_crosses)">{{ player2.stats.passing.total_crosses }}</div>
+            </div>
+            <div class="stat-item">
+                <div [class]="getStatClass(player1.stats.passing.key_passes, player2.stats.passing.key_passes)">{{ player1.stats.passing.key_passes }}</div>
+                <div class="stat-name">საკვანძო გადაცემა</div>
+                <div [class]="getStatClass(player2.stats.passing.key_passes, player1.stats.passing.key_passes)">{{ player2.stats.passing.key_passes }}</div>
+            </div>
+        </div>
+    </div>
+    
+</div>

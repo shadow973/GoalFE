@@ -1,0 +1,42 @@
+<div class="livescore-select text-left">
+    <button #toggleButton class="league-select-btn d-flex align-items-center" [class.open]="open"
+        (click)="toggleDropdown()">
+        <app-loader *ngIf="topLoading" type="small"></app-loader>
+        <ng-container *ngIf="selectedLeague">
+            {{selectedLeague.name}}
+        </ng-container>
+        <ng-container *ngIf="!selectedLeague && selectedLeague != 0">
+            აირჩიეთ ჩემპიონატი
+        </ng-container>
+        <ng-container *ngIf="selectedLeague == 0">
+            ყველა
+        </ng-container>
+        <div class="ml-auto">
+            <i class="fa fa-chevron-down league-icon" aria-hidden="true"></i>
+        </div>
+    </button>
+
+    <div #menu class="league-select-menu" [hidden]="!open">
+        <div class="league-select-search">
+            <input type="text" class="league-select-search-input" autocomplete="off" name="search" placeholder="ძიება"
+                [(ngModel)]="searchValue" (ngModelChange)="searchValueChanged($event)">
+            <i *ngIf="!searched" class="fa fa-search search-icon" aria-hidden="true"></i>
+            <i *ngIf="searched" class="fa fa-times search-icon pointer" aria-hidden="true" (click)="reset($event)"></i>
+        </div>
+
+        <div class="league-select-option" (click)="select(0)" [class.active]="selectedLeague == 0">
+            ყველა
+        </div>
+
+        <app-loader *ngIf="loading" type="small"></app-loader>
+        <ng-container *ngIf="!loading">
+            <div class="league-select-options scroller">
+                <div class="league-select-option" *ngFor="let league of leagues" (click)="select(league)"
+                    [class.active]="league == selectedLeague">
+                    {{league.name}}
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+</div>

@@ -1,0 +1,135 @@
+.user-profile {
+    width: 100%;
+
+    .user-profile-header {
+        position: relative;
+        width: 100%;
+        margin-bottom: 30px;
+        margin-top: 60px;
+
+        .user-info {
+            position: relative;
+            height: 100px;
+            padding: 0 35px;
+            display: flex;
+            align-items: center;
+
+            .user-image {
+                width: 115px;
+                height: 115px;
+                border-radius: 100%;
+                position: relative;
+                overflow: hidden;
+                top: -31px;
+
+
+                .no-image {
+                    height: 90px;
+                    width: 90px;
+                    border-radius: 100%;
+                    display: flex;
+                    float: left;
+                    border: 1px solid #979797;
+                    background: #f8f8f8;
+                    text-align: center;
+                    text-transform: uppercase;
+                    font-size: 11px;
+                    font-family: Tahoma;
+                    padding-top: 6px;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .user-creds {
+                margin-left: 30px;
+
+                .name {
+                    color: #2f3031;
+                    font-size: 17px;
+                    font-family: "HNeue75tdBd";
+                    font-feature-settings: "case"on;
+                }
+            }
+        }
+
+        .user-tabs {
+            position: relative;
+            height: 60px;
+            padding: 0 27px;
+            border-top: 1px solid #f4f4f4;
+            display: flex;
+            align-items: center;
+
+            .user-tab {
+                position: relative;
+                height: 100%;
+                margin: 0 7px;
+                color: #949698;
+                font-size: 14px;
+                font-family: "HNeue55tdRoman";
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+
+                .count {
+                    width: 40px;
+                    height: 25px;
+                    border-radius: 3px;
+                    line-height: 22px;
+                    font-size: 14px;
+                    font-family: "HNeue55tdRoman";
+                    color: #fff;
+                    background: #2f3031;
+                    display: inline-block;
+                    text-align: center;
+                    margin-left: 7px;
+                }
+
+                &.active,
+                &:hover {
+                    color: #000;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        width: 100%;
+                        height: 2px;
+                        bottom: 0;
+                        left: 0;
+                        background: #e53c48;
+                        z-index: 9;
+                    }
+
+                    .count {
+                        background: #e53c48;
+                    }
+                }
+            }
+
+            .settings-tab {
+                color: #b9b9b9;
+                font-size: 14px;
+                font-family: "HNeue55tdRoman";
+                padding-right: 12px;
+                transition: 200ms;
+                cursor: pointer;
+
+                &:hover {
+                    color: #e63c47;
+                }
+
+                .settings-icon {
+                    font-size: 20px;
+                }
+
+            }
+        }
+    }
+}

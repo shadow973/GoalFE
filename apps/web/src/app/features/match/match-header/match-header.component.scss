@@ -1,0 +1,93 @@
+.match-header {
+    min-height: 100px;
+    padding: 54px 0;
+    text-align: center;
+
+    .team {
+        width: calc(50% - 150px);
+
+        &.home {
+            text-align: right;
+        }
+
+        &.away {
+            text-align: left;
+        }
+
+        .team-image {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto;
+            margin-bottom: 8px;
+
+            img {
+                height: 100%;
+                width: 100%;
+                -o-object-fit: cover !important;
+                object-fit: cover !important;
+            }
+        }
+
+        .team-name {
+            color: #2f3031;
+            font-family: "HNeue55tdRoman";
+            font-size: 18px;
+            font-feature-settings: "case"on;
+            margin-top: 10px;
+            text-align: center;
+        }
+    }
+
+    .info {
+        width: 300px;
+        text-align: center;
+
+        .status {
+            color: #9a9a9a;
+            font-size: 13px;
+            font-family: "HNeue55tdRoman";
+
+            &.live {
+                font-weight: bold;
+                color: #e63c47;
+
+                .live-anime {
+                    animation: pulse 2s infinite;
+                    padding-left: 3px;
+                }
+            }
+        }
+
+        .full-result {
+            color: #2f3031;
+            font-family: "HNeue75tdBd";
+            font-size: 40px;
+            margin-top: 5px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .result {
+            color: #9a9a9a;
+            font-size: 13px;
+            font-family: "HNeue55tdRoman";
+
+            span {
+                color: #2f3031;
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

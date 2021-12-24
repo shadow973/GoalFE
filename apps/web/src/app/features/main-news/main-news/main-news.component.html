@@ -1,0 +1,12 @@
+<div *ngIf="afterViewInit" infiniteScroll [infiniteScrollDistance]="4" [infiniteScrollThrottle]="300"
+    (scrolled)="onScroll()">
+
+    <div class="main-news-items" [class.grid-view]="gridView">
+        <app-main-news-item *ngFor="let n of news | slice:skip:news.length; trackBy: trackById; let i = index"
+            class="grid-item" [newsItem]="n" [gridView]="gridView"></app-main-news-item>
+    </div>
+
+    <div class="loader" *ngIf="loading">
+        <app-loader type="small"></app-loader>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+.match-formation {
+    .formations {
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 24px;
+
+        .formations-header {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            margin: 0 auto;
+            font-family: "HNeue55tdRoman";
+            font-feature-settings: "case"on;
+            font-size: 13px;
+            color: #2f3031;
+        }
+    }
+
+    .lineup {
+        padding: 25px 20px;
+        margin-bottom: 25px;
+
+        .lineup-header {
+            background: #f4f4f4;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-family: "HNeue55tdRoman";
+            font-feature-settings: "case"on;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .lineup-content {
+            .match-player {
+                width: 100%;
+                height: 46px;
+                padding: 0 22px;
+                border-bottom: 1px solid #f4f4f4;
+                display: flex;
+                align-items: center;
+                color: #000;
+                font-size: 14px;
+                font-family: "HNeue75tdBd";
+
+                &.home {
+                    justify-content: flex-start;
+                }
+
+                &.away {
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+}

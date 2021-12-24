@@ -1,0 +1,24 @@
+.main-news-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &.grid-view {
+        width: calc(100% + 30px);
+        margin: -15px;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .grid-item {
+            width: calc(100% / 3 - 30px);
+            height: 390px;
+            margin: 15px;
+            display: block;
+        }
+    }
+}
+
+.loader {
+    position: relative;
+    height: 40px;
+}

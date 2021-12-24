@@ -1,0 +1,66 @@
+.sidebar-block-heading {
+    height: 74px;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    font-family: "HNeue75tdBd";
+    font-feature-settings: "case" on;
+    font-size: 17px;
+    color: #2f3031;
+}
+
+.team-leagues {
+    padding: 0 14px 14px 14px;
+
+    .mat-select {
+        background-color: #fff !important;
+        border: 1px solid #E6E6E6;
+        box-sizing: border-box;
+        border-radius: 10px !important;
+        padding: 6px 15px 6px 17px !important;
+    }
+
+    .stats-block {
+        position: relative;
+        border: 1px solid #E7E7E7;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 28px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .stats-block-title {
+            position: absolute;
+            top: -14px;
+            left: 0;
+            text-align: center;
+            width: 100%;
+
+            span {
+                padding: 0 18px;
+                background: #fff;
+                font-family: "HNeue75tdBd";
+                font-feature-settings: "case" on;
+            }
+        }
+
+        .stats-item {
+            padding: 8px 0;
+        }
+
+        .stats-item:first-of-type {
+            border-bottom: 1px solid #E7E7E7;
+        }
+
+        .stats-item:last-of-type {
+            padding-bottom: 0;
+        }
+    }
+}
+
+.league-image {
+    width: 30px;
+}

@@ -1,0 +1,22 @@
+<a *ngIf="player" [routerLink]="['/player', player.player_id, player.player_slug, 1]" class="player-item mb-2 d-flex">
+    <div class="player-details w-100">
+        <div class="d-flex justify-content-between">
+            <div class="player-image mr-3 float-left">
+                <img [src]="player.image_path" />
+            </div>
+            <div class="player-score d-flex align-content-center">
+                <img src="assets/img/compare-star.svg" class="mr-1" /> {{ player.stats.rating }}
+            </div>
+        </div>
+        <div>
+            <div class="player-name mb-2">{{ player.player_name }}</div>
+            <div class="player-team">
+                <img class="team-image" [src]="player.team_logo_path" class="mr-1" /> {{ player.team_name }}
+            </div>
+        </div>
+    </div>
+</a>
+<button (click)="openModal()" class="btn-change-player font-bold">
+    <img src="assets/img/compare-choose.svg" class="mr-1" />
+    შეცვლა
+</button>

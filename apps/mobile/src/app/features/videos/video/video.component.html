@@ -1,0 +1,29 @@
+<div class='video-item regular-container'>
+  <a matRipple [routerLink]="['/news/', video.id, video.slug | slugify]">
+    <div class='video-item-content'>
+      <div class='video-item-title'>
+        {{video.title | strip}}
+      </div>
+    </div>
+    <div class='video-item-image-wrapper'>
+      <iframe allowfullscreen='allowfullscreen' [src]="(video.main_video | getVideo) | safe: 'resourceUrl'"
+              width='100%' height='100%' *ngIf='video?.main_video' class='video-frame'></iframe>
+      <ng-container *ngIf='!video.main_video'>
+        <img class='video-item-image' defaultImage='assets/img/default.png' [alt]='video.title | strip'
+             [lazyLoad]='imageLinkGenerator(video.main_gallery_item?.filename_webp)'>
+        <div class='play-icon'>
+          <i class='fa fa-play'></i>
+        </div>
+      </ng-container>
+    </div>
+  </a>
+  <div class='bottom-container'>
+    <div>
+      <app-likes-comments [parentPostObject]='video' [userId]='userId'
+                          (commentsClick)='videoCommentsClick(video)'></app-likes-comments>
+    </div>
+    <div class='video-item-country' *ngIf='video?.categories'>
+      {{video.categories[0].title}}
+    </div>
+  </div>
+</div>

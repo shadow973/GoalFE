@@ -1,0 +1,37 @@
+<div class='latest-news'>
+  <div class='latest-news-items'>
+    <app-loader *ngIf='mainLoading'></app-loader>
+    <div *ngFor='let newsItem of news; trackBy: trackById' class='latest-news-item regular-container d-flex'>
+      <a matRipple [routerLink]="['/news/', newsItem.id, newsItem.slug | slugify]">
+        <div class='latest-news-item-image-wrapper' (deferLoad)='showItem = true'>
+          <img class='latest-news-item-image' [alt]='newsItem.title | strip' *ngIf='showItem'
+               [src]='imageLinkGenerator(newsItem.main_gallery_item?.filename_webp)'>
+          <div class='play-icon' *ngIf='newsItem?.main_video'><i class='fa fa-play'></i></div>
+        </div>
+      </a>
+      <div class='latest-news-item-content'>
+        <a matRipple [routerLink]="['/news/', newsItem.id, newsItem.slug | slugify]">
+          <h2 class='latest-news-item-title'>
+            {{newsItem.title | strip}}
+          </h2>
+        </a>
+        <div class='latest-news-item-date'>
+          <app-likes-comments [parentPostObject]='newsItem' [userId]='userId'
+                              position='start' margin='0 1rem 0 0'></app-likes-comments>
+          <ng-container *ngIf='newsItem.teams && newsItem.teams.length'>
+            <img *ngIf='newsItem.teams[0]' class='latest-news-item-category' [alt]='newsItem.teams[0].name'
+                 [src]='imageLinkGeneratorTeam(newsItem.teams[0].pivot.team_id)'>
+          </ng-container>
+          {{newsItem.publish_date | toDate}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div matRipple *ngIf='page <= 4 && !mainLoading'
+       class='d-flex align-items-center justify-content-center' [class.loading]='loading'
+       (click)='showMore()'>
+    <app-loader *ngIf='loading' type='small'></app-loader>
+    <button class='latest-news-more' *ngIf='!loading'>მეტი სიახლის ჩვენება</button>
+  </div>
+
+</div>

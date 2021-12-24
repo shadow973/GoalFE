@@ -1,0 +1,54 @@
+<div class="overview" *ngIf="overview" [ngClass]="overview.view_position">
+    <div class="number">{{overview.minute}}'</div>
+
+
+    <div class="overview-item" *ngIf="overview.view_type == 'goals'">
+        <div class="overview-item-icon">
+            <i class="fas fa-futbol"></i>
+        </div>
+        <a class="overview-item-name" *ngIf="overview.player_id"
+            [routerLink]="['/player', overview.player_id, overview.player_name | slugify, 1]">
+            {{overview.player_name}}
+            <span class="overview-item-name-additional" *ngIf="overview.player_assist_name">
+                ({{overview.player_assist_name}})
+            </span>
+        </a>
+        <a class="overview-item-name" *ngIf="!overview.player_id">{{overview.player_name}}
+            <span *ngIf="overview.player_assist_name">({{overview.player_assist_name}})</span>
+        </a>
+    </div>
+
+
+    <div class="overview-item" *ngIf="overview.view_type == 'cards'">
+        <div class="overview-item-icon yellow-card" *ngIf="overview.type == 'yellowcard'"></div>
+        <div class="overview-item-icon red-card" *ngIf="overview.type == 'redcard'"></div>
+        <a class="overview-item-name" *ngIf="overview.player_id"
+            [routerLink]="['/player', overview.player_id, overview.player_name | slugify, 1]">
+            {{overview.player_name}}
+        </a>
+        <a class="overview-item-name" *ngIf="!overview.player_id">
+            {{overview.player_name}}
+        </a>
+    </div>
+
+
+    <div class="overview-item" *ngIf="overview.view_type == 'subst'">
+        <div class="arrow up-arrow"></div>
+        <a class="overview-item-name" *ngIf="overview.player_id"
+            [routerLink]="['/player', overview.player_in_id, overview.player_in_name | slugify, 1]">
+            {{overview.player_in_name}}
+        </a>
+        <a class="overview-item-name" *ngIf="!overview.player_id">
+            {{overview.player_in_name}}
+        </a>
+        <div class="arrow down-arrow"></div>
+        <a class="overview-item-name out" *ngIf="overview.player_id"
+            [routerLink]="['/player', overview.player_out_id, overview.player_out_name | slugify, 1]">
+            {{overview.player_out_name}}
+        </a>
+        <a class="overview-item-name out" *ngIf="!overview.player_id">
+            {{overview.player_out_name}}
+        </a>
+    </div>
+
+</div>

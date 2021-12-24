@@ -1,0 +1,41 @@
+.match-date {
+    font-size: 14px;
+    color: #2f3031;
+    font-family: "HNeue55tdRoman";
+    width: 150px;
+    padding-left: 13px;
+    text-align: left;
+
+    &.live {
+        color: #e63c47;
+
+        .live-anime {
+            animation: pulse 2s infinite;
+            //padding-left: 3px;
+            font-size: 14px;
+            //padding-left: 0;
+        }
+    }
+
+    span {
+        font-weight: 400;
+        font-size: 12px;
+        &:first-child {
+            padding-left: 15px;
+        } 
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

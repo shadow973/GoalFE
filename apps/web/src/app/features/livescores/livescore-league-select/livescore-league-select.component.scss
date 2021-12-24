@@ -1,0 +1,102 @@
+.livescore-select {
+    width: 100%;
+    position: relative;
+
+    .league-select-btn {
+        width: 100%;
+        height: 35px;
+        background: #f4f4f4;
+        border-radius: 15px;
+        color: #2f3031;
+        font-family: "HNeue55tdRoman";
+        font-feature-settings: "case"on;
+        font-size: 12px;
+        padding: 6px 15px 10px 17px;
+        border: 0;
+
+        &:active {
+            box-shadow: inset 0 3px 5px rgb(0 0 0 / 13%);
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &.open {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+
+            .league-icon{
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .league-select-menu {
+        position: absolute;
+        width: 100%;
+        top: 35px;
+        left: 0;
+        padding-top: 15px;
+        border-radius: 15px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+        background-color: #f4f4f4;
+        font-size: 14px;
+        z-index: 1000;
+
+        .league-select-search {
+            padding-left: 14px;
+            position: relative;
+            margin-bottom: 5px;
+
+            .league-select-search-input {
+                width: calc(100% - 6px);
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                padding: 6px;
+                font-family: "HNeue55tdRoman";
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .search-icon {
+                z-index: 999;
+                position: absolute;
+                top: 9px;
+                right: 14px;
+                color: #999;
+            }
+        }
+
+        .league-select-options {
+            height: auto;
+            min-height: 50px;
+            max-height: 285px;
+            overflow-y: auto;
+        }
+
+        .league-select-option {
+            width: 100%;
+            color: #2f3031;
+            font-family: "HNeue55tdRoman";
+            font-feature-settings: "case"on;
+            font-size: 13px;
+            padding: 7px 15px;
+            cursor: pointer;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            &:hover,
+            &.active {
+                background: #f93039;
+                color: #fff;
+            }
+        }
+    }
+}

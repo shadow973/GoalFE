@@ -1,0 +1,36 @@
+.main-wrapper {
+    // min-height: 100vh;
+    min-height: 100%;
+    position: relative;
+
+    .body-wrap {
+        position: absolute;
+        background: #f4f4f4;
+        left: 0;
+        transition: left 250ms, box-shadow 0ms 0ms;
+        padding-top: 100px;
+        padding-bottom: 50px;
+        top: 0;
+
+        &.menu-open {
+            left: -84%;
+            box-shadow: 0 -20px 20px rgb(0 0 0 / 20%);
+            overflow-y: hidden;
+        }
+
+        .mobile-navbar-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: rgba($color: #000000, $alpha: .25);
+            z-index: 22222;
+        }
+
+        .main-routing-wrapper {
+            position: relative;
+            min-height: calc(100vh - 465px);
+        }
+    }
+}

@@ -1,0 +1,19 @@
+.match-video {
+    position: relative;
+    width: 100%;
+    padding: 15px;
+
+    .match-video-frame {
+        width: 100%;
+        height: 57vw;
+        border: 0;
+        overflow: hidden;
+    }
+
+    .match-video-player {
+        width: 100%;
+        height: 57vw;
+        border: 0;
+        outline: 0;
+    }
+}

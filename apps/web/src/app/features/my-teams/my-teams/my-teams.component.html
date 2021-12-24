@@ -1,0 +1,77 @@
+<div class="wrapper">
+    <div class="my-teams">
+        <app-my-teams-header (teamChoosed)="getTeamData($event)"></app-my-teams-header>
+
+        <div class="row my-teams-content mt-4" *ngIf="teamId">
+            <app-loader type="normal" *ngIf="newsLoading"></app-loader>
+
+            <div class="col-xxl-9 col-8">
+                <div class="row flex-wrap my-teams-content-news-1">
+
+                    <ng-container *ngFor="let teamNewsItem of teamNews?.data | slice:0:3; let i = index">
+                        <div class="col-xxl-4 col-6 my-teams-content-news-item">
+                            <app-my-teams-news [teamNews]="teamNewsItem"></app-my-teams-news>
+                        </div>
+                    </ng-container>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-xxl-8 col-6">
+                        <div class="row flex-wrap my-teams-content-news-2">
+                            <ng-container *ngFor="let teamNewsItem of teamNews?.data | slice:3:7; let i = index">
+                                <div class="col-xxl-6 col-12 my-teams-content-news-item">
+                                    <app-my-teams-news [teamNews]="teamNewsItem"></app-my-teams-news>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-4 col-6">
+                        <div class="w-100 regular-container my-team-matches">
+                            <app-loader type="small" *ngIf="matchesLoading"></app-loader>
+                            <app-my-teams-matches [matches]="teamMatches"></app-my-teams-matches>
+                        </div>
+
+                        <a class="see-all-news" [routerLink]="['/club/',teamId, teamName | slugify,  1]">
+                            <div class="w-100 text-center"> ყველა სიახლის ნახვა </div>
+                            <i class="fa fa-chevron-right see-all-news-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-3 col-4">
+                <div class="standings regular-container">
+                    <div class="standings-title">
+                        ცხრილი
+                    </div>
+                    <div class="standings-content">
+                        <div class="w-100 h-100 scroller">
+                            <app-loader type="small" *ngIf="standingsLoading"></app-loader>
+                            <app-tables *ngIf="teamStandings" type="small" [standings]="teamStandings"></app-tables>
+                            <div class="text-center" *ngIf="!teamStandings && !standingsLoading">
+                                ჩანაწერები ვერ მოიძებნა
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="statistics regular-container">
+                    <div class="statistics-title">
+                        სტატისტიკები
+                    </div>
+                    <div class="statistics-content">
+                        <app-loader type="small" *ngIf="statsLoading"></app-loader>
+                        <app-statistics *ngIf="teamStats" type="small" [statistics]="teamStats">
+                        </app-statistics>
+                        <div class="text-center" *ngIf="!teamStats && !statsLoading">
+                            ჩანაწერები ვერ მოიძებნა
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

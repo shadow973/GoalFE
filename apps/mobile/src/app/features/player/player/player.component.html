@@ -1,0 +1,163 @@
+<div class="wrapper">
+    <div class="player w-100">
+
+        <div class="w-100 regular-container position-relative">
+            <app-loader *ngIf="loading" type="small"></app-loader>
+
+            <div class="player-header d-flex flex-wrap">
+                <div class="col-auto">
+                    <div class="player-image">
+                        <img [alt]="player?.common_name" src="assets/img/default.png" [defaultImage]="'assets/img/default.png'"
+                            [lazyLoad]="player?.image_path" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info">
+                        <span>სრული სახელი:</span>
+                        <label>{{player?.fullname}}</label>
+                    </div>
+                    <div class="info">
+                        <span>მოთამაშის სახელი:</span>
+                        <label>{{player?.common_name}}</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info">
+                        <span>დაბადების ადგილი:</span>
+                        <label>{{player?.data?.player?.data?.birthcountry}} /
+                            {{player?.data?.player?.data?.birthplace}}</label>
+                    </div>
+                    <div class="info">
+                        <span>დაბადების თარიღი:</span>
+                        <label>{{player?.data?.player?.data?.birthdate}}</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="info">
+                        <span>სიმაღლე:</span>
+                        <label>{{player?.data?.player?.data?.height}}</label>
+                    </div>
+                    <div class="info">
+                        <span>წონა:</span>
+                        <label>{{player?.data?.player?.data?.weight}}</label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="player-club-info" *ngIf="player?.team">
+                        <div class="club-logo">
+                            <a [routerLink]="['/club/',  player?.team.team_id, player?.team.name | slugify, 1 ]">
+                                <img [alt]="player?.team.name" src="assets/img/default.png" [defaultImage]="'assets/img/default.png'"
+                                    [lazyLoad]="imageLinkGenerator(player?.team.team_id)" />
+                            </a>
+                        </div>
+                        <div class="club-info mt-3">
+                            <div class="info mb-0">
+                                <span>კლუბი:</span>
+                                <label>{{player?.team.name}}</label>
+                            </div>
+                            <div class="info">
+                                <span>პოზიცია:</span>
+                                <label>{{player?.data?.position?.data?.name}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="player-tabs d-flex align-items-center">
+                <div matRipple class="player-tab pointer" [class.active]="activeTab == 1" (click)="changeTab(1)">
+                    სიახლეები
+                </div>
+                <div matRipple class="player-tab pointer" [class.active]="activeTab == 2" (click)="changeTab(2)">
+                    სტატისტიკა
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mt-4">
+
+            <div class="col-sm-12">
+                <div class="player-content">
+                    <app-loader type="normal" *ngIf="contentLoading"></app-loader>
+                    <ng-container *ngIf="!contentLoading">
+
+                        <ng-container *ngIf="activeTab == 1">
+                            <app-main-news-pagination *ngIf="playerNews && playerNews.data.length"
+                                [newsData]="playerNews" (pageChanged)="getPlayerNews($event)">
+                            </app-main-news-pagination>
+                            <div class="text-center"
+                                *ngIf="(!playerNews || (playerNews && !playerNews.data.length)) && !contentLoading">
+                                ჩანაწერები ვერ მოიძებნა
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="activeTab == 2">
+                            <div class="w-100 regular-container px-md-4 pb-md-4 px-2 pb-2">
+                                <div class="player-statistics-header d-flex align-items-center mb-2">
+                                    <div class="player-statistics-title">
+                                        სტატისტიკა
+                                    </div>
+                                </div>
+
+                                <div class="player-statistics-content" *ngIf="player?.data">
+
+                                    <div class="col-xl-6 col-sm-12 p-md-3 p-2">
+                                        <div class="player-statistics-box">
+                                            <div class="player-statistics-box-top d-flex">
+                                                <div class="info col">
+                                                    <span>სეზონი</span>
+                                                    <label>-</label>
+                                                </div>
+                                                <div class="info col">
+                                                    <span>კლუბი</span>
+                                                    <label>{{player?.team.name}}</label>
+                                                </div>
+                                            </div>
+                                            <div class="player-statistics-box-bottom">
+                                                <div class="h-100 d-flex align-items-center no-gutters">
+                                                    <div class="col">
+                                                        <div class="bottom-item icon1">{{player?.data?.minutes}}</div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="bottom-item icon2">{{player?.data?.goals}}</div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="bottom-item icon3">{{player?.data?.assists}}</div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="bottom-item d-flex align-items-center">
+                                                            <div class="yellow card"></div>
+                                                            <span class="card-count">
+                                                                {{player?.data?.yellowcards || 0}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="bottom-item d-flex align-items-center">
+                                                            <div class="red card"></div>
+                                                            <span class="card-count">
+                                                                {{player?.data?.redcards || 0}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center" *ngIf="!player?.data">
+                                    ჩანაწერები ვერ მოიძებნა
+                                </div>
+                            </div>
+
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="today-matches-header d-flex">
+    <div class="today-matches-tabs d-flex no-gutters" #tabs>
+        <div class="tabs-swiper">
+            <!-- <div class="league-tab" *ngFor="let league of leagues; trackBy: trackByLeagueId">
+                <div matRipple class="league d-flex align-items-center" (click)="selectleague(league.league_id)"
+                    [class.active]="league.league_id == activeLeagueId">
+                    <div class="icon">
+                        <img class="height-18" [alt]="league.name"
+                            [src]="imageLinkGeneratorCountry(league.country_id)" />
+                    </div>
+                    <span>{{league.name}}</span>
+                </div>
+            </div> -->
+
+            <swiper [(config)]="swipeConfig" [(index)]="activeSlideIndex">
+                <div class="league-tab" *ngFor="let league of leagues; trackBy: trackByLeagueId">
+                    <div matRipple class="league d-flex align-items-center" (click)="selectleague(league.league_id)"
+                        [class.active]="league.league_id == activeLeagueId">
+                        <div class="icon">
+                            <img class="height-18" [alt]="league.name"
+                                [src]="imageLinkGeneratorCountry(league.country_id)" />
+                        </div>
+                        <span>{{league.name}}</span>
+                    </div>
+                </div>
+            </swiper>
+        </div>
+
+        <div class="tabs-fixed ml-auto d-flex no-gutters">
+            <div class="col-auto">
+                <div matRipple class="league fav-matches d-flex align-items-center" (click)="ShowFavMatches()"
+                    [class.active]="activeLeagueId == -1">
+                    <div class="icon">
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <span>ფავორიტები</span>
+                </div>
+            </div>
+            <div class="col-auto ml-auto">
+                <a matRipple class="league all-matches d-flex align-items-center" [routerLink]="['/livescore']">
+                    <span>ყველა</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

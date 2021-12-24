@@ -1,0 +1,127 @@
+.header {
+    position: relative;
+    background: #13171E;
+    height: 100px;
+    transition: height 250ms;
+
+    .logo {
+        width: 170px;
+        height: 50px;
+        margin-top: -5px;
+        transition: width 250ms;
+    }
+
+    .search-m {
+        width: 43px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #272F3C;
+        background: #13171E;
+        color: #677386;
+        border-radius: 45px;
+        cursor: pointer;
+        font-size: 23px;
+        margin-right: 10px;
+    }
+
+    .auth {
+        width: 43px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #272F3C;
+        background: #13171E;
+        border-radius: 43px;
+        cursor: pointer;
+
+        .auth-icon {
+            width: 33px;
+            height: 33px;
+            background: url('../../../../assets/img/user_icon.png') no-repeat center;
+            background-size: 20px auto;
+        }
+    }
+
+    .user {
+        position: relative;
+        overflow: hidden;
+        width: 100px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid #272F3C;
+        background: #13171E;
+        border-radius: 48px;
+        cursor: pointer;
+
+        .user-icon {
+            position: relative;
+            width: 43px;
+            height: 40px;
+            left: -2px;
+            border-radius: 43px;
+            border: 2px solid #272F3C;
+            overflow: hidden;
+
+            &.no-avatar {
+                background: url('../../../../assets/img/user_icon.png') no-repeat center;
+            }
+
+            .user-avatar {
+                object-fit: cover;
+                width: 100%;
+            }
+        }
+
+        .logout {
+            width: 40px;
+            height: 36px;
+            background: url('../../../../assets/img/log_out.png') no-repeat 10px center;
+            background-color: #13171E;
+            border-radius: 50px;
+        }
+    }
+
+    .burger-nav {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        margin-left: 10px;
+        color: #fff;
+        font-size: 40px;
+        cursor: pointer;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+        z-index: 33333;
+    }
+}
+
+.header-mobile-wrapper {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 33333;
+    transition: left 250ms;
+
+    &.menu-open {
+        left: -84%;
+    }
+
+    // &.collapsed {
+    //     .header {
+    //         height: 55px;
+
+    //         .logo {
+    //             width: 130px;
+    //         }
+    //     }
+    // }
+}

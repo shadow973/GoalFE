@@ -1,0 +1,58 @@
+<div class="match-statistics regular-container"
+    *ngIf="matchStatistics && matchStatistics.local_team && matchStatistics.visitor_team">
+    <div class="match-statistics-header">
+        სტატისტიკა
+    </div>
+    <div class="match-statistics-content">
+
+        <app-match-statistics-item title="ბურთის ფლობა" [isPercentage]="true"
+            [homeStat]="matchStatistics.local_team.possessiontime"
+            [awayStat]="matchStatistics.visitor_team.possessiontime">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="საგოლე მცდელობა" [homeStat]="matchStatistics.local_team.goal_attempts"
+            [awayStat]="matchStatistics.visitor_team.goal_attempts">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="დარტყმა კარში" [homeStat]="matchStatistics.local_team.shots.insidebox"
+            [awayStat]="matchStatistics.visitor_team.shots.insidebox">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="დარტყმა კარისკენ" [homeStat]="matchStatistics.local_team.shots.offgoal"
+            [awayStat]="matchStatistics.visitor_team.shots.offgoal">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="დაბლოკილი დარტყმები" [homeStat]="matchStatistics.local_team.shots.blocked"
+            [awayStat]="matchStatistics.visitor_team.shots.blocked">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="კუთხურები" [homeStat]="matchStatistics.local_team.corners"
+            [awayStat]="matchStatistics.visitor_team.corners">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="ოფსაიდი" [homeStat]="matchStatistics.local_team.offsides"
+            [awayStat]="matchStatistics.visitor_team.offsides">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="მეკარის სეივები" [homeStat]="matchStatistics.local_team.saves"
+            [awayStat]="matchStatistics.visitor_team.saves">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="ჯარიმები" [homeStat]="matchStatistics.local_team.fouls"
+            [awayStat]="matchStatistics.visitor_team.fouls">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="წითელი ბარათები" [homeStat]="matchStatistics.local_team.redcards"
+            [awayStat]="matchStatistics.visitor_team.redcards">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="ყვითელი ბარათები" [homeStat]="matchStatistics.local_team.yellowcards"
+            [awayStat]="matchStatistics.visitor_team.yellowcards">
+        </app-match-statistics-item>
+
+        <app-match-statistics-item title="პასების რაოდენობა" [homeStat]="matchStatistics.local_team.passes?.total"
+            [awayStat]="matchStatistics.visitor_team.passes?.total">
+        </app-match-statistics-item>
+
+    </div>
+</div>

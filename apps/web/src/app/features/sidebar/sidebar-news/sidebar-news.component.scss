@@ -1,0 +1,92 @@
+.sidebar-news {
+    width: 100%;
+    overflow: hidden;
+
+    .sidebar-news-header {
+        height: 74px;
+        display: flex;
+        align-items: center;
+        padding: 0 25px;
+        font-family: "HNeue75tdBd";
+        font-feature-settings: "case"on;
+        font-size: 17px;
+        color: #2f3031;
+    }
+
+    .sidebar-news-items {
+        width: 100%;
+
+        .sidebar-news-item {
+            width: 100%;
+            padding: 15px;
+            border-top: 1px solid #f4f4f4;
+            cursor: pointer;
+
+            .sidebar-news-item-info {
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                border-radius: 15px;
+                background: #f0f0f0;
+                transition: 300ms;
+
+                .sidebar-news-item-date {
+                    color: #2f3031;
+                    font-size: 14px;
+                    font-family: "HNeue55tdRoman";
+                    margin-bottom: 6px;
+                }
+
+                .sidebar-news-item-category {
+                    width: 17px;
+                    height: 17px;
+                }
+            }
+
+            .sidebar-news-item-title {
+                color: #2f3031;
+                font-size: 14px;
+                font-family: "HNeue55tdRoman";
+                width: calc(100% - 65px);
+                padding-left: 15px;
+            }
+
+            &:hover {
+                .sidebar-news-item-info {
+                    background: #e63c47;
+
+                    .sidebar-news-item-date {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+
+    .sidebar-news-more {
+        position: relative;
+        color: #c3c3c3;
+        height: 93px;
+        text-align: center;
+        font-size: 15px;
+        font-family: "HNeue55tdRoman";
+        font-feature-settings: "case"on;
+        border-top: 1px solid #f4f4f4;
+        cursor: pointer;
+        transition: 400ms;
+
+        &:hover {
+            background: #f93039;
+            color: #fff;
+        }
+
+        &.loading {
+            &:hover {
+                background: #f5e7e8;
+            }
+        }
+    }
+}

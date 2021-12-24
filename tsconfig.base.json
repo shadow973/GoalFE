@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@goal-front/shared": ["libs/shared/src/index.ts"],
+      "@goal-front/core": ["libs/core/src/index.ts"],
+      "@goal-front/promotion": ["libs/promotion/src/index.ts"],
+      "@goal-front/comments": ["libs/comments/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

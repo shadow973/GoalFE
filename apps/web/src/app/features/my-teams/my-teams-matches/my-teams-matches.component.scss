@@ -1,0 +1,120 @@
+.my-teams-matches {
+    .my-teams-matches-title {
+        color: #2f3031;
+        font-family: "HNeue75tdBd";
+        font-size: 17px;
+        font-feature-settings: "case"on;
+        margin-bottom: 10px;
+    }
+
+    .my-teams-matches-content {
+        padding: 8px 17px 15px;
+        align-items: center;
+        width: 100%;
+        border: 1px solid #f4f4f4;
+        border-radius: 15px;
+        background: #f4f4f4;
+        margin-bottom: 0;
+        cursor: pointer;
+        transition: .3s;
+        position: relative;
+        overflow: hidden;
+
+        .my-teams-match {
+            position: relative;
+            width: 100%;
+            padding: 0 0 0 17px;
+            float: left;
+            border-radius: 15px;
+            background: #fff;
+            color: #2f3031;
+            font-family: "HNeue55tdRoman";
+            font-weight: 700;
+            margin-top: 3px;
+            margin-bottom: 3px;
+            align-items: center;
+            display: flex;
+            transition: .3s;
+            cursor: pointer;
+
+            .participants {
+                width: calc(100% - 80px);
+                padding: 10px 0;
+                border-right: 1px solid #f4f4f4;
+
+                .participant {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 3px 0;
+
+                    .participant-icon {
+                        width: 22px;
+                        margin-right: 8px;
+                    }
+
+                    .participant-name {
+                        width: calc(100% - 30px);
+                        padding-right: 5px;
+                        font-family: "HNeue55tdRoman";
+                        font-feature-settings: "case"on;
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .match-info {
+                width: 80px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #2f3031;
+                font-size: 14px;
+
+                .time {
+                    width: 100%;
+                    font-family: "HNeue55tdRoman";
+                    font-weight: 700;
+                    font-size: 14px;
+                    text-align: center;
+                    color: #2f3031;
+                    margin-left: auto;
+
+                    &.live {
+                        color: #e63c47;
+                    }
+
+                    .live-anime {
+                        animation: pulse 2s infinite;
+                        padding-left: 3px;
+                        font-size: 14px;
+                        padding-left: 0;
+                    }
+                }
+            }
+
+            &:hover {
+                background: #e53c48;
+                color: #fff;
+
+                .match-info {
+                    .time {
+                        color: #fff !important;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,65 @@
+<div class="stadium">
+
+    <!-- HOME -->
+    <div class="team-formation col-6 d-flex align-items-center no-gutters">
+        <div class="col h-100">
+            <div class="team-formation-line h-100 d-flex justify-content-center align-items-center">
+                <div class="stadium-player">
+                    <div class="icon">
+                        {{homeTeamLineup[0].number}}
+                        <div *ngIf="homeTeamLineup[0].stats.rating" class="rating">{{homeTeamLineup[0].stats.rating}}</div>
+                    </div>
+                    <div class="name">{{getShortName(homeTeamLineup[0].player_name)}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col h-100" *ngFor="let teamLine of this.formatedHomeTeam">
+            <div class="team-formation-line h-100 d-flex flex-column-reverse no-gutters">
+                <div class="col" *ngFor="let p of teamLine">
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                        <div class="stadium-player">
+                            <div class="icon">
+                                {{p.number}}
+                                <div *ngIf="p.stats.rating" class="rating">{{p.stats.rating}}</div>
+                            </div>
+                            <div class="name">{{getShortName(p.player_name)}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AWAY -->
+    <div class="team-formation away col-6 d-flex align-items-center no-gutters flex-row-reverse">
+        <div class="col h-100">
+            <div class="team-formation-line h-100 d-flex justify-content-center align-items-center">
+                <div class="stadium-player away">
+                    <div class="icon">
+                        {{awayTeamLineup[0].number}}
+                        <div *ngIf="awayTeamLineup[0].stats.rating" class="rating">{{awayTeamLineup[0].stats.rating}}</div>
+                    </div>
+                    <div class="name">{{getShortName(awayTeamLineup[0].player_name)}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col h-100" *ngFor="let teamLine of this.formatedAwayTeam">
+            <div class="team-formation-line h-100 d-flex flex-column no-gutters">
+                <div class="col" *ngFor="let p of teamLine">
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                        <div class="stadium-player away">
+                            <div class="icon">
+                                {{p.number}}
+                                <div *ngIf="p.stats.rating" class="rating">{{p.stats.rating}}</div>
+                            </div>
+                            <div class="name">{{getShortName(p.player_name)}}</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

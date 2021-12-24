@@ -1,0 +1,82 @@
+<a class="team-matches-item" [routerLink]="['/match/',  match.match_id ]"
+    [class.active]="match.time_status == 'LIVE' || match.time_status == 'HT' || match.time_status == 'ET' || match.time_status == 'PEN_LIVE'">
+    <div class="participants">
+        <div class="participant-teams">
+            <div class="participant home mb-2">
+                <img class="participant-icon" [alt]="match.localteam_short_code"
+                    [src]="imageLinkGeneratorTeam(match.localteam_id)" />
+                <div class="participant-name ellipsis">
+                    {{match.localteam_name}}
+                </div>
+            </div>
+            <div class="participant away">
+                <img class="participant-icon" [alt]="match.visitorteam_short_code"
+                    [src]="imageLinkGeneratorTeam(match.visitorteam_id)" />
+                <div class="participant-name ellipsis">
+                    {{match.visitorteam_name}}
+                </div>
+            </div>
+        </div>
+        <div class="participant-scores">
+            <span class="scores" *ngIf="match.time_status != 'NS'">
+                <div class="score">
+                    {{match.localteam_score}}
+                </div>
+                <div class="score">
+                    {{match.visitorteam_score}}
+                </div>
+            </span>
+            <span *ngIf="match.time_status == 'NS'">-</span>
+        </div>
+    </div>
+    <div class="match-info">
+        <div class="icon mt-1" (click)="toggleFavMatch($event, match.match_id)" [class.active]="isMatchFavorite(match.match_id)">
+            <i class="fa fa-star" aria-hidden="true"></i>
+        </div>
+        <ng-container *ngIf="match.time_status == 'NS'">
+            <div class="time">{{ match.starting_at | toDate:'HH:mm' }}</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'LIVE'">
+            <div class="time live">{{match.time_minute}} <span class="live-anime">'</span></div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'HT'">
+            <div class="time">HT</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'FT'">
+            <div class="time">FT</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'ET'">
+            <div class="time live">{{match.time_minute}} <span class="live-anime">'</span></div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'PEN_LIVE'">
+            <div class="time live">PEN <span class="live-anime">'</span></div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'AET'">
+            <div class="time">AET</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'FT_PEN'">
+            <div class="time">FT</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'CAN'">
+            <div class="time">CAN</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'POSTP'">
+            <div class="time">POSTP</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'INT'">
+            <div class="time">INT</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'ABAN'">
+            <div class="time">ABAN</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'SUSP'">
+            <div class="time">SUSP</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'TBA'">
+            <div class="time">TBA</div>
+        </ng-container>
+        <ng-container *ngIf="match.time_status == 'AU'">
+            <div class="time">AU</div>
+        </ng-container>
+    </div>
+</a>

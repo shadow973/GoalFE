@@ -1,0 +1,72 @@
+.players {
+    .sidebar-block-heading {
+        height: 74px;
+        display: flex;
+        align-items: center;
+        padding: 0 25px;
+        font-family: "HNeue75tdBd";
+        font-feature-settings: "case" on;
+        font-size: 17px;
+        color: #2f3031;
+    }
+
+    .player-tabs {
+        width: 100%;
+        height: 56px;
+        padding: 0 14px;
+        border-bottom: 1px solid #EEE;
+        justify-content: space-between;
+
+        .player-tab {
+            height: 100%;
+            padding-top: 15px;
+            display: inline-flex;
+            font-size: 14px;
+            font-family: "HNeue55tdRoman";
+            color: #949698;
+            margin: 0 5px -1px 5px;
+            cursor: pointer;
+
+            &:hover,
+            &.active {
+                color: #000;
+                border-bottom: 2px solid #e53c48;
+            }
+        }
+    }
+
+    .player-content {
+        padding: 14px;
+
+        .player {
+            border: 1px solid #E7E7E7;
+            box-sizing: border-box;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-right: 14px;
+    
+            .player-details {              
+                .player-image {
+                    width: 54px;
+                    height: 54px;
+                    border: 4px solid #E7E7E7;
+                    box-sizing: border-box;
+                    border-radius: 10px;
+                }
+
+                .player-name {
+                    font-size: 14px;
+                    color: #000;
+                }
+            }
+
+            .player-score {
+                font-size: 14px;
+                color: #3E3E3E;
+            }
+        }
+    }
+}

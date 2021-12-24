@@ -1,0 +1,49 @@
+<div class="wrapper">
+    <div class="user-profile" *ngIf="userData">
+
+        <div class="user-profile-header regular-container">
+            <div class="user-info">
+                <div class="user-image">
+                    <div class="no-image" *ngIf="!userData.avatar">no photo</div>
+                    <img class="image" src="{{checkFBImage(userData.avatar)}}" *ngIf="userData.avatar" />
+                </div>
+                <div class="user-creds">
+                    <div class="name">{{userData.first_name}} {{userData.last_name}}</div>
+                    <div class="username">@{{userData.username}}</div>
+                </div>
+            </div>
+
+            <div class="user-tabs">
+                <div class="user-tab" *ngIf="favClubs" [class.active]="activetab == 1" (click)="changeTab(1)">
+                    ინტერესები
+                    <span class="count">{{favClubs.length}}</span>
+                </div>
+
+                <!-- <div class="user-tab" *ngIf="userComments" [class.active]="activetab == 2" (click)="changeTab(2)">
+                    ჩემი კომენტარები
+                    <span class="count">{{userComments.length}}</span>
+                </div> -->
+
+                <div class="settings-tab ml-auto" (click)="editProfile()">
+                    პროფილის რედაქტირება
+                    <i class="settings-icon fa fa-cog ml-2"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-profile-content">
+            <ng-container *ngIf="activetab == 1">
+                <ng-container *ngIf="favClubs && favClubs.length">
+                    <app-user-subs [subs]="favClubs" (removeSub)="removeFavClub($event)"></app-user-subs>
+                </ng-container>
+
+                <div *ngIf="favClubs && !favClubs.length" class="w-100 text-center">
+                    ინტერესები ვერ მოიძებნა
+                </div>
+            </ng-container>
+
+
+        </div>
+
+    </div>
+</div>

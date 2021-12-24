@@ -1,0 +1,14 @@
+
+
+<div [class]='"d-flex flex-row align-items-center justify-content-" + (position === "center"
+  ? position : ("flex-" + position))' [ngStyle]='{padding: padding ? padding : "unset",
+    margin: margin ? margin : "unset"}'>
+  <i [ngClass]="{
+              'fas like-active': parentPostObject.liked_by | isMyLike:userId,
+              'far': !(parentPostObject.liked_by | isMyLike:userId)
+              }" [class]='"fa-" + likeIcon + " bottom-icon"' (click)='likeToggle(parentPostObject)'></i>
+  <span class='icon-value'>{{parentPostObject.liked_by.length}}</span>
+
+  <i class='ml-3 far fa-comments bottom-icon' (click)='onCommentsClick()'></i>
+  <span class='icon-value'>{{parentPostObject.comments_count}}</span>
+</div>

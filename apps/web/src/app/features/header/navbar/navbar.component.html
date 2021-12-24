@@ -1,0 +1,161 @@
+<div class="nav">
+    <div class="nav-items wrapper">
+        <div class="nav-item dropdown" *ngFor="let navbarItem of navbarItems">
+            <a *ngIf="navbarItem.type == 'league'" class="nav-link h-100 d-flex align-items-center"
+                [routerLinkActive]="'active'" [routerLink]="['/championship/', navbarItem.id, navbarItem.slug, 1 ]">
+                <div class="featured" *ngIf="navbarItem.featured">NEW</div>
+                {{navbarItem.name}}
+            </a>
+            <a *ngIf="navbarItem.type == 'cat'" class="nav-link h-100 d-flex align-items-center"
+                [routerLinkActive]="'active'" [routerLink]="['/category/', navbarItem.id, navbarItem.slug, 1 ]">
+                {{navbarItem.name}}
+            </a>
+            <a *ngIf="navbarItem.type == 'page' && !navbarItem.hasPage" class="nav-link h-100 d-flex align-items-center"
+                [routerLinkActive]="'active'" [routerLink]="['/',navbarItem.slug]">
+                <div class="featured" *ngIf="navbarItem.featured">NEW</div>
+                {{navbarItem.name}}
+            </a>
+            <a *ngIf="navbarItem.type == 'page' && navbarItem.hasPage" class="nav-link h-100 d-flex align-items-center"
+                [routerLinkActive]="'active'" [routerLink]="['/',navbarItem.slug, 1]">
+                {{navbarItem.name}}
+            </a>
+            <a *ngIf="navbarItem.type == 'other'" class="nav-link h-100 d-flex align-items-center">
+                {{navbarItem.name}}
+            </a>
+
+            <div *ngIf="navbarItem.children && navbarItem.type2 == 'geo'" class="dropdown-menu"
+                aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu-wrapper d-flex">
+                    <div class="col-4">
+                        <div class="dropdown-menu-left">
+                            <ng-container *ngFor="let left of navbarItem.children">
+                                <a *ngIf="left.type == 'cat'" [routerLink]="['/category/', left.id, left.slug,  1 ]">
+                                    <div class="dropdown-menu-left-item">
+                                        {{left.name}}
+                                    </div>
+                                </a>
+                                <a *ngIf="left.type == 'club'" [routerLink]="['/club/', left.id, left.slug,  1 ]">
+                                    <div class="dropdown-menu-left-item">
+                                        {{left.name}}
+                                    </div>
+                                </a>
+                                <a *ngIf="left.type != 'cat' && left.type != 'club'"
+                                    [routerLink]="['/championship/', left.id, left.slug,  1 ]">
+                                    <div class="dropdown-menu-left-item">
+                                        {{left.name}}
+                                    </div>
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="col-8" *ngIf="navbarItem.clubs">
+                        <div class="dropdown-menu-right d-flex">
+                            <div class="col-6">
+                                <div class="cat-name">კლუბები</div>
+                                <ng-container *ngFor="let leagues of navbarItem.clubs">
+                                    <a [routerLink]="['/club/', leagues.id,leagues.slug, 1 ]" *ngIf="!leagues.type">
+                                        <div class="dropdown-menu-right-item">
+                                            <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                                [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                            {{leagues.name}}
+                                        </div>
+                                    </a>
+                                </ng-container>
+                            </div>
+                            <div class="col-6">
+                                <div class="cat-name"></div>
+                                <ng-container *ngFor="let leagues of navbarItem.clubs2">
+                                    <a [routerLink]="['/club/', leagues.id,leagues.slug, 1 ]" *ngIf="!leagues.type">
+                                        <div class="dropdown-menu-right-item">
+                                            <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                                [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                            {{leagues.name}}
+                                        </div>
+                                    </a>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="navbarItem.top_leagues && navbarItem.type == 'other'" class="dropdown-menu arrow"
+                aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu-wrapper px-4">
+                    <div class="dropdown-menu-right d-flex">
+                        <div class="col-6">
+                            <div class="cat-name">ტოპ ლიგები</div>
+                            <ng-container *ngFor="let leagues of navbarItem.top_leagues.part_1">
+                                <a [routerLink]="['/championship/', leagues.id, leagues.slug,  1 ]">
+                                    <div class="dropdown-menu-right-item">
+                                        <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                            [lazyLoad]="imageLinkGeneratorCountry(leagues.img)">
+                                        {{leagues.name}}
+                                    </div>
+                                </a>
+                            </ng-container>
+                        </div>
+                        <div class="col-6">
+                            <div class="cat-name"></div>
+                            <ng-container *ngFor="let leagues of navbarItem.top_leagues.part_2">
+                                <a [routerLink]="['/championship/', leagues.id, leagues.slug, 1 ]">
+                                    <div class="dropdown-menu-right-item">
+                                        <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                            [lazyLoad]="imageLinkGeneratorCountry(leagues.img)">
+                                        {{leagues.name}}
+                                    </div>
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="navbarItem.top_teams && navbarItem.type == 'other'" class="dropdown-menu arrow"
+                aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu-wrapper px-4">
+                    <div class="dropdown-menu-right d-flex">
+                        <div class="col-4">
+                            <div class="cat-name">ტოპ კლუბები</div>
+                            <ng-container *ngFor="let leagues of navbarItem.top_teams.part_1">
+                                <a [routerLink]="['/club/', leagues.id, leagues.slug,  1 ]">
+                                    <div class="dropdown-menu-right-item">
+                                        <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                            [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                        {{leagues.name}}
+                                    </div>
+                                </a>
+                            </ng-container>
+                        </div>
+                        <div class="col-4">
+                            <div class="cat-name"></div>
+                            <ng-container *ngFor="let leagues of navbarItem.top_teams.part_2">
+                                <a [routerLink]="['/club/', leagues.id, leagues.slug, 1 ]">
+                                    <div class="dropdown-menu-right-item">
+                                        <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                            [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                        {{leagues.name}}
+                                    </div>
+                                </a>
+                            </ng-container>
+                        </div>
+                        <div class="col-4">
+                            <div class="cat-name"></div>
+                            <ng-container *ngFor="let leagues of navbarItem.top_teams.part_3">
+                                <a [routerLink]="['/club/', leagues.id, leagues.slug, 1 ]">
+                                    <div class="dropdown-menu-right-item">
+                                        <img class="item-logo" [defaultImage]="'assets/img/default.png'"
+                                            [lazyLoad]="imageLinkGenerator(leagues.id)">
+                                        {{leagues.name}}
+                                    </div>
+                                </a>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

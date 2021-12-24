@@ -1,0 +1,86 @@
+<div class="search text-left">
+
+    <div class="search-overlay" (click)="closeResultPopover()"></div>
+
+    <form class="search-form h-100">
+        <div matRipple class="close-search" (click)="closeResultPopover()">
+            <i class="fa fa-times"></i>
+        </div>
+
+        <div class="search-input-wrapper">
+            <input #input class="search-input" type="text" autocomplete="off" name="search" placeholder="ძიება"
+                [(ngModel)]="searchValue" (ngModelChange)="searchValueChanged($event)" />
+            <button matRipple class="search-btn d-flex align-items-center" (click)="goToSearch()" aria-label="ძიება">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
+        </div>
+    </form>
+
+    <div #menu class="search-results" *ngIf="(result && (hasTeams || hasAricles)) || loading">
+        <app-loader *ngIf="loading" type="small"></app-loader>
+        <ng-container *ngIf="!loading">
+
+            <ng-container *ngIf="hasTeams">
+                <div class="result-section-title">თეგები</div>
+                <a matRipple class="tag d-flex align-items-center" *ngFor="let tag of result.teams"
+                    [routerLink]="['/club', tag.team_id, tag.slug, 1]">
+                    <div>
+                        <img class="tag-image" alt="{{tag.name}}" defaultImage="assets/img/default.png"
+                            [lazyLoad]="teamImageUrl(tag.team_id)" />
+                        <span class="tag-title">
+                            {{tag.name}}
+                        </span>
+                    </div>
+                    <div class="tag-subscribe" (click)="toggleSubscribe($event, tag.team_id, tag.slug, tag.name)">
+                        <span *ngIf="!isClubSubscribed(tag.team_id)">გამოწერა</span>
+                        <span *ngIf="isClubSubscribed(tag.team_id)">გამოწერილია</span>
+                    </div>
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="hasPlayers">
+                <div class="result-section-title">ფეხბურთელები</div>
+                <a class="tag d-flex align-items-center" *ngFor="let player of result.players"
+                    [routerLink]="['/players', player.player_id, player.slug | slugify, 1]">
+                    <div>
+                        <img class="tag-image" alt="{{player.name}}" defaultImage="assets/img/default.png"
+                            [lazyLoad]="player.image_path" />
+                        <span class="tag-title">
+                            {{player.fullname}}
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="hasLeagues">
+                <div class="result-section-title">ლიგები</div>
+                <a class="tag d-flex align-items-center" *ngFor="let league of result.leagues"
+                    [routerLink]="['/championship', league.league_id, league.slug | slugify, 1]">
+                    <div>
+                        <img class="tag-image" alt="{{league.name}}" defaultImage="assets/img/default.png"
+                            [lazyLoad]="league.icon" />
+                        <span class="tag-title">
+                            {{league.name}}
+                        </span>
+                    </div>
+                </a>
+            </ng-container>
+
+            <ng-container *ngIf="hasAricles">
+                <div class="result-section-title">სიახლეები</div>
+                <a matRipple class="news d-flex" *ngFor="let article of result.articles.data"
+                    [routerLink]="['/news', article.id, article.slug]">
+                    <div class="news-image">
+                        <img [alt]="article.title | strip" defaultImage="assets/img/default.png"
+                            [lazyLoad]="postImageUrl(article?.main_gallery_item?.filename_webp)" />
+                        <div class="play-icon" *ngIf="article?.main_video"><i class="fa fa-play"></i></div>
+                    </div>
+                    <div class="news-title col text-left">
+                        {{article.title | strip | truncate : 55 : false : '...' }}
+                    </div>
+                </a>
+            </ng-container>
+
+        </ng-container>
+    </div>
+</div>

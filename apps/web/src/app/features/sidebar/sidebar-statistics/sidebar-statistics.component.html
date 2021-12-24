@@ -1,0 +1,17 @@
+<div class="sidebar-statistics regular-container">
+
+    <h1 class="sidebar-statistics-header">
+        სტატისტიკა
+    </h1>
+
+    <app-league-select (changed)="leagueChanged($event)">
+    </app-league-select>
+
+    <div class="statistics">
+        <app-loader type="small" *ngIf="loading"></app-loader>
+        <app-statistics *ngIf="statistics" type="small" [statistics]="statistics"></app-statistics>
+        <div class="text-center" *ngIf="!statistics">
+            ჩანაწერები ვერ მოიძებნა
+        </div>
+    </div>
+</div>

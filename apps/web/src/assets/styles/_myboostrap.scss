@@ -1,0 +1,70 @@
+//bootstrap
+@import 'bootstrap/functions';
+
+@import 'bootstrap/variables';
+@import "bootstrap/mixins";
+
+@import 'bootstrap/grid';
+@import 'bootstrap/dropdown';
+
+@import 'bootstrap/reboot';
+@import 'bootstrap/root';
+@import 'bootstrap/utilities';
+@import 'bootstrap/bootstrap-grid.scss';
+@import 'bootstrap/nav';
+@import 'bootstrap/navbar';
+@import 'bootstrap/forms';
+
+
+.d-flex {
+    display: flex;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.align-items-start {
+    align-items: flex-start;
+}
+
+.align-items-end {
+    align-items: flex-end;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-start {
+    justify-content: flex-start;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.font-normal {
+    font-family: HNeue55tdRoman;
+}
+
+.font-bold {
+    font-family: HNeue75tdBd;
+    font-feature-settings: "case" on;
+}
+
+.text-black {
+    color: #000;
+}

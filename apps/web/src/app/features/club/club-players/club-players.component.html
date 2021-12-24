@@ -1,0 +1,31 @@
+<div
+    *ngIf="PlayerType.Attacker.data.length > 0 || PlayerType.Goalkeeper.data.length > 0  || PlayerType.Defender.data.length > 0 || PlayerType.Midfielder.data.length > 0">
+    <div class="player-group">
+        <div class="player-group-header">{{PlayerType.Goalkeeper.title}}</div>
+        <div class="player-group-content">
+            <app-club-player *ngFor="let items of PlayerType.Goalkeeper.data" [items]="items" [type]="'Goalkeeper'">
+            </app-club-player>
+        </div>
+    </div>
+    <div class="player-group">
+        <div class="player-group-header">{{PlayerType.Defender.title}}</div>
+        <div class="player-group-content">
+            <app-club-player *ngFor="let items of PlayerType.Defender.data" [items]="items" [type]="'Defender'">
+            </app-club-player>
+        </div>
+    </div>
+    <div class="player-group">
+        <div class="player-group-header">{{PlayerType.Midfielder.title}}</div>
+        <div class="player-group-content">
+            <app-club-player *ngFor="let items of PlayerType.Midfielder.data" [items]="items" [type]="'Midfielder'">
+            </app-club-player>
+        </div>
+    </div>
+    <div class="player-group">
+        <div class="player-group-header">{{PlayerType.Attacker.title}}</div>
+        <div class="player-group-content">
+            <app-club-player *ngFor="let items of PlayerType.Attacker.data" [items]="items" [type]="'Attacker'">
+            </app-club-player>
+        </div>
+    </div>
+</div>

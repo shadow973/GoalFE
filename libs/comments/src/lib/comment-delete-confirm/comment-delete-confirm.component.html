@@ -1,0 +1,14 @@
+<div class="comments-modal">
+    <div class="modal-head text-center">
+        <i class="fa fa-times close-modal" (click)="close(false)"></i>
+    </div>
+    <div class="modal-body">
+        <div class="modal-title">
+            ნამდვილად გსურთ წაშლა?
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-btn accept" (click)="close(true)">დიახ</button>
+        <button class="modal-btn decline" (click)="close(false)">არა</button>
+    </div>
+</div>

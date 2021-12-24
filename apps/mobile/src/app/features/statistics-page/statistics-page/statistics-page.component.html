@@ -1,0 +1,74 @@
+<div class="wrapper">
+    <div class="statistics-page">
+        <div class="w-100 regular-container">
+            <div class="statistics-page-header d-flex align-items-center justify-content-between">
+                <div>
+                    {{leagueName}}
+                </div>
+                <div class="statistics-page-select">
+                    <app-league-select (changed)="leagueChanged($event)">
+                    </app-league-select>
+                </div>
+            </div>
+
+            <div class="statistics-page-tabs d-flex align-items-center">
+                <div matRipple class="statistics-page-tab pointer" [class.active]="activeTab == 1" (click)="changeTab(1)">
+                    სატურნირო ცხრილი
+                </div>
+                <div matRipple class="statistics-page-tab pointer" [class.active]="activeTab == 2" (click)="changeTab(2)">
+                    მატჩები
+                </div>
+                <div matRipple class="statistics-page-tab pointer" [class.active]="activeTab == 3" (click)="changeTab(3)">
+                    სტატისტიკა
+                </div>
+            </div>
+        </div>
+
+        <div class="w-100 mt-4 statistics-page-content">
+            <app-loader type="normal" *ngIf="loading"></app-loader>
+            <ng-container *ngIf="activeTab == 1">
+                <app-tables *ngIf="standings" [standings]="standings"></app-tables>
+                <div class="text-center" *ngIf="!standings && !loading">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="activeTab == 2">
+                <div class="w-100 regular-container px-sm-4 pb-sm-4 px-2 pb-2">
+                    <div class="matches-header d-flex align-items-center mb-2">
+                        <div class="matches-title">
+                            ბოლო და მომდევნო მატჩები
+                        </div>
+                        <div class="matches-slide-control ml-auto">
+                            <i matRipple class="fa fa-chevron-left icon pointer" (click)="slideMatches(false)"></i>
+                            <i matRipple class="fa fa-chevron-right icon pointer" (click)="slideMatches(true)"></i>
+                        </div>
+                    </div>
+                    
+                    <app-matches *ngIf="matches" [matches]="matches"></app-matches>
+                </div>
+                <div class="text-center" *ngIf="!matches && !loading">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="activeTab == 3">
+                <app-statistics *ngIf="statistics" [statistics]="statistics"></app-statistics>
+                <div class="text-center" *ngIf="!statistics && !loading">
+                    ჩანაწერები ვერ მოიძებნა
+                </div>
+            </ng-container>
+
+        </div>
+
+
+
+        <!-- <div class="statistics">
+            <app-loader type="small" *ngIf="loading"></app-loader>
+            <app-statistics *ngIf="statistics" type="small" [statistics]="statistics"></app-statistics>
+            <div class="text-center" *ngIf="!statistics">
+                ჩანაწერები ვერ მოიძებნა
+            </div>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="home-slider">
+    <app-loader *ngIf="loading" type="small"></app-loader>
+
+    <ng-container *ngIf="!loading">
+        <div matRipple class="slide-control prev" (click)="slide(false)">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div matRipple class="slide-control next" (click)="slide(true)">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <swiper #swiper [(config)]="swipeConfig">
+            <div *ngFor="let slide of slideNews">
+
+                <a matRipple class="slide-news-item" [routerLink]="['/news/', slide.id, slide.slug | slugify]">
+                    <div class="slide-news-item-image-wrapper">
+                        <img class="slide-news-item-image" [alt]="slide.title | strip"
+                            [src]="imageLinkGenerator(slide.main_gallery_item?.filename_webp)">
+                        <div class="play-icon" *ngIf="slide?.main_video"><i class="fa fa-play"></i></div>
+                    </div>
+                    <div class="slide-news-item-content">
+                        <h2 class="slide-news-item-title">
+                            {{slide.title | strip}}
+                        </h2>
+                        <div class="slide-news-item-date">
+                            <ng-container *ngIf="slide.teams && slide.teams.length">
+                                <img *ngIf="slide.teams[0]" class="slide-news-item-category" [alt]="slide.teams[0].name"
+                                    [src]="imageLinkGeneratorTeam(slide.teams[0].pivot.team_id)">
+                            </ng-container>
+                            {{slide.publish_date | toDate}}
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </swiper>
+    </ng-container>
+</div>

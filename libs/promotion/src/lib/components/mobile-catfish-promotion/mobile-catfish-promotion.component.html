@@ -1,0 +1,10 @@
+<div class="mobile-promotion mobile-catfish" *ngIf="!hidden && iframe">
+    <div class="w-100 h-100 text-center">
+        <div class="position-relative d-inline-block">
+            <div class="close-popup" (click)="hide()">
+                <i class="fa fa-times"></i>
+            </div>
+            <div [innerHTML]="iframe"></div>
+        </div>
+    </div>
+</div>

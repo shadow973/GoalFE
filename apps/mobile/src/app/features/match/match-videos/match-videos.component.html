@@ -1,0 +1,10 @@
+<div class="w-100 regular-container position-relative">
+    <app-loader *ngIf="loading"></app-loader>
+    <ng-container *ngIf="videos">
+        <div class="w-100 text-center p-3" *ngIf="!videos.length">
+            ჩანაწერები არ მოიძებნება
+        </div>
+        <app-match-video *ngFor="let v of videos" [video]="v"></app-match-video>
+    </ng-container>
+
+</div>

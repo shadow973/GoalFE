@@ -1,0 +1,74 @@
+<div class="my-teams-matches">
+    <div class="my-teams-matches-title">მატჩები</div>
+    <div class="my-teams-matches-content" *ngIf="matches">
+
+        <ng-container *ngFor="let match of matches">
+            <a class="my-teams-match" [routerLink]="['/match/',  match.match_id ]"
+                [class.active]="match.time_status == 'LIVE' || match.time_status == 'HT' || match.time_status == 'ET' || match.time_status == 'PEN_LIVE'">
+                <div class="participants">
+                    <div class="participant home">
+                        <img class="participant-icon" defaultImage="assets/img/default.png"
+                            [alt]="match.localteam_short_code"
+                            [lazyLoad]="imageLinkGeneratorTeam(match.localteam_id)" />
+                        <div class="participant-name ellipsis">
+                            {{match.localteam_name}}
+                        </div>
+                    </div>
+                    <div class="participant away">
+                        <img class="participant-icon" defaultImage="assets/img/default.png"
+                            [alt]="match.visitorteam_short_code"
+                            [lazyLoad]="imageLinkGeneratorTeam(match.visitorteam_id)" />
+                        <div class="participant-name ellipsis">
+                            {{match.visitorteam_name}}
+                        </div>
+                    </div>
+                </div>
+                <div class="match-info">
+                    <ng-container *ngIf="match.time_status == 'NS'">
+                        <div>
+                            <div class="time">{{ match.starting_at | toDate:'HH:mm' }}</div>
+                            <div class="time">{{ match.starting_at | toDate:'D MMM' }}</div>
+                        </div>
+                    </ng-container>
+                    <div class="time live" *ngIf="match.time_status == 'LIVE'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'HT'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'FT'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'ET'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'PEN_LIVE'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'AET'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'FT_PEN'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'CANCL'">
+                        {{match.localteam_score}}:{{match.visitorteam_score}}
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'POSTP'">
+                        0:0
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'ABAN'">
+                        0:0
+                    </div>
+                    <div class="time" *ngIf="match.time_status == 'SUSP'">
+                        0:0
+                    </div>
+                    <div class="Minute" *ngIf="match.time_status == 'LIVE' || match.time_status == 'HT'">
+                        {{match.time_minute}}</div>
+                </div>
+            </a>
+        </ng-container>
+
+
+    </div>
+</div>

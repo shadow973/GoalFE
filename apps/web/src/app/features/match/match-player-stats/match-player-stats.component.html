@@ -1,0 +1,14 @@
+<div class="row" *ngIf="stats">
+    <div class="col-12 col-lg-6 mb-4">
+        <app-match-player-stats-item *ngIf="stats.rating?.length" blockTitle="მოთამაშეთა რეიტინგი" [stats]="stats.rating"></app-match-player-stats-item>
+    </div>
+    <div class="col-12 col-lg-6 mb-4">
+        <app-match-player-stats-item *ngIf="stats.shots?.length" blockTitle="სულ დარტყმები" [stats]="stats.shots"></app-match-player-stats-item>
+    </div>
+    <div class="col-12 col-lg-6 mb-4">
+        <app-match-player-stats-item *ngIf="stats.shots_on_goal?.length" blockTitle="შექმნილი შანსები" [stats]="stats.shots_on_goal"></app-match-player-stats-item>
+    </div>
+    <div class="col-12 col-lg-6 mb-4">
+        <app-match-player-stats-item *ngIf="stats.tackles?.length" blockTitle="ართმევები" [stats]="stats.tackles"></app-match-player-stats-item>
+    </div>
+</div>

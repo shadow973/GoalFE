@@ -1,0 +1,95 @@
+<div class="today-matches-wrapper">
+    <div class="wrapper">
+        <div class="col-12">
+            <app-today-matches></app-today-matches>
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="news-page d-flex">
+        <div class="col-xxl-9 col-lg-8 col-9">
+            <div class="w-100 regular-container news-content">
+                <app-loader type="normal" *ngIf="loading"></app-loader>
+
+                <ng-container *ngIf="fullNews">
+                    <h1 class="news-title">
+                        {{fullNews.title | strip}}
+                    </h1>
+
+                    <img class="news-image" *ngIf="!fullNews?.main_video" [alt]="fullNews.title | strip"
+                        [src]="imageLinkGenerator(fullNews?.main_gallery_item?.filename)">
+                    <div class="news-video" *ngIf="fullNews?.main_video"
+                        [innerHTML]="fullNews.main_video | safe : 'html'">
+                    </div>
+
+                    <app-web-news-top-promotion></app-web-news-top-promotion>
+
+                    <div class="d-flex w-100 align-items-center date-and-socials">
+                        <div class="news-date">
+                            თარიღი: {{ fullNews.publish_date | toDate: 'DD MMM YYYY, HH:mm' }}
+                        </div>
+                        <div class="socials-and-zoom ml-auto d-flex">
+                            <app-share-socials [extraTitle]="fullNews.title"
+                                [extraImage]="imageLinkGenerator(fullNews?.main_gallery_item?.filename)">
+                            </app-share-socials>
+                            <div class="zoom">
+                                <div class="d-flex">
+                                    <a class="zoom-btn btn-gray" (click)="toggleFontSize(false)">-</a>
+                                    <a class="zoom-btn btn-gray" (click)="toggleFontSize(true)">+</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-player-wrapper" *ngIf="fullNews?.meta?.xfields?.ifthumb"
+                        [innerHTML]="videoChecker(fullNews?.meta?.xfields?.ifthumb) | safe : 'html'"></div>
+
+
+                    <div class="news-description" [innerHTML]="fullNews.content | strip | safe: 'html'"
+                        [ngStyle]="{'font-size.px': descTextSize}"></div>
+
+                    <div class="news-tags">
+                        <a class="news-tag" *ngFor="let team of fullNews.teams" [routerLink]="['/club/', team.team_id,
+                        team.slug, 1 ]">
+                            <div class="image">
+                                <img class="image-file" [src]="imageLinkGeneratorTeam(team.team_id)"
+                                    [alt]="team.name" />
+                            </div>
+                            <span class="name">{{team.name}}</span>
+                        </a>
+
+                        <a class="news-tag" *ngFor="let player of fullNews.players"
+                            [routerLink]="['/player/',  player.player_id, player.slug, 1 ]">
+                            <div class="image">
+                                <img class="image-file" alt="{{player.common_name}}" [src]="player.image_path" />
+                            </div>
+                            <span class="name">{{player.common_name}}</span>
+                        </a>
+
+                        <a class="news-tag" *ngFor="let league of fullNews.leagues"
+                            [routerLink]="['/championship/',  league.league_id, league.slug, 1 ]">
+                            <div class="image">
+                                <img class="image-file" [src]="imageLinkGeneratorCountry(league.country_id)"
+                                    [alt]="league.name" />
+                            </div>
+                            <span class="name">{{league.name}}</span>
+                        </a>
+                    </div>
+
+                    <app-web-news-bottom-promotion></app-web-news-bottom-promotion>
+
+                    <div class="news-comments">
+                        <app-comments [commentsService]="newsCommentsService" [itemId]="newsId"></app-comments>
+                    </div>
+                </ng-container>
+
+            </div>
+
+            <app-main-news [pageLimit]="3"></app-main-news>
+        </div>
+        <div class="col-xxl-3 col-lg-4 col-3">
+            <app-sidebar></app-sidebar>
+        </div>
+    </div>
+</div>

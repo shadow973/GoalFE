@@ -1,0 +1,30 @@
+<div class="main-wrapper d-flex flex-column">
+
+  <app-header></app-header>
+
+  <div class="mt-1 main-routing-wrapper">
+    <!-- Banners -->
+    <!-- <app-web-left-side-promotion></app-web-left-side-promotion> -->
+    <div class="wrapper">
+        <div class="w-100">
+            <!-- <app-web-top-promotion></app-web-top-promotion> -->
+        </div>
+    </div>
+    <!-- <app-web-right-side-promotion></app-web-right-side-promotion> -->
+    <div class="popup-promotion">
+      <!-- <app-web-popup-promotion></app-web-popup-promotion> -->
+    </div>
+    <!-- /Banners -->
+
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="mt-auto">
+    <app-footer></app-footer>
+  </div>
+
+</div>
+
+<!-- <div class="scroll-top" [class.visible]="scrollTopVisible" (click)="scrollTop()">
+  <i class="fa fa-chevron-up"></i>
+</div> -->

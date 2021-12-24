@@ -1,0 +1,7 @@
+<div class="web-promotion web-popup" *ngIf="!hideS && iframe">
+    <div class="close-popup" (click)="hide()">
+        <i class="fa fa-times"></i>
+    </div>
+
+    <div class="w-100 h-100" [innerHTML]="iframe"></div>
+</div>

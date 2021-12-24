@@ -1,0 +1,17 @@
+<div *ngIf="afterViewInit" infiniteScroll [infiniteScrollDistance]="4" [infiniteScrollThrottle]="300"
+    (scrolled)="onScroll()">
+
+    <div class="main-news-items">
+        <ng-container *ngFor="let n of news; trackBy: trackById; let i = index">
+            <app-main-news-item class="grid-item" [newsItem]="n"></app-main-news-item>
+
+            <app-mobile-home-top-promotion *ngIf="i == 0 && hasHomeAds"></app-mobile-home-top-promotion>
+
+            <app-mobile-news-item-promotion *ngIf="i > 0 && i%13 == 0"></app-mobile-news-item-promotion>
+        </ng-container>
+    </div>
+
+    <div class="loader" *ngIf="loading">
+        <app-loader type="small"></app-loader>
+    </div>
+</div>

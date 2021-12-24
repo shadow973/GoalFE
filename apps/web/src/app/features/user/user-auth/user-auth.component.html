@@ -1,0 +1,71 @@
+<div class="app-modal">
+    <div class="modal-head text-center">
+        <span class="modal-header-control pointer" (click)="toggleForm(false)" *ngIf="loginForm">რეგისტრაცია</span>
+        <span class="modal-header-control pointer" (click)="toggleForm(true)" *ngIf="!loginForm">ავტორიზაცია</span>
+        <i class="fa fa-times close-modal" (click)="close()"></i>
+    </div>
+    <div class="modal-body">
+        <div class="text-danger d-flex align-items-center alert alert-danger" *ngIf="errorText">
+            <i class="fa fa-exclamation-circle error-icon"></i>
+            <span>
+                {{errorText}}
+            </span>
+        </div>
+
+        <div class="modal-title">
+            <div class="registered" *ngIf="registered">
+                რეგისტრაცია წარმატებით დასრულდა, გთხოვთ გაიაროთ ავტორიზაცია
+            </div>
+            <span *ngIf="!loginForm">რეგისტრაცია</span>
+            <span *ngIf="loginForm">ავტორიზაცია</span>
+        </div>
+
+        <form class="form" *ngIf="loginForm" (submit)="login()" #loginForm="ngForm">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="მომხმარებლის ნიკი ან ელ-ფოსტა" name="username"
+                    [(ngModel)]="username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="პაროლი" name="password" [(ngModel)]="password"
+                    required>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="submit-btn" value="ავტორიზაცია" [disabled]="loginForm.invalid">
+            </div>
+        </form>
+
+        <form class="form" *ngIf="!loginForm" (submit)="register()" #registerForm="ngForm">
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="ელ-ფოსტა" name="email" [(ngModel)]="email"
+                    required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="მომხმარებლის ნიკი" name="username" minlength="3"
+                    [(ngModel)]="username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="პაროლი" name="password" [(ngModel)]="password"
+                    minlength="6" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="გაიმეორეთ პაროლი" name="confirmPassword"
+                    minlength="6" [(ngModel)]="confirmPassword" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="submit-btn" value="რეგისტრაცია" [disabled]="registerForm.invalid">
+            </div>
+
+        </form>
+
+        <div class="social-auth">
+            <div class="social-auth-title">
+                გაიარეთ რეგისტრაცია სოციალური ქსელებით:
+            </div>
+            <div class="social-icons">
+                <a class="social-icon fb-login pointer" (click)="signInWithFB()"></a>
+            </div>
+        </div>
+    </div>
+
+    <app-loader *ngIf="loading"></app-loader>
+</div>

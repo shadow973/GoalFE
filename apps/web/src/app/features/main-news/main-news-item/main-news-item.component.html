@@ -1,0 +1,77 @@
+<ng-container *ngIf="newsItem">
+    <ng-container *ngIf="!newsItem.match_id">
+        <a class="main-news-item regular-container" [class.grid-view]="gridView"
+            [routerLink]="['/news/', newsItem.id, newsItem.slug | slugify]">
+            <div class="main-news-item-image-wrapper">
+                <img class="main-news-item-image" [alt]="newsItem.title | strip"
+                    [src]="imageLinkGenerator(newsItem.main_gallery_item?.filename)">
+                <div class="play-icon" *ngIf="newsItem?.main_video"><i class="fa fa-play"></i></div>
+            </div>
+            <div class="main-news-item-content">
+                <h2 class="main-news-item-title">
+                    {{newsItem.title | strip}}
+                </h2>
+                <h3 class="main-news-item-description" *ngIf="newsItem.content"
+                    [innerHTML]="newsItem.content | truncate : 100 | strip | safe: 'html'">
+                </h3>
+                <div class="main-news-item-date">
+                    <ng-container *ngIf="newsItem.teams && newsItem.teams.length">
+                        <img *ngIf="newsItem.teams[0]" class="main-news-item-category" [alt]="newsItem.teams[0].name"
+                            [src]="imageLinkGeneratorTeam(newsItem.teams[0].pivot.team_id)">
+                    </ng-container>
+                    {{newsItem.publish_date | toDate}}
+                </div>
+            </div>
+        </a>
+    </ng-container>
+
+    <ng-container *ngIf="newsItem.match_id">
+        <a class="main-news-item regular-container main-news-match-item" [class.grid-view]="gridView"
+            [routerLink]="['/match/', newsItem.match_id]">
+            <div class="main-news-item-image-wrapper">
+                <img class="main-news-item-image" [alt]="newsItem.title | strip"
+                    [src]="imageLinkGenerator(newsItem.main_gallery_item?.filename)">
+                <div class="play-icon" *ngIf="newsItem?.main_video"><i class="fa fa-play"></i></div>
+            </div>
+            <div class="main-news-item-content d-flex">
+                <div class="main-news-item-title col">
+                    {{newsItem.title | strip}}
+                </div>
+
+                <div class="main-news-item-match-wrapper">
+                    <div class="main-news-item-match no-gutters">
+                        <div class="team col-4 text-left">
+                            <img class="team-image" [alt]="newsItem.matche.localteam_mini.name"
+                                [src]="imageLinkGeneratorTeamBig(newsItem.matche.localteam_mini.team_id)" />
+                            <div class="team-name ml-2">{{ newsItem.matche.localteam_mini.name }}</div>
+                        </div>
+                        <div class="teams-scores d-flex col-4">
+                            <div *ngIf="newsItem.matche.time_status != 'NS'" class="report">
+                                <div class="data" [class.winner]="isWinner(newsItem.matche.localteam_score, newsItem.matche.visitorteam_score)">{{ newsItem.matche.localteam_score }}</div>
+                                <div class="data match-status">
+                                    <div class="time text-center">
+                                        <app-match-status [match]="newsItem.matche"></app-match-status>
+                                    </div>
+                                </div>
+                                <div class="data" [class.winner]="isWinner(newsItem.matche.visitorteam_score, newsItem.matche.localteam_score)">{{ newsItem.matche.visitorteam_score }}</div>
+                            </div>
+                            <div *ngIf="newsItem.matche.time_status == 'NS'" class="report">
+                                <app-timer *ngIf="newsItem.matche" [date]="newsItem.matche.starting_at"></app-timer>
+                            </div>
+                            <div *ngIf="newsItem.matche.time_status == 'NS'" class="report">
+                                <app-timer *ngIf="newsItem.matche" [date]="newsItem.matche.starting_at"></app-timer>
+                            </div>
+                        </div>
+                        <div class="team col-4">
+                            <div class="team-name mr-2 text-right">{{ newsItem.matche.visitorteam_mini.name }}</div>
+                            <img class="team-image" alt="{{newsItem.matche.visitorteam_mini.name}}"
+                                [src]="imageLinkGeneratorTeamBig(newsItem.matche.visitorteam_mini.team_id)" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </a>
+    </ng-container>
+
+</ng-container>

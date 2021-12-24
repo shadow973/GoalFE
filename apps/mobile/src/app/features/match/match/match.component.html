@@ -1,0 +1,106 @@
+<div class="wrapper">
+    <div class="match w-100 d-flex no-gutters">
+        <div class="col-12">
+            <app-loader type="small" *ngIf="loading"></app-loader>
+
+            <ng-container *ngIf="!loading">
+                <div class="w-100 regular-container">
+                    <app-match-header [match]="match"></app-match-header>
+                    <div class="w-100 text-center">
+                        <app-share-socials
+                            [extraTitle]="match?.localTeam.data.name + ' - ' + match?.visitorTeam.data.name"
+                            [disableAutoMeta]="true">
+                        </app-share-socials>
+                    </div>
+                    <div class="match-tabs d-flex align-items-center justify-content-center mt-1">
+                        <div matRipple class="match-tab pointer" [class.active]="activeTab == 1" (click)="changeTab(1)">
+                          მოვლენები - SUU
+                        </div>
+                        <div matRipple class="match-tab pointer" [class.active]="activeTab == 2" (click)="changeTab(2)"
+                            *ngIf="match?.formations.localteam_formation && match?.formations.visitorteam_formation">
+                            შემადგენლობა
+                        </div>
+                        <div class="match-tab pointer" [class.active]="activeTab == 3" *ngIf="match.time?.status != 'NS'" (click)="changeTab(3)">
+                            სტატისტიკა
+                        </div>
+                        <div *ngIf="match.time?.status != 'NS' && match.has_player_stats" matRipple class="match-tab pointer" [class.active]="activeTab == 8" (click)="changeTab(8)">
+                            ტოპ ფეხბურთელები
+                        </div>
+                        <div *ngIf="match.time?.status != 'NS' && match.has_player_stats" matRipple class="match-tab pointer" [class.active]="activeTab == 9" (click)="changeTab(9)">
+                            შედარება
+                        </div>
+                        <div matRipple class="match-tab pointer" [class.active]="activeTab == 4" (click)="changeTab(4)">
+                            კომენტარები
+                        </div>
+                        <div matRipple class="match-tab pointer" [class.active]="activeTab == 5" (click)="changeTab(5)"
+                            *ngIf="match?.time?.status == 'FT' || match?.time?.status == 'FT_PEN'">
+                            ვიდეო
+                        </div>
+                        <div matRipple class="match-tab pointer" [class.active]="activeTab == 6" (click)="changeTab(6)">
+                            ცხრილი
+                        </div>
+                        <div matRipple class="match-tab pointer" [class.active]="activeTab == 7" (click)="changeTab(7)">
+                            H2H
+                        </div>
+                    </div>
+                </div>
+
+                <div class="match-content mt-4" *ngIf="match">
+                    <ng-container *ngIf="activeTab == 1">
+                        <ng-container *ngIf="match.time?.status != 'NS'">
+                            <app-match-highlights [isLive]="isLive" [localTeamId]="match.localteam_id"
+                                [visitorTeamId]="match.visitorteam_id" [matchId]="matchId"></app-match-highlights>
+                            <app-match-statistics [isLive]="isLive" [localTeamId]="match.localteam_id"
+                                [visitorTeamId]="match.visitorteam_id" [matchId]="matchId">
+                            </app-match-statistics>
+                        </ng-container>
+                        <div class="text-center p-2" *ngIf="match.time?.status == 'NS'">
+                            მატჩი ჯერ არ დაწყებულა
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 2">
+                        <app-match-formation [match]="match"></app-match-formation>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 3">
+                        <app-match-statistics [isLive]="isLive" [localTeamId]="match.localteam_id"
+                            [visitorTeamId]="match.visitorteam_id" [matchId]="matchId">
+                        </app-match-statistics>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 4">
+                        <div class="w-100 regular-container vote-wrapper">
+                            <!-- <app-match-vote [match]="match"></app-match-vote> -->
+                            <app-match-comments [matchId]="matchId"></app-match-comments>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 5">
+                        <app-match-videos [matchId]="matchId"></app-match-videos>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 6">
+                        <app-match-standings [matchId]="matchId"></app-match-standings>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 7">
+                        <app-match-h2h [match]="match"></app-match-h2h>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 8">
+                        <ng-container *ngIf="match.time?.status != 'NS'">
+                            <app-match-player-stats [matchId]="matchId"></app-match-player-stats>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="activeTab == 9">
+                        <ng-container *ngIf="match.time?.status != 'NS'">
+                            <app-match-compare-players [matchId]="matchId"></app-match-compare-players>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

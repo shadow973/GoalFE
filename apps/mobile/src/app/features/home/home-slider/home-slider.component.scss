@@ -1,0 +1,106 @@
+.home-slider {
+    position: relative;
+    width: 100%;
+    height: 310px;
+
+    .slide-control {
+        position: absolute;
+        top: 63px;
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        color: #000;
+        border-radius: 100%;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 19px;
+        opacity: .95;
+
+        &.prev {
+            left: 15px;
+        }
+
+        &.next {
+            right: 15px;
+        }
+    }
+
+    .slide-news-item {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        overflow: hidden;
+        background-color: #fff;
+        display: block;
+
+        .slide-news-item-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 175px;
+            overflow: hidden;
+
+            .slide-news-item-image {
+                width: 100%;
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+                transition: 300ms;
+                -o-object-position: top;
+                object-position: top;
+            }
+
+            .play-icon {
+                position: absolute;
+                width: 44px;
+                height: 44px;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border-radius: 100%;
+                background: rgba(0, 0, 0, .5);
+                border: 2px solid #fff;
+                z-index: 9;
+                text-align: center;
+                line-height: 44px;
+                color: #fff;
+                padding-left: 3px;
+                font-size: 15px;
+            }
+        }
+
+        .slide-news-item-content {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 175px);
+
+            .slide-news-item-title {
+                height: 105px;
+                padding: 13px 20px 0 20px;
+                color: #000;
+                font-family: "HNeue75tdBd";
+                font-size: 13px;
+                line-height: 22px;
+                overflow: hidden;
+                margin: 0;
+            }
+
+            .slide-news-item-date {
+                padding: 0 20px;
+                color: #000;
+                font-family: "HNeue55tdRoman";
+                font-size: 12px;
+                display: flex;
+
+                .slide-news-item-category {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}

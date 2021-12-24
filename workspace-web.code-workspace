@@ -1,0 +1,19 @@
+{
+  "folders": [
+    {
+      "path": "apps/web"
+    },
+    {
+      "path": "libs/core"
+    },
+    {
+      "path": "libs/shared"
+    },
+    {
+      "path": "libs/promotion"
+    },
+    {
+      "path": "libs/comments"
+    }
+  ]
+}

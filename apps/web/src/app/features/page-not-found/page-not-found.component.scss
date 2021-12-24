@@ -1,0 +1,12 @@
+.not-found {
+    font-family: "HNeue55tdRoman";
+    font-feature-settings: "case"on;
+}
+
+.not-found-link {
+    font-family: "HNeue55tdRoman";
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
